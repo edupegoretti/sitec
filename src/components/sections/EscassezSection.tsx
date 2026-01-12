@@ -3,9 +3,19 @@
 import { Container } from '@/components/layout'
 import { Reveal } from '@/components/shared'
 import { ArrowRight, Clock } from 'lucide-react'
-import { ZOPU_LINKS } from '@/lib/constants'
+import { ZOPU_CAPACIDADE, ZOPU_LINKS } from '@/lib/constants'
 
 export function EscassezSection() {
+  const capacidadeTexto = ZOPU_CAPACIDADE.projetosPorCiclo
+    ? `Para manter qualidade, SLA e acompanhamento real, abrimos ${ZOPU_CAPACIDADE.projetosPorCiclo} projetos por ciclo.`
+    : 'Para manter qualidade, SLA e acompanhamento real, abrimos poucos projetos por ciclo.'
+
+  const proximoCicloTexto = ZOPU_CAPACIDADE.proximoCiclo
+    ? `Próximo ciclo: ${ZOPU_CAPACIDADE.proximoCiclo}${
+        ZOPU_CAPACIDADE.janelaProxima ? ` (${ZOPU_CAPACIDADE.janelaProxima})` : ''
+      }.`
+    : 'Se você quer começar no próximo ciclo, faça o diagnóstico agora.'
+
   return (
     <section className="py-16 sm:py-24 bg-gradient-to-b from-brand to-brand-hover relative overflow-hidden">
       {/* Decorative elements */}
@@ -32,9 +42,7 @@ export function EscassezSection() {
           {/* Texto explicativo */}
           <Reveal delay={0.2}>
             <p className="text-xl text-white/80 leading-relaxed mb-10 max-w-2xl mx-auto">
-              Para manter qualidade, SLA e acompanhamento, abrimos um número limitado de
-              projetos em paralelo. Se você quer começar no próximo ciclo, faça o diagnóstico
-              agora.
+              {capacidadeTexto} {proximoCicloTexto}
             </p>
           </Reveal>
 

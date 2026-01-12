@@ -19,18 +19,29 @@ export const ZOPU_STATS = {
   slaDescricao: "SLA de primeira resposta (horário comercial)",
 } as const;
 
+// Capacidade operacional (usar no bloco de escassez)
+export const ZOPU_CAPACIDADE: {
+  projetosPorCiclo: string | null;
+  proximoCiclo: string | null;
+  janelaProxima: string | null;
+} = {
+  projetosPorCiclo: null,
+  proximoCiclo: null,
+  janelaProxima: null,
+};
+
 // Evidência do evento Bitrix24 Partner Summit
 export const BITRIX24_SUMMIT_EVIDENCE = {
-  titulo: "Citado pela Bitrix24 como exemplo em churn/retenção",
+  titulo: "Citado pela Bitrix24 como exemplo em baixo churn/alta retenção",
   caption:
     'Partner Summit Brasil (Out/2025) — slide do evento exibindo a Zopu como "exemplo a ser seguido".',
   eventDate: "Outubro de 2025",
   eventName: "Bitrix24 Partner Summit Brasil 2025",
   imageSrc: "/images/proof/bitrix24-summit-2025-zopu.jpg",
   imageAlt:
-    "Slide do evento Bitrix24 citando a Zopu como exemplo em churn/retenção",
+    "Slide do evento Bitrix24 citando a Zopu como exemplo em baixo churn/alta retenção",
   footnote:
-    "Partner Summit Brasil 2025 foi divulgado publicamente pelo Bitrix24 Brasil (03/out/2025).",
+    "Partner Summit Brasil 2025 foi divulgado publicamente pelo Bitrix24 Brasil (out/2025).",
 } as const;
 
 // Fonte do dado de taxa de falha (validado por Gartner e Forrester)
@@ -714,6 +725,11 @@ export const NAVIGATION = {
       nome: "RevOps Launch",
       href: "/revopslaunch",
       descricao: "Pipeline, metas e previsibilidade",
+    },
+    {
+      nome: "Mapa de Performance de Receita",
+      href: "/mapadeperformance",
+      descricao: "Maturidade, governança e próximos passos",
     },
     {
       nome: "Enterprise",

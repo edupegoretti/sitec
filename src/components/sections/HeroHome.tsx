@@ -106,14 +106,14 @@ export function HeroHome() {
               transition={{ ...transition, delay: heroEntrance.title }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight"
             >
-              Bitrix24 que vira rotina.
+              Governança de Receita no Bitrix24.
               <br className="hidden sm:block" />
               <span className="text-brand">
-                E vira número que a liderança confia.
+                CRM que vira rotina e número que a liderança confia.
               </span>
             </motion.h1>
 
-            {/* Subtitulo com posicionamento claro - Operação de Receita */}
+            {/* Subtitulo com posicionamento claro - Governança de Receita */}
             <motion.p
               variants={prefersReducedMotion ? undefined : fadeUp}
               initial="hidden"
@@ -122,7 +122,7 @@ export function HeroHome() {
               className="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed"
             >
               A Zopu implementa Bitrix24 como{" "}
-              <strong className="text-gray-900">Operação de Receita</strong>:
+              <strong className="text-gray-900">Governança de Receita</strong>:
               processo, dados e adoção — com acompanhamento pós-go-live para o
               CRM não morrer depois da implementação.
             </motion.p>

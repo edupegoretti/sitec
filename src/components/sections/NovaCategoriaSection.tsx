@@ -66,16 +66,17 @@ export function NovaCategoriaSection() {
 
             <Reveal delay={0.1}>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-                Zopu = <span className="text-brand">Operação de Receita</span> no Bitrix24.
+                Zopu = <span className="text-brand">Governança de Receita</span> no Bitrix24.
               </h2>
             </Reveal>
 
             <Reveal delay={0.2}>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Não é "projeto de CRM". É colocar sua operação comercial para rodar com:{' '}
+                Não é "projeto de CRM". É colocar sua operação comercial para rodar com{' '}
                 <strong className="text-gray-900">
-                  regras, dados e rotina — sustentadas por um parceiro que não some.
-                </strong>
+                  regras, dados, rotina e WhatsApp sob governança
+                </strong>{' '}
+                — sustentados por um parceiro que não some.
               </p>
             </Reveal>
           </div>
@@ -107,8 +108,7 @@ export function NovaCategoriaSection() {
           <Reveal delay={0.4}>
             <div className="mt-12 text-center">
               <p className="text-gray-500 text-sm">
-                Configurar CRM é fácil. Difícil é fazer o time usar sem você cobrar — e manter
-                isso vivo depois do go-live.
+                Ativar CRM é fácil. Difícil é manter uso e número confiável 90 dias depois.
               </p>
             </div>
           </Reveal>

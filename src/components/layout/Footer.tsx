@@ -76,10 +76,10 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/fluidsales"
+                  href="/mapadeperformance"
                   className="text-gray-400 hover:text-white text-sm transition-colors"
                 >
-                  Metodologia Fluidsales
+                  Mapa de Performance de Receita
                 </Link>
               </li>
               <li>
@@ -99,10 +99,10 @@ export function Footer() {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/fluidsales"
+                  href="/mapadeperformance"
                   className="text-gray-400 hover:text-white text-sm transition-colors"
                 >
-                  Metodologia
+                  Mapa de Performance
                 </Link>
               </li>
               <li>

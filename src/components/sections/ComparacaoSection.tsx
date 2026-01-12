@@ -76,13 +76,13 @@ export function ComparacaoSection() {
               <Badge className="mb-6">Comparativo</Badge>
             </Reveal>
 
-            <Reveal delay={0.1}>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-                Implementar rápido é fácil.{' '}
+          <Reveal delay={0.1}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                Ativação rápida é fácil.{' '}
                 <span className="text-brand">Sustentar uso e número confiável é raro.</span>
-              </h2>
-            </Reveal>
-          </div>
+            </h2>
+          </Reveal>
+        </div>
 
           {/* Tabela comparativa - Desktop */}
           <Reveal delay={0.2}>
@@ -94,10 +94,10 @@ export function ComparacaoSection() {
                   Projeto que termina no go-live
                 </div>
                 <div className="p-4 text-center font-semibold text-gray-500 text-sm border-l border-gray-200">
-                  Imersão de ativação
+                  Imersão 3 dias (ativação)
                 </div>
                 <div className="p-4 text-center font-semibold text-brand text-sm border-l border-brand/20 bg-brand/5">
-                  Operação de Receita (Zopu)
+                  Governança de Receita (Zopu)
                 </div>
               </div>
 
@@ -138,7 +138,7 @@ export function ComparacaoSection() {
                     </div>
                     <div className="text-center p-2 rounded-lg bg-gray-50">
                       <StatusIcon status={item.imersaoAtivacao} />
-                      <p className="text-[10px] text-gray-500 mt-1">Imersão</p>
+                      <p className="text-[10px] text-gray-500 mt-1">Imersão 3 dias</p>
                     </div>
                     <div className="text-center p-2 rounded-lg bg-brand/5">
                       <StatusIcon status={item.zopu} />
@@ -154,10 +154,8 @@ export function ComparacaoSection() {
           <Reveal delay={0.3}>
             <div className="mt-10 text-center">
               <p className="text-gray-500 text-sm">
-                A diferença não é velocidade de ativação. É{' '}
-                <span className="font-medium text-gray-700">
-                  sustentabilidade do resultado.
-                </span>
+                A diferença não é só velocidade de ativação. É{' '}
+                <span className="font-medium text-gray-700">resultado sustentado.</span>
               </p>
             </div>
           </Reveal>

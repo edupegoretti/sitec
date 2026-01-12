@@ -2,6 +2,7 @@ export { HeroHome } from "./HeroHome";
 export { StatusQuoSection } from "./StatusQuoSection";
 export { IAAmplifierSection } from "./IAAmplifierSection";
 export { NovaCategoriaSection } from "./NovaCategoriaSection";
+export { ParaQuemSection } from "./ParaQuemSection";
 export { ComoFuncionaSection } from "./ComoFuncionaSection";
 export { AdocaoSection } from "./AdocaoSection";
 export { WhatsAppGovernancaSection } from "./WhatsAppGovernancaSection";

@@ -37,6 +37,7 @@ const iconMap: Record<string, PhosphorIcon> = {
   // Soluções
   "CRM Express": Lightning,
   "RevOps Launch": Stack,
+  "Mapa de Performance de Receita": ChartLineUp,
   Enterprise: Buildings,
   // Como funciona
   "Metodologia Fluidsales": ChartLineUp,

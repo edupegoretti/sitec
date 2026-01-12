@@ -90,8 +90,8 @@ export function ParaQuemESection() {
                     RevOps Launch
                   </a>{' '}
                   ou o{' '}
-                  <a href="/fluidsales" className="text-brand font-medium hover:underline">
-                    Metodologia Fluidsales
+                  <a href="/mapadeperformance" className="text-brand font-medium hover:underline">
+                    Mapa de Performance de Receita
                   </a>
                   .
                 </p>

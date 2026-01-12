@@ -765,11 +765,11 @@ function QualificacaoSection() {
                     RevOps Launch
                   </Link>
                   <Link
-                    href="/fluidsales"
+                    href="/mapadeperformance"
                     className="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:border-brand hover:text-brand hover:shadow-md transition-all duration-200"
                   >
                     <ChartLineUp size={16} weight="duotone" />
-                    Metodologia Fluidsales
+                    Mapa de Performance de Receita
                   </Link>
                 </div>
               </motion.div>

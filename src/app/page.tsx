@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Parceiro Gold Bitrix24 no Brasil | +9.500 Certificados | Zopu",
+  title: "Governança de Receita no Bitrix24 | Gold Partner | Zopu",
   description:
-    "Líder global em retenção de clientes Bitrix24. +450 clientes, +9.500 certificados via Fluidz. Implementação em 30 dias.",
+    "Gold Partner Bitrix24 no Brasil. Governança de receita com processo, dados e adoção. +450 clientes e +9.500 certificados via Fluidz.",
   keywords: [
     "Bitrix24",
     "Bitrix24 Brasil",
@@ -26,12 +26,13 @@ import {
   HeroHome,
   CRORecognitionSection,
   StatusQuoSection,
-  IAAmplifierSection,
   NovaCategoriaSection,
+  ParaQuemSection,
   ComoFuncionaSection,
   AdocaoSection,
   WhatsAppGovernancaSection,
   CaseDestaque,
+  IAAmplifierSection,
   TrustCenterSection,
   ComparacaoSection,
   SolucoesSection,
@@ -51,11 +52,11 @@ export default function Home() {
       {/* 3. Status Quo - Postura desafiadora (o problema real) */}
       <StatusQuoSection />
 
-      {/* 4. 2026 / IA - Amplificador (não hype) */}
-      <IAAmplifierSection />
-
-      {/* 5. Nova Categoria - Zopu = Operação de Receita */}
+      {/* 4. Nova Categoria - Zopu = Governança de Receita */}
       <NovaCategoriaSection />
+
+      {/* 5. Fit do projeto - Para quem é / para quem não é */}
+      <ParaQuemSection />
 
       {/* 6. Como Funciona - Método simples (óbvio bem feito) */}
       <ComoFuncionaSection />
@@ -68,6 +69,9 @@ export default function Home() {
 
       {/* 9. Case - Prova concreta com métricas */}
       <CaseDestaque />
+
+      {/* 10. 2026 / IA - Amplificador (não hype) */}
+      <IAAmplifierSection />
 
       {/* 10. Segurança - Trust Center */}
       <TrustCenterSection />

@@ -31,10 +31,10 @@ export default async function MetodologiasLibraryPage() {
               </p>
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/fluidsales"
+                  href="/mapadeperformance"
                   className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-white text-gray-700 border border-gray-200 font-semibold rounded-xl hover:bg-gray-50 transition-colors"
                 >
-                  Conhecer a Metodologia Fluidsales™
+                  Conhecer o Mapa de Performance de Receita
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
@@ -59,4 +59,3 @@ export default async function MetodologiasLibraryPage() {
     </section>
   )
 }
-

@@ -35,7 +35,7 @@ export function IAAmplifierSection() {
           <Reveal>
             <Badge variant="warning" className="mb-6 bg-amber-500/10 text-amber-400 border-amber-500/20">
               <AlertTriangle className="w-3.5 h-3.5 mr-1.5" />
-              2026: O ano da IA
+              2026: IA virou padrão
             </Badge>
           </Reveal>
 
@@ -48,9 +48,8 @@ export function IAAmplifierSection() {
 
           <Reveal delay={0.2}>
             <p className="text-xl text-gray-300 leading-relaxed mb-12 max-w-3xl mx-auto">
-              Em 2026, IA virou multiplicador. Se seu CRM é o "sistema de registro", ele precisa
-              ter dados confiáveis e processo definido — senão a IA automatiza erro, não
-              resultado.
+              Em 2026, IA virou padrão. Se seu CRM é o "sistema de registro", ele precisa ter
+              dados confiáveis e processo definido — senão a IA automatiza erro, não resultado.
             </p>
           </Reveal>
 

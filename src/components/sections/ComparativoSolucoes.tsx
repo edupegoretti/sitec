@@ -49,11 +49,11 @@ const solutions = [
   },
   {
     id: 'enterprise',
-    name: 'Metodologia Fluidsales™',
-    subtitle: 'Projetos complexos',
+    name: 'Mapa de Performance de Receita',
+    subtitle: 'Maturidade e governança',
     prazo: 'Sob medida',
     para: 'Enterprise com alta complexidade',
-    href: '/fluidsales',
+    href: '/mapadeperformance',
     icon: Buildings,
     recommended: false,
     features: {

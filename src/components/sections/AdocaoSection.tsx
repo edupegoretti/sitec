@@ -14,7 +14,7 @@ const PROVAS = [
   {
     icon: TrendingUp,
     valor: ZOPU_STATS.retencao,
-    label: 'taxa de retenção anual',
+    label: 'renovam porque o CRM vira rotina',
   },
 ] as const
 

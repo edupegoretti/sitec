@@ -72,17 +72,17 @@ const implementationOptions = [
   },
   {
     id: 'enterprise',
-    nome: 'Metodologia Fluidsales™',
-    subtitulo: 'Projetos complexos',
-    prazo: 'Sob medida',
-    para: 'Grandes operações com múltiplos times e integrações',
+    nome: 'Mapa de Performance de Receita',
+    subtitulo: 'Maturidade e governança',
+    prazo: 'Diagnóstico guiado',
+    para: 'Operações que precisam visualizar maturidade e próximos passos',
     quando: [
       'Múltiplas unidades, produtos ou regiões',
       'Integrações com ERP/BI e governança',
       'Regras de acesso e compliance elevados',
     ],
     icon: Buildings,
-    href: '/fluidsales',
+    href: '/mapadeperformance',
   },
 ]
 

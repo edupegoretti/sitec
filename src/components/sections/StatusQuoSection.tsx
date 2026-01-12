@@ -38,13 +38,14 @@ export function StatusQuoSection() {
           <Reveal delay={0.2}>
             <div className="prose prose-lg max-w-none mb-10">
               <p className="text-xl text-gray-600 leading-relaxed">
-                A maioria das implementações falha no mesmo lugar: o CRM vira{' '}
+                CRM sem governança vira{' '}
                 <strong className="text-gray-900">"sistema para preencher"</strong>, não{' '}
-                <strong className="text-gray-900">"sistema para operar"</strong>.
+                <strong className="text-gray-900">"sistema para operar"</strong>. O custo é
+                invisível: follow-up perdido, pipeline sem critério e histórico espalhado.
               </p>
               <p className="text-lg text-gray-500 mt-4">
                 Quando isso acontece, o time cria planilha paralela, o WhatsApp vira caos e o
-                gestor descobre o problema tarde demais.
+                gestor decide no escuro.
               </p>
             </div>
           </Reveal>

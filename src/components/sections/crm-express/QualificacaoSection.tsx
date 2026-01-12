@@ -107,7 +107,7 @@ export function QualificacaoSection() {
               </div>
             </Reveal>
 
-            {/* Considere Metodologia Fluidsales */}
+            {/* Considere Mapa de Performance de Receita */}
             <Reveal delay={0.3}>
               <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm h-full">
                 <div className="flex items-center gap-3 mb-6">
@@ -115,7 +115,7 @@ export function QualificacaoSection() {
                     <Buildings size={20} weight="duotone" className="text-gray-600" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900">
-                    Considere Metodologia Fluidsales se:
+                    Considere o Mapa de Performance de Receita se:
                   </h3>
                 </div>
                 <ul className="space-y-3">
@@ -129,10 +129,10 @@ export function QualificacaoSection() {
                   ))}
                 </ul>
                 <Link
-                  href="/fluidsales"
+                  href="/mapadeperformance"
                   className="inline-flex items-center gap-2 mt-6 text-gray-600 font-medium text-sm hover:text-gray-900 hover:gap-3 transition-all"
                 >
-                  Conhecer Metodologia Fluidsales
+                  Conhecer o Mapa de Performance
                   <ArrowRight size={14} weight="bold" />
                 </Link>
               </div>
@@ -149,7 +149,7 @@ export function QualificacaoSection() {
                 <div>
                   <p className="text-gray-700 leading-relaxed">
                     <span className="font-semibold text-gray-900">O tamanho da empresa não define qual produto é certo.</span>
-                    {' '}Uma startup de 20 pessoas pode precisar da Metodologia Fluidsales.
+                    {' '}Uma startup de 20 pessoas pode precisar do Mapa de Performance.
                     Uma empresa de 500 pode começar com CRM Express.
                     <span className="font-medium text-brand"> O que define é a necessidade, não o porte.</span>
                   </p>
