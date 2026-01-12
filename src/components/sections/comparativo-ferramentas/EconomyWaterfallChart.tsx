@@ -1,7 +1,6 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, useInView, useMotionValueEvent } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { ArrowDown, TrendingDown, CheckCircle2 } from 'lucide-react'
 import { Reveal } from '@/components/shared'
@@ -26,11 +25,6 @@ interface EconomyWaterfallChartProps {
 // Animated cost component
 function AnimatedCost({ value }: { value: number }) {
   const { ref, value: animatedValue } = useCountUp(value, { delay: 300 })
-  const [displayNumber, setDisplayNumber] = useState(0)
-
-  useMotionValueEvent(animatedValue, 'change', (latest) => {
-    setDisplayNumber(latest)
-  })
 
   return (
     <span ref={ref}>
@@ -38,7 +32,7 @@ function AnimatedCost({ value }: { value: number }) {
         style: 'currency',
         currency: 'BRL',
         minimumFractionDigits: 0,
-      }).format(Math.round(displayNumber))}
+      }).format(Math.round(animatedValue))}
     </span>
   )
 }

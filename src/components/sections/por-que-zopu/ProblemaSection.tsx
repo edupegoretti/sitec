@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 import { Container } from "@/components/layout";
 import { Badge, Reveal } from "@/components/shared";
 import { Check, ArrowRight, X } from "lucide-react";
@@ -12,13 +11,8 @@ import { useCountUp } from "@/hooks/useCountUp";
 // Animated 50% counter
 function AnimatedPercent() {
   const { ref, value: animatedValue } = useCountUp(50, { delay: 500 });
-  const [displayNumber, setDisplayNumber] = useState(0);
 
-  useMotionValueEvent(animatedValue, "change", (latest) => {
-    setDisplayNumber(latest);
-  });
-
-  return <span ref={ref}>{Math.round(displayNumber)}</span>;
+  return <span ref={ref}>{Math.round(animatedValue)}</span>;
 }
 
 const FLOW_SEQUENCE = [

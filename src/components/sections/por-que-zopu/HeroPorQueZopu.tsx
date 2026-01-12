@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { motion, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 import { ZOPU_LINKS } from "@/lib/constants";
 import { useCountUp } from "@/hooks/useCountUp";
 
@@ -35,14 +34,10 @@ function AnimatedROI() {
   const { ref, value: animatedValue } = useCountUp(8.71, {
     delay: 300,
     decimals: 2,
-  });
-  const [displayNumber, setDisplayNumber] = useState(0);
-
-  useMotionValueEvent(animatedValue, "change", (latest) => {
-    setDisplayNumber(latest);
+    animate: false,
   });
 
-  return <span ref={ref}>{displayNumber.toFixed(2)}</span>;
+  return <span ref={ref}>{animatedValue.toFixed(2)}</span>;
 }
 
 export function HeroPorQueZopu() {

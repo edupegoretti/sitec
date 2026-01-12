@@ -7,7 +7,7 @@ import { Badge, Reveal } from '@/components/shared'
 const PARA_QUEM_E = [
   'Já escolheu Bitrix24 (ou está convicto do all-in-one).',
   'Vende/atende pelo WhatsApp e precisa de governança.',
-  'Quer pipeline com critérios claros e número confiável.',
+  'Quer pipeline com critérios claros e dados confiáveis.',
   'Tem sponsor executivo e aceita ajustar rotina.',
   'Busca parceiro de longo prazo, não entrega pontual.',
 ] as const

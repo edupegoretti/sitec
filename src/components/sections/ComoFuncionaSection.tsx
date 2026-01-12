@@ -11,6 +11,12 @@ const ETAPAS = [
     titulo: 'Diagnóstico',
     subtitulo: 'Antes de configurar',
     descricao: 'Mapeamos jornada, funil real, critérios e vazamentos.',
+    entregaveis: [
+      'Sponsor e times-chave para entrevistas',
+      'Dados atuais (planilhas/CRM)',
+      'Metas e funil atual',
+    ],
+    criterio: 'Mapa validado + funil com critérios definidos',
     cor: 'brand',
   },
   {
@@ -20,6 +26,12 @@ const ETAPAS = [
     subtitulo: 'Bitrix24 espelha seu processo',
     descricao:
       'Configuração + integrações que importam + automações com regra (não com gambiarra).',
+    entregaveis: [
+      'Acessos Bitrix24 e integrações',
+      'Regras de passagem por etapa',
+      'Base para migração (quando existir)',
+    ],
+    criterio: 'Pipelines, automações e dashboards operando',
     cor: 'amber',
   },
   {
@@ -28,6 +40,12 @@ const ETAPAS = [
     titulo: 'Adoção e Sustentação',
     subtitulo: 'O pós-go-live é onde o jogo se ganha',
     descricao: 'Treino por função (Fluidz) + ajustes + governança contínua.',
+    entregaveis: [
+      'Agenda do time para treinamentos',
+      'Gestor responsável pela rotina',
+      'Ritual de acompanhamento acordado',
+    ],
+    criterio: 'Equipe treinada + uso diário monitorado',
     cor: 'emerald',
   },
 ] as const
@@ -120,6 +138,25 @@ export function ComoFuncionaSection() {
                           <h3 className="text-xl font-bold text-gray-900 mb-1">{etapa.titulo}</h3>
                           <p className="text-sm text-gray-500 mb-3">{etapa.subtitulo}</p>
                           <p className="text-gray-600 leading-relaxed">{etapa.descricao}</p>
+
+                          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                            <div className="rounded-xl border border-gray-200/70 bg-white/80 p-4">
+                              <p className={`text-xs font-semibold uppercase tracking-wider ${cores.text} mb-2`}>
+                                Entregáveis do cliente
+                              </p>
+                              <ul className="space-y-1 text-xs text-gray-600">
+                                {etapa.entregaveis.map((entregavel) => (
+                                  <li key={entregavel}>• {entregavel}</li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div className="rounded-xl border border-gray-200/70 bg-white/80 p-4">
+                              <p className={`text-xs font-semibold uppercase tracking-wider ${cores.text} mb-2`}>
+                                Critério de pronto
+                              </p>
+                              <p className="text-xs text-gray-600">{etapa.criterio}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -137,6 +174,9 @@ export function ComoFuncionaSection() {
                   <strong className="text-gray-900">Expectativa vs. Experiência:</strong> Você
                   vai saber exatamente o que será entregue em cada etapa — e o que depende do
                   seu time para dar certo.
+                </p>
+                <p className="text-center text-sm text-gray-500 mt-3">
+                  É assim que o CRM vira rotina e o número passa a ser confiável.
                 </p>
               </div>
             </div>

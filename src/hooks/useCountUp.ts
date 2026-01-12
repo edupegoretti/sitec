@@ -1,7 +1,13 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import { useInView, useMotionValue, useSpring } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import {
+  useInView,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+  useSpring,
+} from 'framer-motion'
 
 export interface UseCountUpOptions {
   /**
@@ -39,6 +45,21 @@ export interface UseCountUpOptions {
    * @default 60
    */
   damping?: number
+  /**
+   * Start value for the animation
+   * @default 0
+   */
+  start?: number
+  /**
+   * Initial value for SSR/first paint
+   * @default end
+   */
+  initialValue?: number
+  /**
+   * Toggle animation (useful for above-the-fold stats)
+   * @default true
+   */
+  animate?: boolean
 }
 
 /**
@@ -63,14 +84,20 @@ export function useCountUp(
     suffix = '',
     stiffness = 100,
     damping = 60,
+    start = 0,
+    initialValue = end,
+    animate = true,
   } = options
 
   const ref = useRef<HTMLElement>(null)
-  const motionValue = useMotionValue(0)
+  const prefersReducedMotion = useReducedMotion()
+  const motionValue = useMotionValue(initialValue)
   const springValue = useSpring(motionValue, {
     damping,
     stiffness,
   })
+  const [displayValue, setDisplayValue] = useState(initialValue)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   const isInView = useInView(ref, {
     once: true,
@@ -78,23 +105,38 @@ export function useCountUp(
   })
 
   useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        motionValue.set(end)
-      }, delay)
+    if (!isInView) return
 
-      return () => clearTimeout(timer)
+    if (!animate || prefersReducedMotion || start === end) {
+      setDisplayValue(end)
+      motionValue.set(end)
+      return
     }
-  }, [isInView, end, motionValue, delay])
+
+    setIsAnimating(true)
+    setDisplayValue(start)
+    motionValue.set(start)
+
+    const timer = setTimeout(() => {
+      motionValue.set(end)
+    }, delay)
+
+    return () => clearTimeout(timer)
+  }, [isInView, end, start, motionValue, delay, animate, prefersReducedMotion])
+
+  useMotionValueEvent(springValue, 'change', (latest) => {
+    if (!isAnimating) return
+    setDisplayValue(latest)
+  })
 
   return {
     ref,
-    value: springValue,
+    value: displayValue,
     /**
      * Formatted value with prefix/suffix
      */
     formattedValue: () => {
-      const numValue = springValue.get()
+      const numValue = displayValue
       const formatted = decimals > 0
         ? numValue.toFixed(decimals)
         : Math.round(numValue).toString()

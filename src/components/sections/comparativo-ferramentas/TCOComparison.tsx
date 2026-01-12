@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion, useMotionValueEvent } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Reveal, Badge } from '@/components/shared'
 import { TCO_SCENARIOS, calcularEconomia } from '@/lib/comparativoFerramentas'
 import { cn } from '@/lib/utils'
@@ -24,11 +24,6 @@ type TableRow = {
 // Animated price component
 function AnimatedPrice({ value, className = '' }: { value: number; className?: string }) {
   const { ref, value: animatedValue } = useCountUp(value, { delay: 100 })
-  const [displayNumber, setDisplayNumber] = useState(0)
-
-  useMotionValueEvent(animatedValue, 'change', (latest) => {
-    setDisplayNumber(latest)
-  })
 
   return (
     <span ref={ref} className={className}>
@@ -36,7 +31,7 @@ function AnimatedPrice({ value, className = '' }: { value: number; className?: s
         style: 'currency',
         currency: 'BRL',
         minimumFractionDigits: 0,
-      }).format(Math.round(displayNumber))}
+      }).format(Math.round(animatedValue))}
     </span>
   )
 }

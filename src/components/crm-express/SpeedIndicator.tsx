@@ -1,39 +1,18 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef } from 'react'
 import { Lightning, Clock, Rocket } from '@phosphor-icons/react'
+import { useCountUp } from '@/hooks/useCountUp'
 
 interface SpeedIndicatorProps {
   className?: string
 }
 
-function AnimatedNumber({ value, duration = 2 }: { value: number; duration?: number }) {
-  const [displayValue, setDisplayValue] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true })
+function AnimatedNumber({ value }: { value: number }) {
+  const { ref, value: animatedValue } = useCountUp(value, { delay: 200 })
 
-  useEffect(() => {
-    if (!isInView) return
-
-    const startTime = Date.now()
-    const endTime = startTime + duration * 1000
-
-    const tick = () => {
-      const now = Date.now()
-      const progress = Math.min((now - startTime) / (duration * 1000), 1)
-      const eased = 1 - Math.pow(1 - progress, 3) // easeOutCubic
-      setDisplayValue(Math.round(eased * value))
-
-      if (now < endTime) {
-        requestAnimationFrame(tick)
-      }
-    }
-
-    requestAnimationFrame(tick)
-  }, [isInView, value, duration])
-
-  return <span ref={ref}>{displayValue}</span>
+  return <span ref={ref}>{Math.round(animatedValue)}</span>
 }
 
 export function SpeedIndicator({ className }: SpeedIndicatorProps) {
@@ -115,7 +94,7 @@ export function SpeedIndicator({ className }: SpeedIndicatorProps) {
               >
                 <span className="text-4xl sm:text-5xl text-white/60 font-medium mr-2">até</span>
                 <span className="text-6xl sm:text-7xl font-bold text-white tracking-tight">
-                  <AnimatedNumber value={30} duration={1.5} />
+                  <AnimatedNumber value={30} />
                 </span>
               </motion.div>
               <motion.p

@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { motion, useMotionValueEvent, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { ZOPU_LINKS } from "@/lib/constants";
 import { useCountUp } from "@/hooks/useCountUp";
@@ -45,14 +44,11 @@ const fadeUp = {
 
 // Animated client count component
 function AnimatedClientCount() {
-  const { ref, value: animatedValue } = useCountUp(450, { delay: 500 });
-  const [displayNumber, setDisplayNumber] = useState(0);
-
-  useMotionValueEvent(animatedValue, "change", (latest) => {
-    setDisplayNumber(latest);
+  const { ref, value: animatedValue } = useCountUp(450, {
+    animate: false,
   });
 
-  return <span ref={ref}>{Math.round(displayNumber)}+</span>;
+  return <span ref={ref}>{Math.round(animatedValue)}+</span>;
 }
 
 export function HeroHome() {
@@ -106,10 +102,10 @@ export function HeroHome() {
               transition={{ ...transition, delay: heroEntrance.title }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight"
             >
-              Governança de Receita no Bitrix24.
+              Bitrix24 que funciona de verdade.
               <br className="hidden sm:block" />
               <span className="text-brand">
-                CRM que vira rotina e número que a liderança confia.
+                Previsibilidade de Receita com rotina e dados confiáveis.
               </span>
             </motion.h1>
 
@@ -121,10 +117,9 @@ export function HeroHome() {
               transition={{ ...transition, delay: heroEntrance.description }}
               className="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed"
             >
-              A Zopu implementa Bitrix24 como{" "}
-              <strong className="text-gray-900">Governança de Receita</strong>:
-              processo, dados e adoção — com acompanhamento pós-go-live para o
-              CRM não morrer depois da implementação.
+              A Zopu é a melhor consultoria Bitrix24 para empresas que querem se organizar e crescer.
+              Conectamos marketing, vendas, atendimento e CS para aumentar
+              receita e margem de forma sustentável e escalável.
             </motion.p>
 
             {/* Bullets de benefícios */}
@@ -153,7 +148,25 @@ export function HeroHome() {
                   />
                 </svg>
                 <span>
-                  Pipeline com critérios claros (sem "achismo" no forecast)
+                  Marketing, Vendas, Atendimento e CS unificados
+                </span>
+              </li>
+              <li className="flex items-center gap-2 text-gray-600">
+                <svg
+                  className="w-4 h-4 text-brand shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span>
+                  Pipeline com critérios claros e previsibilidade
                 </span>
               </li>
               <li className="flex items-center gap-2 text-gray-600">
@@ -218,17 +231,6 @@ export function HeroHome() {
                 Ver cases reais
               </a>
             </motion.div>
-
-            {/* Microcopy */}
-            <motion.p
-              variants={prefersReducedMotion ? undefined : fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{ ...transition, delay: heroEntrance.cta + 0.1 }}
-              className="mt-3 text-xs text-gray-400"
-            >
-              Se não fizer sentido para sua empresa, a gente fala na hora.
-            </motion.p>
 
             {/* Trust bar - Credenciais complementares (sem repetir 96%) */}
             <motion.div
@@ -321,7 +323,7 @@ export function HeroHome() {
           className="mt-12 pt-10 border-t border-gray-100"
         >
           <p className="text-center text-xs text-gray-400 uppercase tracking-wider mb-6">
-            Empresas que não podem "brincar" com CRM confiam na Zopu
+            Empresas que confiam seu Bitrix24 à Zopu
           </p>
 
           {/* Container com overflow hidden para o carrossel */}

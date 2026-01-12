@@ -49,7 +49,8 @@ export function IAAmplifierSection() {
           <Reveal delay={0.2}>
             <p className="text-xl text-gray-300 leading-relaxed mb-12 max-w-3xl mx-auto">
               Em 2026, IA virou padrão. Se seu CRM é o "sistema de registro", ele precisa ter
-              dados confiáveis e processo definido — senão a IA automatiza erro, não resultado.
+              dados confiáveis, processo definido e rotina de uso — senão a IA automatiza erro,
+              não resultado.
             </p>
           </Reveal>
 
@@ -77,6 +78,9 @@ export function IAAmplifierSection() {
               <p className="text-gray-400">
                 A Zopu prepara sua operação para IA funcionar de verdade —{' '}
                 <span className="text-white font-medium">não promete milagre.</span>
+              </p>
+              <p className="text-sm text-gray-500 mt-3">
+                IA só amplifica rotina e dados confiáveis.
               </p>
             </div>
           </Reveal>

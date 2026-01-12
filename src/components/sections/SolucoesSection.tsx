@@ -25,10 +25,10 @@ const SOLUCOES: Solucao[] = [
     id: "crm-express",
     icon: Zap,
     nome: "CRM Express",
-    tagline: "Para organizar vendas e WhatsApp rápido",
+    tagline: "Para organizar vendas e WhatsApp com rotina",
     prazo: "Go-live em 30 dias",
     descricao:
-      "Entrada rápida em operação para estruturar pré-vendas e vendas com o básico bem feito.",
+      "Entrada rápida em operação para criar rotina e dados confiáveis no dia a dia.",
     features: [
       "Pipeline de vendas configurado",
       "WhatsApp integrado",
@@ -45,10 +45,10 @@ const SOLUCOES: Solucao[] = [
     id: "revops-launch",
     icon: Layers,
     nome: "RevOps Launch",
-    tagline: "Para pipeline, previsibilidade e operação completa",
+    tagline: "Para pipeline confiável e previsibilidade real",
     prazo: "Até 60 dias",
     descricao:
-      "Marketing, Vendas e CS em uma única operação de receita. Para quem quer governança e previsibilidade.",
+      "Marketing, Vendas e CS em uma única operação de receita. Para quem quer governança para dados confiáveis.",
     features: [
       "Tudo do CRM Express",
       "Pipeline de pós-vendas/CS",
@@ -66,10 +66,10 @@ const SOLUCOES: Solucao[] = [
     id: "enterprise",
     icon: Building,
     nome: "Enterprise",
-    tagline: "Multiárea, integrações complexas e governança avançada",
+    tagline: "Multiárea, integrações complexas e dados confiáveis",
     prazo: "Prazo personalizado",
     descricao:
-      "Para operações com múltiplos times, países ou integrações enterprise.",
+      "Para operações com múltiplos times, países ou integrações enterprise com rotina e controle.",
     features: [
       "Tudo do RevOps Launch",
       "Multi-BU rollout",
@@ -122,7 +122,7 @@ export function SolucoesSection() {
             <Reveal delay={0.1}>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
                 Escolha o nível de operação{" "}
-                <span className="text-brand">que você precisa agora</span>
+                <span className="text-brand">para manter o CRM vivo com dados confiáveis</span>
               </h2>
             </Reveal>
           </div>

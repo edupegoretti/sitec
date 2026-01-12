@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { motion, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import {
   TrendUp,
@@ -49,17 +48,12 @@ function AnimatedNumber({
     delay: 300,
     decimals,
   });
-  const [displayNumber, setDisplayNumber] = useState(0);
-
-  useMotionValueEvent(animatedValue, "change", (latest) => {
-    setDisplayNumber(latest);
-  });
 
   return (
     <span ref={ref}>
       {decimals > 0
-        ? displayNumber.toFixed(decimals)
-        : Math.round(displayNumber)}
+        ? animatedValue.toFixed(decimals)
+        : Math.round(animatedValue)}
       {suffix}
     </span>
   );

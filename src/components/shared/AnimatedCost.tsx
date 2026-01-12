@@ -1,7 +1,5 @@
 'use client'
 
-import { useMotionValueEvent } from 'framer-motion'
-import { useState } from 'react'
 import { useCountUpCurrency } from '@/hooks/useCountUp'
 
 interface AnimatedCostProps {
@@ -47,13 +45,7 @@ export function AnimatedCost({
     damping: 60,
   })
 
-  const [displayNumber, setDisplayNumber] = useState(0)
-
-  useMotionValueEvent(animatedValue, 'change', (latest) => {
-    setDisplayNumber(latest)
-  })
-
-  const formatted = displayNumber.toLocaleString('pt-BR', {
+  const formatted = animatedValue.toLocaleString('pt-BR', {
     style: 'currency',
     currency: 'BRL',
     minimumFractionDigits: showDecimals ? 2 : 0,
@@ -89,13 +81,7 @@ export function AnimatedNumber({
     damping: 60,
   })
 
-  const [displayNumber, setDisplayNumber] = useState(0)
-
-  useMotionValueEvent(animatedValue, 'change', (latest) => {
-    setDisplayNumber(latest)
-  })
-
-  const formatted = displayNumber.toLocaleString('pt-BR', {
+  const formatted = animatedValue.toLocaleString('pt-BR', {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   })

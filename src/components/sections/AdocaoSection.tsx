@@ -54,7 +54,9 @@ export function AdocaoSection() {
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
                   Por isso a Zopu inclui treinamento por função e trilhas práticas (vendedor,
                   gestor, CS). A meta é simples:{' '}
-                  <strong className="text-gray-900">uso diário sem cobrança.</strong>
+                  <strong className="text-gray-900">
+                    uso diário sem cobrança — e dados confiáveis.
+                  </strong>
                 </p>
               </Reveal>
 
@@ -73,6 +75,9 @@ export function AdocaoSection() {
                     </div>
                   ))}
                 </div>
+                <p className="text-sm text-gray-500">
+                  Rotina sustentada é o que faz o número fechar.
+                </p>
               </Reveal>
 
               {/* Link para Fluidz */}

@@ -213,7 +213,7 @@ const INCLUSO = [
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 function useCountUp(target: number, isInView: boolean, duration = 1500) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(target)
   const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {

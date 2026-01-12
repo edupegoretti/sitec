@@ -16,14 +16,14 @@ const PILARES = [
     icon: Database,
     titulo: 'Dados',
     descricao:
-      'Governança de campos, fontes, integrações e dashboards. Número que o CFO/CEO confia.',
+      'Mapeamento de campos, fontes, integrações e dashboards. Números que a gestão pode confiar.',
     cor: 'amber',
   },
   {
     icon: Users,
     titulo: 'Adoção',
     descricao:
-      'Treinamento por função + acompanhamento pós go-live (porque CRM morre depois da consultoria).',
+      'Treinamento por função + acompanhamento pós-go-live (para o CRM não perder tração).',
     cor: 'emerald',
   },
 ] as const
@@ -61,12 +61,12 @@ export function NovaCategoriaSection() {
           {/* Header */}
           <div className="text-center mb-12 sm:mb-16">
             <Reveal>
-              <Badge className="mb-6">A nova categoria</Badge>
+              <Badge className="mb-6">Previsibilidade real</Badge>
             </Reveal>
 
             <Reveal delay={0.1}>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-                Zopu = <span className="text-brand">Governança de Receita</span> no Bitrix24.
+                Receita previsível, operação sob controle.
               </h2>
             </Reveal>
 
@@ -74,9 +74,12 @@ export function NovaCategoriaSection() {
               <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Não é "projeto de CRM". É colocar sua operação comercial para rodar com{' '}
                 <strong className="text-gray-900">
-                  regras, dados, rotina e WhatsApp sob governança
+                  regras, dados, rotina e WhatsApp totalmente integrado
                 </strong>{' '}
-                — sustentados por um parceiro que não some.
+                — com acompanhamento contínuo e responsabilidade de ponta a ponta. O objetivo é um só:{' '}
+                <strong className="text-gray-900">
+                  CRM que funciona de verdade, com dados que você e sua equipe podem confiar.
+                </strong>
               </p>
             </Reveal>
           </div>
@@ -105,13 +108,6 @@ export function NovaCategoriaSection() {
           </Reveal>
 
           {/* Bottom line */}
-          <Reveal delay={0.4}>
-            <div className="mt-12 text-center">
-              <p className="text-gray-500 text-sm">
-                Ativar CRM é fácil. Difícil é manter uso e número confiável 90 dias depois.
-              </p>
-            </div>
-          </Reveal>
         </div>
       </Container>
     </section>

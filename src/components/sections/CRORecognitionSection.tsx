@@ -88,8 +88,8 @@ export function CRORecognitionSection() {
 
             {/* Stat: Parceiro desde */}
             <div className="text-center p-5 rounded-2xl bg-white border border-gray-200/80 hover:border-gray-300 shadow-sm hover:shadow-card-hover transition-all duration-300 ease-out-expo hover:-translate-y-1">
-              <p className="text-2xl sm:text-3xl font-bold text-gray-900">2021</p>
-              <p className="text-xs sm:text-sm text-gray-500 mt-1">parceiro oficial</p>
+              <p className="text-2xl sm:text-3xl font-bold text-gray-900">+10 anos</p>
+              <p className="text-xs sm:text-sm text-gray-500 mt-1">de experiência</p>
             </div>
 
             {/* Stat: Taxa de retenção */}

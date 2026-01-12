@@ -1,7 +1,6 @@
 'use client'
 
-import { motion, useMotionValueEvent } from 'framer-motion'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 import {
   Stack,
   CurrencyCircleDollar,
@@ -52,11 +51,6 @@ function parseStatValue(stat: string): {
 function AnimatedStat({ stat }: { stat: string }) {
   const { numeric, prefix, suffix } = parseStatValue(stat)
   const { ref, value: animatedValue } = useCountUp(numeric || 0, { delay: 300 })
-  const [displayNumber, setDisplayNumber] = useState(0)
-
-  useMotionValueEvent(animatedValue, 'change', (latest) => {
-    setDisplayNumber(latest)
-  })
 
   if (numeric === null) {
     return <>{stat}</>
@@ -65,7 +59,7 @@ function AnimatedStat({ stat }: { stat: string }) {
   return (
     <span ref={ref}>
       {prefix && `${prefix} `}
-      {Math.round(displayNumber).toLocaleString('pt-BR')}
+      {Math.round(animatedValue).toLocaleString('pt-BR')}
       {suffix && `${suffix}`}
     </span>
   )

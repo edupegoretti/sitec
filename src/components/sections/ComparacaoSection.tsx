@@ -79,7 +79,7 @@ export function ComparacaoSection() {
           <Reveal delay={0.1}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
                 Ativação rápida é fácil.{' '}
-                <span className="text-brand">Sustentar uso e número confiável é raro.</span>
+                <span className="text-brand">Sustentar rotina e dados confiáveis é raro.</span>
             </h2>
           </Reveal>
         </div>
@@ -155,7 +155,7 @@ export function ComparacaoSection() {
             <div className="mt-10 text-center">
               <p className="text-gray-500 text-sm">
                 A diferença não é só velocidade de ativação. É{' '}
-                <span className="font-medium text-gray-700">resultado sustentado.</span>
+                <span className="font-medium text-gray-700">rotina e dados confiáveis.</span>
               </p>
             </div>
           </Reveal>

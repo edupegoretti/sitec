@@ -1,42 +1,21 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Check, ArrowRight } from 'lucide-react'
 import { Play, Quotes, TrendUp } from '@phosphor-icons/react'
 import { Container } from '@/components/layout'
 import { Badge, Reveal, Button } from '@/components/shared'
 import { CASE_DESTAQUE } from '@/lib/constants'
+import { useCountUp } from '@/hooks/useCountUp'
 
 // Animated counter for the percentage
 function AnimatedMetric({ value, suffix = '' }: { value: number; suffix?: string }) {
-  const [displayValue, setDisplayValue] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true })
-
-  useEffect(() => {
-    if (!isInView) return
-
-    const duration = 1500
-    const startTime = Date.now()
-
-    const tick = () => {
-      const elapsed = Date.now() - startTime
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setDisplayValue(Math.round(eased * value))
-
-      if (progress < 1) {
-        requestAnimationFrame(tick)
-      }
-    }
-
-    requestAnimationFrame(tick)
-  }, [isInView, value])
+  const { ref, value: animatedValue } = useCountUp(value, { delay: 200 })
 
   return (
     <span ref={ref}>
-      +{displayValue}
+      +{Math.round(animatedValue)}
       {suffix}
     </span>
   )
@@ -70,13 +49,14 @@ export function CaseDestaque() {
           <Reveal delay={0.1}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               De CRM básico para{' '}
-              <span className="text-green-600">+20% de conversão</span>
+              <span className="text-green-600">+20% de conversão</span> com rotina e governança
             </h2>
           </Reveal>
 
           <Reveal delay={0.2}>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
-              Veja como a {CASE_DESTAQUE.empresa} transformou sua operação comercial com a Zopu.
+              Veja como a {CASE_DESTAQUE.empresa} transformou a operação comercial com a Zopu e
+              passou a confiar no número.
             </p>
           </Reveal>
         </div>

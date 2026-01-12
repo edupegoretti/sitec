@@ -1,38 +1,17 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { Quotes, TrendUp } from '@phosphor-icons/react'
 import { Container } from '@/components/layout'
 import { Reveal } from '@/components/shared'
+import { useCountUp } from '@/hooks/useCountUp'
 
 // Animated percentage counter
 function AnimatedPercentage({ value }: { value: number }) {
-  const [displayValue, setDisplayValue] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true })
+  const { ref, value: animatedValue } = useCountUp(value, { delay: 200 })
 
-  useEffect(() => {
-    if (!isInView) return
-
-    const duration = 1500
-    const startTime = Date.now()
-
-    const tick = () => {
-      const elapsed = Date.now() - startTime
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setDisplayValue(Math.round(eased * value))
-
-      if (progress < 1) {
-        requestAnimationFrame(tick)
-      }
-    }
-
-    requestAnimationFrame(tick)
-  }, [isInView, value])
-
-  return <span ref={ref}>+{displayValue}%</span>
+  return <span ref={ref}>+{Math.round(animatedValue)}%</span>
 }
 
 export function CaseHighlight() {

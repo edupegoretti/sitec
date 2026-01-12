@@ -1,7 +1,5 @@
 'use client'
 
-import { motion, useMotionValueEvent } from 'framer-motion'
-import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import { useCountUp } from '@/hooks/useCountUp'
 
@@ -67,17 +65,15 @@ export function StatCard({
   animated = true,
 }: StatCardProps) {
   const { numeric, prefix, suffix, decimals } = parseValue(value)
-  const { ref, value: animatedValue } = useCountUp(numeric || 0, { delay: 200 })
-  const [displayNumber, setDisplayNumber] = useState(0)
-
-  useMotionValueEvent(animatedValue, 'change', (latest) => {
-    setDisplayNumber(latest)
+  const { ref, value: animatedValue } = useCountUp(numeric || 0, {
+    delay: 200,
+    animate: animated,
   })
 
   const displayValue = animated && numeric !== null ? (
     <span ref={ref}>
       {prefix && `${prefix} `}
-      {displayNumber.toLocaleString('pt-BR', {
+      {animatedValue.toLocaleString('pt-BR', {
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals,
       })}
@@ -121,17 +117,15 @@ export function StatCardDark({
   }
 
   const { numeric, prefix, suffix, decimals } = parseValue(value)
-  const { ref, value: animatedValue } = useCountUp(numeric || 0, { delay: 200 })
-  const [displayNumber, setDisplayNumber] = useState(0)
-
-  useMotionValueEvent(animatedValue, 'change', (latest) => {
-    setDisplayNumber(latest)
+  const { ref, value: animatedValue } = useCountUp(numeric || 0, {
+    delay: 200,
+    animate: animated,
   })
 
   const displayValue = animated && numeric !== null ? (
     <span ref={ref}>
       {prefix && `${prefix} `}
-      {displayNumber.toLocaleString('pt-BR', {
+      {animatedValue.toLocaleString('pt-BR', {
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals,
       })}

@@ -8,7 +8,7 @@ const BENEFICIOS = [
   {
     icon: Shield,
     titulo: 'API oficial Meta',
-    descricao: 'Sem risco de bloqueio. Estabilidade garantida.',
+    descricao: 'Reduz risco de bloqueio e mantém estabilidade do canal.',
   },
   {
     icon: History,
@@ -115,7 +115,7 @@ export function WhatsAppGovernancaSection() {
               <Reveal delay={0.2}>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
                   Se você vende ou atende por WhatsApp, você precisa de: histórico, responsável,
-                  SLA e rastreabilidade dentro do CRM.
+                  SLA e rastreabilidade dentro do CRM para manter rotina e dados confiáveis.
                 </p>
               </Reveal>
 

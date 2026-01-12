@@ -1,8 +1,9 @@
 'use client'
 
 import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef } from 'react'
 import { Check, ArrowRight } from '@phosphor-icons/react'
+import { useCountUp } from '@/hooks/useCountUp'
 
 interface HeroIllustrationProps {
   className?: string
@@ -10,31 +11,14 @@ interface HeroIllustrationProps {
 
 // Animated counter
 function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string }) {
-  const [displayValue, setDisplayValue] = useState(0)
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true })
+  const { ref, value: animatedValue } = useCountUp(value, { delay: 200 })
 
-  useEffect(() => {
-    if (!isInView) return
-
-    const duration = 1500
-    const startTime = Date.now()
-
-    const tick = () => {
-      const elapsed = Date.now() - startTime
-      const progress = Math.min(elapsed / duration, 1)
-      const eased = 1 - Math.pow(1 - progress, 3)
-      setDisplayValue(Math.round(eased * value))
-
-      if (progress < 1) {
-        requestAnimationFrame(tick)
-      }
-    }
-
-    requestAnimationFrame(tick)
-  }, [isInView, value])
-
-  return <span ref={ref}>{displayValue}{suffix}</span>
+  return (
+    <span ref={ref}>
+      {Math.round(animatedValue)}
+      {suffix}
+    </span>
+  )
 }
 
 export function HeroIllustration({ className }: HeroIllustrationProps) {

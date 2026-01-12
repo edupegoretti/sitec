@@ -1386,34 +1386,36 @@ function MetricasVisualization({ isActive, color, colorSecondary }: { isActive: 
           const x = kpi.col * (kpiCardWidth + kpiGapX)
           const y = 30 + kpi.row * (kpiCardHeight + kpiGapY)
           return (
-            <g key={i} className="kpi-card" transform={`translate(${x}, ${y})`}>
-              <rect
-                width={kpiCardWidth}
-                height={kpiCardHeight}
-                rx="12"
-                fill="rgba(255,255,255,0.06)"
-                stroke={color}
-                strokeWidth="1"
-              />
-              <text
-                x={kpiCardWidth / 2}
-                y="32"
-                textAnchor="middle"
-                fill="rgba(255,255,255,0.6)"
-                fontSize="12"
-              >
-                {kpi.label}
-              </text>
-              <text
-                x={kpiCardWidth / 2}
-                y="62"
-                textAnchor="middle"
-                fill={kpi.isMoney ? 'white' : '#10B981'}
-                fontSize="22"
-                fontWeight="700"
-              >
-                {kpi.value}
-              </text>
+            <g key={i} transform={`translate(${x}, ${y})`}>
+              <g className="kpi-card">
+                <rect
+                  width={kpiCardWidth}
+                  height={kpiCardHeight}
+                  rx="12"
+                  fill="rgba(255,255,255,0.06)"
+                  stroke={color}
+                  strokeWidth="1"
+                />
+                <text
+                  x={kpiCardWidth / 2}
+                  y="32"
+                  textAnchor="middle"
+                  fill="rgba(255,255,255,0.6)"
+                  fontSize="12"
+                >
+                  {kpi.label}
+                </text>
+                <text
+                  x={kpiCardWidth / 2}
+                  y="62"
+                  textAnchor="middle"
+                  fill={kpi.isMoney ? 'white' : '#10B981'}
+                  fontSize="22"
+                  fontWeight="700"
+                >
+                  {kpi.value}
+                </text>
+              </g>
             </g>
           )
         })}

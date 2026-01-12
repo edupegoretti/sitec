@@ -1,10 +1,11 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useInView, useSpring, useMotionValue } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { Container } from '@/components/layout'
 import { Button } from '@/components/shared'
 import { ZOPU_LINKS } from '@/lib/constants'
+import { useCountUp } from '@/hooks/useCountUp'
 
 /**
  * ModernFunnelComparison — Estado da Arte
@@ -58,31 +59,11 @@ function AnimatedPercentage({
   className?: string
   delay?: number
 }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
-  const motionValue = useMotionValue(0)
-  const springValue = useSpring(motionValue, { stiffness: 80, damping: 40 })
-  const [displayValue, setDisplayValue] = useState(0)
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => {
-        motionValue.set(value)
-      }, delay)
-      return () => clearTimeout(timer)
-    }
-  }, [isInView, value, motionValue, delay])
-
-  useEffect(() => {
-    const unsubscribe = springValue.on('change', (v) => {
-      setDisplayValue(Math.round(v))
-    })
-    return () => unsubscribe()
-  }, [springValue])
+  const { ref, value: animatedValue } = useCountUp(value, { delay })
 
   return (
     <span ref={ref} className={className}>
-      {displayValue}%
+      {Math.round(animatedValue)}%
     </span>
   )
 }

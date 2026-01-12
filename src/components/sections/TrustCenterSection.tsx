@@ -45,7 +45,7 @@ export function TrustCenterSection() {
             <Reveal delay={0.1}>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 leading-tight">
                 CRM é dado sensível.{' '}
-                <span className="text-brand">Você precisa dormir tranquilo.</span>
+                <span className="text-brand">Sem segurança, a rotina quebra.</span>
               </h2>
             </Reveal>
           </div>

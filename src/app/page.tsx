@@ -46,46 +46,46 @@ export default function Home() {
       {/* 1. Hero - Challenger + Promessa segura + Social Proof */}
       <HeroHome />
 
-      {/* 2. Reconhecimento CRO - Prova de credibilidade imediata */}
-      <CRORecognitionSection />
-
-      {/* 3. Status Quo - Postura desafiadora (o problema real) */}
+      {/* 2. Status Quo - Postura desafiadora (o problema real) */}
       <StatusQuoSection />
 
-      {/* 4. Nova Categoria - Zopu = Governança de Receita */}
+      {/* 3. Nova Categoria - Zopu = Governança de Receita */}
       <NovaCategoriaSection />
 
-      {/* 5. Fit do projeto - Para quem é / para quem não é */}
+      {/* 4. Reconhecimento CRO - Prova de credibilidade imediata */}
+      <CRORecognitionSection />
+
+      {/* 5. Case - Prova concreta com métricas */}
+      <CaseDestaque />
+
+      {/* 6. Fit do projeto - Para quem é / para quem não é */}
       <ParaQuemSection />
 
-      {/* 6. Como Funciona - Método simples (óbvio bem feito) */}
+      {/* 7. Como Funciona - Método simples (óbvio bem feito) */}
       <ComoFuncionaSection />
 
-      {/* 7. Adoção - Fluidz como arma */}
+      {/* 8. Adoção - Fluidz como arma */}
       <AdocaoSection />
 
-      {/* 8. WhatsApp - Governança no canal crítico */}
+      {/* 9. WhatsApp - Governança no canal crítico */}
       <WhatsAppGovernancaSection />
-
-      {/* 9. Case - Prova concreta com métricas */}
-      <CaseDestaque />
 
       {/* 10. 2026 / IA - Amplificador (não hype) */}
       <IAAmplifierSection />
 
-      {/* 10. Segurança - Trust Center */}
+      {/* 11. Segurança - Trust Center */}
       <TrustCenterSection />
 
-      {/* 11. Comparação - Sem citar concorrente */}
+      {/* 12. Comparação - Sem citar concorrente */}
       <ComparacaoSection />
 
-      {/* 12. Soluções - Pacotes com foco em resultado */}
+      {/* 13. Soluções - Pacotes com foco em resultado */}
       <SolucoesSection />
 
-      {/* 13. FAQ - Objeções reais */}
+      {/* 14. FAQ - Objeções reais */}
       <FAQChallengerSection />
 
-      {/* 14. Fechamento - Escassez real */}
+      {/* 15. Fechamento - Escassez real */}
       <EscassezSection />
     </main>
   );
