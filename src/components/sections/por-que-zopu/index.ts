@@ -1,0 +1,6 @@
+export { HeroPorQueZopu } from './HeroPorQueZopu'
+export { ProblemaSection } from './ProblemaSection'
+export { RiscosSection } from './RiscosSection'
+export { DiferenciaisZopu } from './DiferenciaisZopu'
+export { CaminhosSection } from './CaminhosSection'
+export { FAQPorQueZopu } from './FAQPorQueZopu'

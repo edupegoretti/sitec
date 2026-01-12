@@ -1,0 +1,1 @@
+export { ComparativoVantagens } from './ComparativoVantagens'

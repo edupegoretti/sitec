@@ -1,0 +1,1 @@
+export { VerticalPageTemplate } from './VerticalPageTemplate'

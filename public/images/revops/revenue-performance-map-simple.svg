@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" role="img" aria-label="Mapa de Performance de Receita simplificado">
+  <rect width="800" height="300" fill="#FFFFFF"/>
+  <rect x="12" y="12" width="776" height="276" rx="18" fill="#FFFFFF" stroke="#D3DBDD" stroke-width="2"/>
+
+  <!-- Funnel -->
+  <path d="M60 80 L360 100 L360 200 L60 220 Z" fill="#FDF6E3" stroke="#D3DBDD" stroke-width="2"/>
+  <text x="210" y="160" text-anchor="middle" font-size="14" fill="#233038">Funil</text>
+
+  <!-- Bridge -->
+  <rect x="390" y="125" width="60" height="50" rx="10" fill="#FDF6E3" stroke="#D3DBDD" stroke-width="2"/>
+  <text x="420" y="155" text-anchor="middle" font-size="10" fill="#233038">Onboarding</text>
+
+  <!-- Flywheel -->
+  <circle cx="640" cy="150" r="70" fill="#FDF6E3" stroke="#D3DBDD" stroke-width="2"/>
+  <circle cx="640" cy="150" r="35" fill="#FFFFFF" stroke="#D3DBDD" stroke-width="2"/>
+  <text x="640" y="155" text-anchor="middle" font-size="12" fill="#233038">Flywheel</text>
+</svg>

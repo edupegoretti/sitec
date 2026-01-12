@@ -1,0 +1,127 @@
+# ===========================================
+# DEPENDÊNCIAS
+# ===========================================
+node_modules/
+.pnp/
+.pnp.js
+
+# ===========================================
+# BUILD / CACHE
+# ===========================================
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+
+# ===========================================
+# LOGS
+# ===========================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# ===========================================
+# ARQUIVOS DE AMBIENTE (SEGURANÇA!)
+# ===========================================
+.env
+.env.*
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+!.env.example
+
+# ===========================================
+# SEGREDOS E CREDENCIAIS (SEGURANÇA!)
+# ===========================================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+secrets/
+credentials/
+.secrets
+*.secret
+api_keys.json
+service-account*.json
+
+# ===========================================
+# SISTEMA OPERACIONAL
+# ===========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ===========================================
+# EDITORES / IDEs
+# ===========================================
+.idea/
+.vscode/
+*.sublime-*
+*.code-workspace
+
+# ===========================================
+# DOCUMENTAÇÃO INTERNA (NÃO ENVIAR)
+# ===========================================
+# Todos os arquivos .md
+*.md
+
+# Pasta de documentação
+docs/
+
+# ===========================================
+# CLAUDE CODE / AI CONFIG
+# ===========================================
+.claude/
+CLAUDE.md
+CLAUDE_INSTRUCTIONS.md
+
+# ===========================================
+# TESTES / QA / AUDITORIA LOCAL
+# ===========================================
+coverage/
+.nyc_output/
+.site_audit_lh/
+.site_audit_screens/
+playwright-report/
+test-results/
+
+# ===========================================
+# ARQUIVOS TEMPORÁRIOS
+# ===========================================
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# ===========================================
+# OUTROS ARQUIVOS DESNECESSÁRIOS
+# ===========================================
+*.pdf
+*.zip
+*.tar.gz
+*.rar
+.vercel
+.turbo
+
+# ===========================================
+# EXCEÇÕES (ARQUIVOS QUE DEVEM IR)
+# ===========================================
+# Manter README principal se necessário (descomente se quiser)
+# !README.md
