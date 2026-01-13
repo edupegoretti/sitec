@@ -59,9 +59,9 @@ export function ProblemaModeloSection() {
               </Badge>
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                O Bitrix24 não falha por falta de recursos.
-                <span className="block mt-2 text-red-600">
-                  Ele falha por falta de modelo operacional.
+                A diferença entre CRM que funciona e CRM abandonado?
+                <span className="block mt-2 text-brand">
+                  Modelo operacional.
                 </span>
               </h2>
 

@@ -60,8 +60,8 @@ export function ProblemaModeloSection() {
 
             <Reveal delay={0.1}>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                O Bitrix24 não falha por falta de recursos.{' '}
-                <span className="text-red-600">Ele falha por falta de modelo operacional.</span>
+                A diferença entre CRM que funciona e CRM abandonado?{' '}
+                <span className="text-brand">Modelo operacional.</span>
               </h2>
             </Reveal>
 
@@ -69,7 +69,7 @@ export function ProblemaModeloSection() {
               <p className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
                 Muita empresa ativa o CRM achando que{' '}
                 <strong className="text-gray-900">"configurar = usar"</strong>. Resultado: o time
-                preenche por obrigação, o dado vira lixo e a gestão continua no escuro.
+                preenche por obrigação, o dado perde confiabilidade e a gestão opera sem visibilidade.
               </p>
             </Reveal>
           </div>

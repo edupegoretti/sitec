@@ -101,8 +101,8 @@ export function MetodoFluidsalesSection() {
 
             <Reveal delay={0.1}>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-                Fluidsales™:{' '}
-                <span className="text-brand">3 etapas claras.</span>
+                3 etapas claras{' '}
+                <span className="text-brand">para você ter resultado.</span>
               </h2>
             </Reveal>
 
