@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import {
   MessageCircle,
   Shield,
@@ -16,7 +15,6 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/layout";
 import { Badge, Reveal } from "@/components/shared";
-import { easings } from "@/lib/motion";
 
 const PROBLEMAS_WHATSAPP = [
   {
@@ -64,10 +62,8 @@ const SOLUCOES_WHATSZOPU = [
 ];
 
 export function WhatsZopuSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-emerald-50/50 via-white to-white overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-white overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* WhatsApp-inspired pattern */}
@@ -96,29 +92,22 @@ export function WhatsZopuSection() {
                 </div>
 
                 <div className="space-y-3">
-                  {PROBLEMAS_WHATSAPP.map((item, index) => {
-                    const Icon = item.icon;
-                    return (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
-                        className="flex items-center gap-4 p-4 bg-red-50/50 border border-red-100 rounded-xl"
-                      >
-                        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
-                          <Smartphone className="w-5 h-5 text-red-500" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900">
-                            {item.problema}
-                          </p>
-                          <p className="text-xs text-red-600">{item.consequencia}</p>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
+                  {PROBLEMAS_WHATSAPP.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center gap-4 p-4 bg-red-50/50 border border-red-100 rounded-xl"
+                    >
+                      <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center shrink-0">
+                        <Smartphone className="w-5 h-5 text-red-500" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-gray-900">
+                          {item.problema}
+                        </p>
+                        <p className="text-xs text-red-600">{item.consequencia}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>
@@ -135,15 +124,9 @@ export function WhatsZopuSection() {
 
             {/* The Solution Visual */}
             <Reveal delay={0.4}>
-              <motion.div
-                whileHover={
-                  prefersReducedMotion ? undefined : { scale: 1.02 }
-                }
-                transition={{ duration: 0.3, ease: easings.premium }}
-                className="relative bg-white rounded-3xl border border-emerald-200 shadow-elevated overflow-hidden"
-              >
+              <div className="relative bg-white rounded-2xl border border-emerald-200 shadow-elevated hover:shadow-elevated-hover hover:-translate-y-1 transition-all duration-300 overflow-hidden">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 p-4">
+                <div className="bg-linear-to-r from-emerald-500 to-emerald-600 p-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                       <MessageCircle className="w-5 h-5 text-white" />
@@ -204,7 +187,7 @@ export function WhatsZopuSection() {
                   {/* SLA indicator */}
                   <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                      <div className="w-2 h-2 rounded-full bg-emerald-500" />
                       <span className="text-xs text-gray-500">SLA: OK (15min)</span>
                     </div>
                     <div className="flex items-center gap-2">
@@ -213,7 +196,7 @@ export function WhatsZopuSection() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </Reveal>
           </div>
 
@@ -227,7 +210,7 @@ export function WhatsZopuSection() {
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 WhatsApp{" "}
-                <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-emerald-500 to-emerald-600 bg-clip-text text-transparent">
                   dentro do processo,
                 </span>
                 <span className="block mt-2">não fora dele.</span>
@@ -246,15 +229,11 @@ export function WhatsZopuSection() {
                 const Icon = item.icon;
                 return (
                   <Reveal key={index} delay={0.15 + index * 0.1}>
-                    <motion.div
-                      whileHover={
-                        prefersReducedMotion ? undefined : { y: -4 }
-                      }
-                      transition={{ duration: 0.3, ease: easings.premium }}
-                      className={`p-4 rounded-2xl border transition-all duration-300 ${
+                    <div
+                      className={`p-4 rounded-2xl border hover:-translate-y-1 transition-all duration-300 ${
                         item.destaque
-                          ? "bg-emerald-50 border-emerald-200 shadow-sm"
-                          : "bg-white border-gray-100 hover:border-emerald-200"
+                          ? "bg-emerald-50 border-emerald-200 shadow-sm hover:shadow-card-hover"
+                          : "bg-white border-gray-100 hover:border-emerald-200 hover:shadow-sm"
                       }`}
                     >
                       <div className="flex items-start gap-3">
@@ -272,7 +251,7 @@ export function WhatsZopuSection() {
                           <p className="text-sm text-gray-500 mt-1">{item.descricao}</p>
                         </div>
                       </div>
-                    </motion.div>
+                    </div>
                   </Reveal>
                 );
               })}

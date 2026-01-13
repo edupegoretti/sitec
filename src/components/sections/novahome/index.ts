@@ -1,6 +1,4 @@
-// Home V2 Sections
-// Nova home page com arquitetura de receita como conceito central
-
+// Core sections
 export { HeroArquitetura } from "./HeroArquitetura";
 export { ProblemaModeloSection } from "./ProblemaModeloSection";
 export { ReframeSection } from "./ReframeSection";
@@ -13,6 +11,12 @@ export { WhatsZopuSection } from "./WhatsZopuSection";
 export { CasesProvaSection } from "./CasesProvaSection";
 export { ComparacaoSection } from "./ComparacaoSection";
 export { OfertasSection } from "./OfertasSection";
-export { ParaQuemSection } from "./ParaQuemSection";
 export { CTAFinalSection } from "./CTAFinalSection";
-export { RevenueArchitectureDiagram } from "./RevenueArchitectureDiagram";
+
+// Shared visual components
+export { BrowserMockup, CRMKanbanVisual, IADashboardVisual, RevenueArchitectureVisual } from "./BrowserMockup";
+export { IAOrchestrationVisual } from "./IAOrchestrationVisual";
+export { RevOpsDiagram } from "./RevOpsDiagram";
+
+// Re-export Bitrix24Showcase from main sections (unchanged copy)
+export { Bitrix24Showcase } from "../Bitrix24Showcase";

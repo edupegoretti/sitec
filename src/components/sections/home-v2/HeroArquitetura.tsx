@@ -78,23 +78,12 @@ export function HeroArquitetura() {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-gradient-to-b from-white via-white to-gray-50/30 overflow-hidden">
-      {/* Background decorative elements - Premium */}
+    <section className="relative min-h-[90vh] flex items-center bg-linear-to-b from-white via-white to-gray-50/30 overflow-hidden">
+      {/* Background decorative elements - Simplificado */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Gradient orbs - Aumentados e mais intensos */}
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-brand/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute top-1/3 -left-60 w-[500px] h-[500px] bg-amber-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s' }} />
-        <div className="absolute -bottom-40 right-1/4 w-[450px] h-[450px] bg-emerald-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '12s' }} />
-        <div className="absolute top-1/2 right-1/3 w-[350px] h-[350px] bg-purple-500/6 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '15s' }} />
-        <div className="absolute bottom-1/4 left-1/3 w-[400px] h-[400px] bg-blue-500/6 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '11s' }} />
-
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        />
+        {/* Gradient orbs - Sem animação, apenas 2 sutis */}
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 left-1/4 w-80 h-80 bg-gray-200/30 rounded-full blur-3xl" />
       </div>
 
       <Container className="relative py-16 sm:py-20 lg:py-24">
@@ -108,7 +97,7 @@ export function HeroArquitetura() {
               animate="visible"
               transition={{ ...transition, delay: heroEntrance.badge }}
             >
-              <span className="inline-flex items-center gap-2.5 px-4 py-2 bg-gradient-to-r from-amber-50 to-amber-100/80 border border-amber-200/60 rounded-full shadow-sm">
+              <span className="inline-flex items-center gap-2.5 px-4 py-2 bg-linear-to-r from-amber-50 to-amber-100/80 border border-amber-200/60 rounded-full shadow-sm">
                 <svg className="w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
@@ -125,7 +114,7 @@ export function HeroArquitetura() {
               className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight"
             >
               Arquitetura de Receita no Bitrix24
-              <span className="block mt-2 bg-gradient-to-r from-brand via-brand to-brand-hover bg-clip-text text-transparent">
+              <span className="block mt-2 bg-linear-to-r from-brand via-brand to-brand-hover bg-clip-text text-transparent">
                 para ROI mensurável e previsibilidade real.
               </span>
             </motion.h1>
@@ -216,11 +205,8 @@ export function HeroArquitetura() {
           >
             {/* Main visual container */}
             <div className="relative">
-              {/* Glowing border effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-brand/20 via-amber-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-60" />
-
               {/* Main card */}
-              <div className="relative bg-white rounded-3xl shadow-elevated overflow-hidden border border-gray-100">
+              <div className="relative bg-white rounded-2xl shadow-elevated overflow-hidden border border-gray-200">
                 {/* Visual representation of Revenue Architecture */}
                 <div className="p-8 sm:p-10">
                   {/* Title inside visual */}
@@ -240,7 +226,7 @@ export function HeroArquitetura() {
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.8, duration: 0.5, ease: easings.premium }}
+                      transition={{ ...transition, delay: heroEntrance.visual }}
                       className="flex items-center gap-4"
                     >
                       <div className="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center shrink-0">
@@ -262,7 +248,7 @@ export function HeroArquitetura() {
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 1.0, duration: 0.5, ease: easings.premium }}
+                      transition={{ ...transition, delay: heroEntrance.visual + staggers.items }}
                       className="flex items-center gap-4"
                     >
                       <div className="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center shrink-0">
@@ -283,7 +269,7 @@ export function HeroArquitetura() {
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 1.2, duration: 0.5, ease: easings.premium }}
+                      transition={{ ...transition, delay: heroEntrance.visual + staggers.items * 2 }}
                       className="flex items-center gap-4"
                     >
                       <div className="w-14 h-14 bg-emerald-500/10 rounded-xl flex items-center justify-center shrink-0">
@@ -307,7 +293,7 @@ export function HeroArquitetura() {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.4, duration: 0.5, ease: easings.premium }}
+                    transition={{ ...transition, delay: heroEntrance.visual + staggers.items * 3 }}
                     className="mt-8 pt-6 border-t border-gray-100"
                   >
                     <div className="flex items-center justify-between">
@@ -316,7 +302,7 @@ export function HeroArquitetura() {
                         <p className="text-lg font-bold text-gray-900">Receita Auditável</p>
                       </div>
                       <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 rounded-full">
-                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <div className="w-2 h-2 rounded-full bg-emerald-500" />
                         <span className="text-sm font-medium text-emerald-700">ROI Mensurável</span>
                       </div>
                     </div>
@@ -324,12 +310,12 @@ export function HeroArquitetura() {
                 </div>
               </div>
 
-              {/* Floating elements - Premium */}
+              {/* Floating element - Único */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6, duration: 0.5, ease: easings.premium }}
-                className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-elevated p-4 border border-gray-100"
+                transition={{ ...transition, delay: heroEntrance.visual + staggers.items * 3 }}
+                className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-card p-4 border border-gray-200"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center">
@@ -341,40 +327,6 @@ export function HeroArquitetura() {
                     <p className="text-xs text-gray-500">Acompanhamento</p>
                     <p className="text-sm font-semibold text-gray-900">30-90 dias pós go-live</p>
                   </div>
-                </div>
-              </motion.div>
-
-              {/* Floating element 2 - ROI Indicator */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.8, duration: 0.5, ease: easings.premium }}
-                className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-elevated p-4 border border-gray-100"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
-                    <svg className="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500">Performance</p>
-                    <p className="text-sm font-semibold text-emerald-700">+45% conversão média</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Floating element 3 - Integration Badge */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 2.0, duration: 0.5, ease: easings.premium }}
-                className="absolute top-1/2 -left-6 bg-white rounded-full shadow-card p-3 border border-gray-100"
-              >
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                  </svg>
                 </div>
               </motion.div>
             </div>
@@ -399,8 +351,8 @@ export function HeroArquitetura() {
           {/* Container com overflow hidden para o carrossel */}
           <div className="relative overflow-hidden">
             {/* Gradientes de fade nas bordas */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-white to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-white to-transparent z-10" />
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-linear-to-r from-white to-transparent z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-linear-to-l from-white to-transparent z-10" />
 
             {/* Carrossel animado */}
             <div className="flex animate-scroll items-center">

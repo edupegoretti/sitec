@@ -30,7 +30,7 @@ import {
   ProblemaModeloSection,
   ReframeSection,
   EstadoDesejadoSection,
-  MetodoFluidsalesSection,
+  MetodoFluidsalesShowcase,
   IAMultiplierSection,
   EnablementFluidzSection,
   WhatsZopuSection,
@@ -57,7 +57,7 @@ export default function HomeV2() {
       <EstadoDesejadoSection />
 
       {/* 5. Método - Fluidsales™ (Arquitetura → Implementação → Adoção) */}
-      <MetodoFluidsalesSection />
+      <MetodoFluidsalesShowcase />
 
       {/* 6. IA - Como multiplicador, não substituto */}
       <IAMultiplierSection />

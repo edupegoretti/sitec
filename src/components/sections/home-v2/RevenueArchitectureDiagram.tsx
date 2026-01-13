@@ -83,7 +83,7 @@ export function RevenueArchitectureDiagram() {
   };
 
   return (
-    <div className="relative w-full bg-white rounded-3xl shadow-elevated border border-gray-100 p-6 sm:p-8 overflow-hidden">
+    <div className="relative w-full bg-white rounded-2xl shadow-elevated border border-gray-100 p-6 sm:p-8 overflow-hidden">
       {/* Title */}
       <div className="mb-8">
         <h3 className="text-lg font-semibold text-gray-900">
@@ -264,7 +264,7 @@ export function RevenueArchitectureDiagram() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-brand/5 via-purple-500/5 to-emerald-500/5 rounded-2xl p-4 border-t border-gray-100"
+            className="absolute bottom-0 left-0 right-0 bg-linear-to-r from-brand/5 via-purple-500/5 to-emerald-500/5 rounded-2xl p-4 border-t border-gray-100"
           >
             {NODES.filter((n) => n.id === hoveredNode).map((node) => (
               <div key={node.id} className="grid grid-cols-3 gap-4 text-center">

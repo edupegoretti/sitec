@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import {
   AlertTriangle,
   TrendingDown,
@@ -41,10 +40,8 @@ const SINAIS_PROBLEMA = [
 ];
 
 export function ProblemaModeloSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-[#F9FAFC] overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-500/3 rounded-full blur-3xl" />
@@ -78,11 +75,11 @@ export function ProblemaModeloSection() {
           {/* Visual separator */}
           <Reveal delay={0.1}>
             <div className="flex items-center justify-center gap-4 my-10">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+              <div className="h-px flex-1 bg-linear-to-r from-transparent via-gray-200 to-transparent" />
               <span className="text-sm text-gray-400 font-medium px-4">
                 Sinais de que você está nesse cenário
               </span>
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+              <div className="h-px flex-1 bg-linear-to-r from-transparent via-gray-200 to-transparent" />
             </div>
           </Reveal>
 
@@ -90,14 +87,7 @@ export function ProblemaModeloSection() {
           <div className="space-y-4">
             {SINAIS_PROBLEMA.map((sinal, index) => (
               <Reveal key={index} delay={0.1 + index * 0.08}>
-                <motion.div
-                  whileHover={prefersReducedMotion ? undefined : { x: 8 }}
-                  transition={{ duration: 0.2 }}
-                  className="group relative flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-card hover:border-red-100 transition-all duration-300"
-                >
-                  {/* Warning indicator line */}
-                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-400 to-amber-400 rounded-l-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
-
+                <div className="group flex items-start gap-4 p-5 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-card-hover hover:border-red-200/60 hover:-translate-y-1 transition-all duration-300">
                   {/* Icon */}
                   <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-red-100 transition-colors">
                     <sinal.icon className="w-6 h-6 text-red-500" />
@@ -117,14 +107,14 @@ export function ProblemaModeloSection() {
                   <div className="hidden sm:flex items-center justify-center w-8 h-8 rounded-full bg-gray-50 group-hover:bg-red-50 transition-colors">
                     <AlertTriangle className="w-4 h-4 text-gray-300 group-hover:text-red-400 transition-colors" />
                   </div>
-                </motion.div>
+                </div>
               </Reveal>
             ))}
           </div>
 
           {/* Visual impact indicator */}
           <Reveal delay={0.6}>
-            <div className="mt-12 p-6 bg-gradient-to-r from-red-50 to-amber-50 rounded-2xl border border-red-100/50">
+            <div className="mt-12 p-6 bg-linear-to-r from-red-50 to-amber-50 rounded-2xl border border-red-100/50">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 bg-white rounded-xl shadow-sm flex items-center justify-center">

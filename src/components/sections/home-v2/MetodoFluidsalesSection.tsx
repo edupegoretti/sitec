@@ -123,7 +123,7 @@ function TimelineInterativa() {
   const cores = corClasses[currentEtapa.cor as keyof typeof corClasses];
 
   return (
-    <div className="relative bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-elevated">
+    <div className="relative bg-white rounded-2xl p-6 sm:p-8 border border-gray-200 shadow-elevated">
       {/* Timeline Progress Bars */}
       <div className="flex gap-2 mb-6">
         {ETAPAS.map((_, index) => (
@@ -180,17 +180,15 @@ function TimelineInterativa() {
 }
 
 export function MetodoFluidsalesSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative py-20 sm:py-28 bg-white overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-white overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl" />
 
         {/* Connection line between steps - desktop only */}
-        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-linear-to-r from-transparent via-gray-200 to-transparent" />
       </div>
 
       <Container className="relative">
@@ -205,7 +203,7 @@ export function MetodoFluidsalesSection() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Fluidsales™:{" "}
               <span className="block mt-2">
-                <span className="bg-gradient-to-r from-blue-600 via-brand to-emerald-600 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-blue-600 via-brand to-emerald-600 bg-clip-text text-transparent">
                   Arquitetura → Implementação → Adoção
                 </span>
               </span>
@@ -233,17 +231,11 @@ export function MetodoFluidsalesSection() {
 
             return (
               <Reveal key={index} delay={0.1 + index * 0.15}>
-                <motion.div
-                  whileHover={
-                    prefersReducedMotion
-                      ? undefined
-                      : { y: -8, scale: 1.02 }
-                  }
-                  transition={{ duration: 0.3, ease: easings.premium }}
-                  className={`relative h-full bg-white rounded-3xl border ${cores.border} shadow-sm hover:shadow-elevated transition-all duration-500 overflow-hidden`}
+                <div
+                  className={`relative h-full bg-white rounded-2xl border ${cores.border} shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 overflow-hidden`}
                 >
                   {/* Top gradient bar */}
-                  <div className={`h-1.5 bg-gradient-to-r ${cores.gradient}`} />
+                  <div className={`h-1.5 bg-linear-to-r ${cores.gradient}`} />
 
                   <div className="p-8">
                     {/* Número e Icon */}
@@ -295,7 +287,7 @@ export function MetodoFluidsalesSection() {
                       <ArrowRight className="w-3 h-3 text-gray-400" />
                     </div>
                   )}
-                </motion.div>
+                </div>
               </Reveal>
             );
           })}
@@ -304,7 +296,7 @@ export function MetodoFluidsalesSection() {
         {/* Bottom summary */}
         <Reveal delay={0.6}>
           <div className="mt-16">
-            <div className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-8 sm:p-10 overflow-hidden">
+            <div className="relative bg-linear-to-r from-gray-900 via-gray-800 to-gray-900 rounded-2xl p-8 sm:p-10 overflow-hidden">
               {/* Background pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div

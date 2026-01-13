@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import {
   Rocket,
   Building2,
@@ -8,12 +7,10 @@ import {
   Check,
   ArrowRight,
   Zap,
-  Users,
   Star,
 } from "lucide-react";
 import { Container } from "@/components/layout";
 import { Badge, Reveal } from "@/components/shared";
-import { easings } from "@/lib/motion";
 
 const OFERTAS = [
   {
@@ -125,10 +122,8 @@ const corClasses = {
 };
 
 export function OfertasSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-gray-50 via-white to-gray-50/50 overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-[#F9FAFC] overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
@@ -146,7 +141,7 @@ export function OfertasSection() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Escolha o caminho certo{" "}
-              <span className="bg-gradient-to-r from-brand to-brand-hover bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand to-brand-hover bg-clip-text text-transparent">
                 para o seu momento
               </span>
             </h2>
@@ -166,14 +161,10 @@ export function OfertasSection() {
 
             return (
               <Reveal key={oferta.id} delay={0.1 + index * 0.15}>
-                <motion.div
-                  whileHover={
-                    prefersReducedMotion ? undefined : { y: -8 }
-                  }
-                  transition={{ duration: 0.3, ease: easings.premium }}
-                  className={`relative h-full flex flex-col bg-white rounded-3xl border-2 ${
+                <div
+                  className={`relative h-full flex flex-col bg-white rounded-2xl border-2 hover:-translate-y-1 ${
                     oferta.destaque
-                      ? `${cores.border} shadow-elevated ring-4 ${cores.ring}`
+                      ? `${cores.border} shadow-elevated ring-2 ${cores.ring} hover:shadow-elevated-hover`
                       : "border-gray-200 shadow-card hover:shadow-elevated"
                   } overflow-hidden transition-all duration-300`}
                 >
@@ -181,7 +172,7 @@ export function OfertasSection() {
                   {oferta.destaque && (
                     <div className="absolute top-0 right-0">
                       <div
-                        className={`px-4 py-1.5 bg-gradient-to-r ${cores.gradient} text-white text-xs font-bold rounded-bl-2xl`}
+                        className={`px-4 py-1.5 bg-linear-to-r ${cores.gradient} text-white text-xs font-bold rounded-bl-2xl`}
                       >
                         <div className="flex items-center gap-1">
                           <Star className="w-3 h-3" />
@@ -269,13 +260,13 @@ export function OfertasSection() {
                       href={`https://wa.me/5547988459378?text=Ol%C3%A1!%20Tenho%20interesse%20no%20${encodeURIComponent(oferta.nome)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`mt-auto inline-flex items-center justify-center gap-2 w-full px-6 py-4 ${cores.bg} text-white font-semibold rounded-2xl ${cores.hoverBg} transition-all duration-300 shadow-sm hover:shadow-elevated hover:-translate-y-0.5`}
+                      className={`mt-auto inline-flex items-center justify-center gap-2 w-full px-6 py-4 ${cores.bg} text-white font-semibold rounded-2xl ${cores.hoverBg} transition-all duration-300 shadow-sm hover:shadow-elevated hover:-translate-y-1`}
                     >
                       {oferta.cta}
                       <ArrowRight className="w-5 h-5" />
                     </a>
                   </div>
-                </motion.div>
+                </div>
               </Reveal>
             );
           })}

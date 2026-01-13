@@ -25,7 +25,7 @@ const TRILHAS = [
   { perfil: 'Admin', foco: 'Configuração, automações, integrações' },
 ] as const
 
-export function AdocaoSection() {
+export function EnablementFluidzSection() {
   return (
     <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
       {/* Decorative elements */}
@@ -45,18 +45,16 @@ export function AdocaoSection() {
 
               <Reveal delay={0.1}>
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 leading-tight">
-                  Se o time não usa, não existe CRM.{' '}
-                  <span className="text-emerald-600">Existe "planilha com login".</span>
+                  Treinamento por função não é "onboarding".{' '}
+                  <span className="text-emerald-600">É adoção real.</span>
                 </h2>
               </Reveal>
 
               <Reveal delay={0.2}>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  Por isso a Zopu inclui treinamento por função e trilhas práticas (vendedor,
-                  gestor, CS). A meta é simples:{' '}
-                  <strong className="text-gray-900">
-                    uso diário sem cobrança — e dados confiáveis.
-                  </strong>
+                  Com o Fluidz, cada papel aprende o que precisa para operar (Vendas, CS, Gestão,
+                  Admin). Isso reduz dependência de "campeões internos" e evita que o CRM morra
+                  quando alguém sai.
                 </p>
               </Reveal>
 

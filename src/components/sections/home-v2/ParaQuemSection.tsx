@@ -1,10 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import {
   CheckCircle2,
   XCircle,
-  Users,
   Target,
   ArrowRight,
   AlertTriangle,
@@ -12,7 +10,6 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/layout";
 import { Badge, Reveal } from "@/components/shared";
-import { easings } from "@/lib/motion";
 
 const PARA_QUEM = [
   {
@@ -61,10 +58,8 @@ const NAO_PARA_QUEM = [
 ];
 
 export function ParaQuemSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative py-20 sm:py-28 bg-white overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-white overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
@@ -82,7 +77,7 @@ export function ParaQuemSection() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Somos{" "}
-              <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-emerald-500 to-emerald-600 bg-clip-text text-transparent">
                 para você
               </span>{" "}
               se...
@@ -99,13 +94,7 @@ export function ParaQuemSection() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Para quem É */}
           <Reveal delay={0.1}>
-            <motion.div
-              whileHover={
-                prefersReducedMotion ? undefined : { y: -4 }
-              }
-              transition={{ duration: 0.3, ease: easings.premium }}
-              className="bg-gradient-to-br from-emerald-50 via-emerald-50/50 to-white rounded-3xl border border-emerald-200/60 p-8 shadow-sm"
-            >
+            <div className="bg-linear-to-br from-emerald-50 to-white rounded-2xl border border-emerald-200/60 p-8 shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
               {/* Header */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-14 h-14 bg-emerald-500 rounded-2xl flex items-center justify-center">
@@ -124,14 +113,7 @@ export function ParaQuemSection() {
               {/* Items */}
               <ul className="space-y-5">
                 {PARA_QUEM.map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 + index * 0.05 }}
-                    className="flex items-start gap-4"
-                  >
+                  <li key={index} className="flex items-start gap-4">
                     <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                       <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                     </div>
@@ -141,7 +123,7 @@ export function ParaQuemSection() {
                         {item.descricao}
                       </p>
                     </div>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 
@@ -157,18 +139,12 @@ export function ParaQuemSection() {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               </div>
-            </motion.div>
+            </div>
           </Reveal>
 
           {/* Para quem NÃO É */}
           <Reveal delay={0.2}>
-            <motion.div
-              whileHover={
-                prefersReducedMotion ? undefined : { y: -4 }
-              }
-              transition={{ duration: 0.3, ease: easings.premium }}
-              className="bg-gradient-to-br from-gray-50 via-gray-50/50 to-white rounded-3xl border border-gray-200 p-8 shadow-sm"
-            >
+            <div className="bg-linear-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8 shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
               {/* Header */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-14 h-14 bg-gray-200 rounded-2xl flex items-center justify-center">
@@ -187,14 +163,7 @@ export function ParaQuemSection() {
               {/* Items */}
               <ul className="space-y-5">
                 {NAO_PARA_QUEM.map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.25 + index * 0.05 }}
-                    className="flex items-start gap-4"
-                  >
+                  <li key={index} className="flex items-start gap-4">
                     <div className="w-6 h-6 bg-gray-100 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                       <XCircle className="w-4 h-4 text-gray-400" />
                     </div>
@@ -204,7 +173,7 @@ export function ParaQuemSection() {
                         {item.motivo}
                       </p>
                     </div>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 
@@ -223,7 +192,7 @@ export function ParaQuemSection() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </Reveal>
         </div>
 

@@ -111,7 +111,7 @@ export const FLUIDZ_COMPLETO = {
     "Treinamentos para Gestores e Usuários",
     "Cursos de Vendas e Pós-vendas",
     "Estratégias de RevOps",
-    "Certificação reconhecida pelo mercado",
+    "Certificação oficial Bitrix24",
   ],
   publicos: ["Gestores", "Vendedores", "Customer Success", "Operações"],
 } as const;

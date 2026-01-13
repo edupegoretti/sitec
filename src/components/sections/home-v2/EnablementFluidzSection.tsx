@@ -98,14 +98,12 @@ const DIFERENCIAIS = [
 ];
 
 export function EnablementFluidzSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative py-20 sm:py-28 bg-white overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-white overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-bl from-brand/5 via-transparent to-transparent rounded-full" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-emerald-500/5 via-transparent to-transparent rounded-full" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-linear-to-bl from-brand/5 via-transparent to-transparent rounded-full" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-linear-to-tr from-emerald-500/5 via-transparent to-transparent rounded-full" />
       </div>
 
       <Container className="relative">
@@ -120,7 +118,7 @@ export function EnablementFluidzSection() {
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 Fluidz:{" "}
-                <span className="bg-gradient-to-r from-brand to-emerald-600 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-brand to-emerald-600 bg-clip-text text-transparent">
                   treinamento por função,
                 </span>
                 <span className="block mt-2">não treinamento genérico.</span>
@@ -166,12 +164,8 @@ export function EnablementFluidzSection() {
 
             return (
               <Reveal key={index} delay={0.15 + index * 0.1}>
-                <motion.div
-                  whileHover={
-                    prefersReducedMotion ? undefined : { y: -6, scale: 1.02 }
-                  }
-                  transition={{ duration: 0.3, ease: easings.premium }}
-                  className={`group relative h-full bg-white rounded-2xl border ${cores.border} shadow-sm hover:shadow-card transition-all duration-300 overflow-hidden`}
+                <div
+                  className={`group relative h-full bg-white rounded-2xl border ${cores.border} shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 overflow-hidden`}
                 >
                   {/* Top color bar */}
                   <div className={`h-1 ${cores.bg}`} />
@@ -180,7 +174,7 @@ export function EnablementFluidzSection() {
                     {/* Icon and title */}
                     <div className="flex items-center gap-3 mb-4">
                       <div
-                        className={`w-12 h-12 ${cores.bgLight} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}
+                        className={`w-12 h-12 ${cores.bgLight} rounded-xl flex items-center justify-center transition-colors`}
                       >
                         <Icon className={`w-6 h-6 ${cores.text}`} />
                       </div>
@@ -222,7 +216,7 @@ export function EnablementFluidzSection() {
                       </span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </Reveal>
             );
           })}
@@ -231,7 +225,7 @@ export function EnablementFluidzSection() {
         {/* Bottom CTA */}
         <Reveal delay={0.6}>
           <div className="mt-14 text-center">
-            <div className="inline-flex items-center gap-4 p-5 bg-gradient-to-r from-brand/5 via-brand/10 to-brand/5 rounded-2xl border border-brand/20">
+            <div className="inline-flex items-center gap-4 p-5 bg-linear-to-r from-brand/5 via-brand/10 to-brand/5 rounded-2xl border border-brand/20">
               <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center">
                 <GraduationCap className="w-6 h-6 text-white" />
               </div>

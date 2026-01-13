@@ -1,17 +1,14 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import {
   Check,
   X,
   HelpCircle,
-  ArrowRight,
   Sparkles,
   Scale,
 } from "lucide-react";
 import { Container } from "@/components/layout";
 import { Badge, Reveal } from "@/components/shared";
-import { easings } from "@/lib/motion";
 
 const COMPARACAO_ITEMS = [
   {
@@ -74,10 +71,8 @@ const FEATURES_CHECK = [
 ];
 
 export function ComparacaoSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative py-20 sm:py-28 bg-white overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-white overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
@@ -95,7 +90,7 @@ export function ComparacaoSection() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
               Por que a Zopu{" "}
-              <span className="bg-gradient-to-r from-brand to-brand-hover bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brand to-brand-hover bg-clip-text text-transparent">
                 é diferente
               </span>
             </h2>
@@ -110,7 +105,7 @@ export function ComparacaoSection() {
         {/* Comparison Table */}
         <Reveal delay={0.1}>
           <div className="mb-16">
-            <div className="bg-white rounded-3xl border border-gray-200 shadow-elevated overflow-hidden">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-elevated overflow-hidden">
               {/* Table header */}
               <div className="grid grid-cols-[1fr,1fr,1fr] bg-gray-50 border-b border-gray-200">
                 <div className="p-5">
@@ -133,12 +128,8 @@ export function ComparacaoSection() {
 
               {/* Table rows */}
               {COMPARACAO_ITEMS.map((item, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05, duration: 0.3 }}
                   className={`grid grid-cols-[1fr,1fr,1fr] ${
                     index < COMPARACAO_ITEMS.length - 1
                       ? "border-b border-gray-100"
@@ -162,7 +153,7 @@ export function ComparacaoSection() {
                       <span className="text-sm text-gray-500">{item.outros}</span>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -172,13 +163,7 @@ export function ComparacaoSection() {
         <Reveal delay={0.3}>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Zopu column */}
-            <motion.div
-              whileHover={
-                prefersReducedMotion ? undefined : { y: -4 }
-              }
-              transition={{ duration: 0.3, ease: easings.premium }}
-              className="bg-gradient-to-br from-brand/5 via-brand/10 to-brand/5 rounded-3xl p-8 border border-brand/20"
-            >
+            <div className="bg-linear-to-br from-brand/5 via-brand/10 to-brand/5 rounded-2xl p-8 border border-brand/20 hover:-translate-y-1 hover:shadow-card-hover transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center">
                   <Sparkles className="w-6 h-6 text-white" />
@@ -199,16 +184,10 @@ export function ComparacaoSection() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
             {/* Others column */}
-            <motion.div
-              whileHover={
-                prefersReducedMotion ? undefined : { y: -4 }
-              }
-              transition={{ duration: 0.3, ease: easings.premium }}
-              className="bg-gray-50 rounded-3xl p-8 border border-gray-200"
-            >
+            <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200 hover:-translate-y-1 hover:shadow-card-hover transition-all duration-300">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 bg-gray-200 rounded-xl flex items-center justify-center">
                   <HelpCircle className="w-6 h-6 text-gray-400" />
@@ -241,7 +220,7 @@ export function ComparacaoSection() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           </div>
         </Reveal>
 

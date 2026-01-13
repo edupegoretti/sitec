@@ -82,7 +82,7 @@ function WorkflowAIVisual() {
   }, [prefersReducedMotion]);
 
   return (
-    <div className="relative bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-elevated">
+    <div className="relative bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-elevated">
       {/* Title */}
       <div className="mb-6">
         <h3 className="text-base font-semibold text-gray-900">Fluxo de IA no Sistema</h3>
@@ -221,37 +221,12 @@ function WorkflowAIVisual() {
 }
 
 export function IAMultiplierSection() {
-  const prefersReducedMotion = useReducedMotion();
-
   return (
-    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-gray-50 via-white to-gray-50/30 overflow-hidden">
+    <section className="relative py-16 sm:py-24 bg-[#F9FAFC] overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/3 right-0 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
-
-        {/* AI-inspired pattern */}
-        <svg
-          className="absolute top-20 left-10 w-64 h-64 text-brand/5"
-          viewBox="0 0 200 200"
-          fill="none"
-        >
-          <circle cx="100" cy="100" r="80" stroke="currentColor" strokeWidth="0.5" />
-          <circle cx="100" cy="100" r="60" stroke="currentColor" strokeWidth="0.5" />
-          <circle cx="100" cy="100" r="40" stroke="currentColor" strokeWidth="0.5" />
-          <circle cx="100" cy="100" r="20" stroke="currentColor" strokeWidth="0.5" />
-          {[...Array(8)].map((_, i) => (
-            <line
-              key={i}
-              x1="100"
-              y1="100"
-              x2={100 + 80 * Math.cos((i * Math.PI) / 4)}
-              y2={100 + 80 * Math.sin((i * Math.PI) / 4)}
-              stroke="currentColor"
-              strokeWidth="0.5"
-            />
-          ))}
-        </svg>
       </div>
 
       <Container className="relative">
@@ -273,7 +248,7 @@ export function IAMultiplierSection() {
 
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 IA sem hype:{" "}
-                <span className="bg-gradient-to-r from-brand to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-brand to-blue-600 bg-clip-text text-transparent">
                   multiplicador,
                 </span>
                 <span className="block mt-2">não substituto.</span>
@@ -330,7 +305,7 @@ export function IAMultiplierSection() {
           <div className="space-y-5">
             <Reveal delay={0.15}>
               <div className="text-sm text-gray-500 font-medium mb-6 flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-brand animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-brand" />
                 Recursos de IA disponíveis na plataforma
               </div>
             </Reveal>
@@ -354,16 +329,10 @@ export function IAMultiplierSection() {
 
               return (
                 <Reveal key={index} delay={0.2 + index * 0.1}>
-                  <motion.div
-                    whileHover={
-                      prefersReducedMotion ? undefined : { x: 8, scale: 1.01 }
-                    }
-                    transition={{ duration: 0.3, ease: easings.premium }}
-                    className="group relative bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-card transition-all duration-300"
-                  >
+                  <div className="group relative bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300">
                     <div className="flex items-start gap-4">
                       {/* Icon */}
-                      <div className="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                      <div className="w-12 h-12 bg-brand/10 rounded-xl flex items-center justify-center shrink-0 transition-colors">
                         <Icon className="w-6 h-6 text-brand" />
                       </div>
 
@@ -390,14 +359,14 @@ export function IAMultiplierSection() {
                       {/* Arrow */}
                       <ArrowRight className="w-5 h-5 text-gray-300 group-hover:text-brand group-hover:translate-x-1 transition-all shrink-0" />
                     </div>
-                  </motion.div>
+                  </div>
                 </Reveal>
               );
             })}
 
             {/* Coming soon teaser */}
             <Reveal delay={0.6}>
-              <div className="relative bg-gradient-to-r from-gray-100 to-gray-50 rounded-2xl p-6 border border-dashed border-gray-300">
+              <div className="relative bg-linear-to-r from-gray-100 to-gray-50 rounded-2xl p-6 border border-dashed border-gray-300">
                 <div className="absolute -top-3 right-4">
                   <span className="px-3 py-1 bg-brand text-white text-xs font-semibold rounded-full">
                     Em breve

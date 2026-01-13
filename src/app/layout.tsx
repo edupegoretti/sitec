@@ -22,26 +22,25 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://zopu.com.br'),
   title: {
-    default: 'Parceiro Gold Bitrix24 no Brasil | +9.500 Certificados | Zopu',
+    default: 'Arquitetura de Receita no Bitrix24 | Gold Partner | Zopu',
     template: '%s | Zopu',
   },
   description:
-    'Líder global em retenção de clientes Bitrix24. +450 clientes, +9.500 certificados via Fluidz. Implementação em 30 dias.',
+    'Gold Partner Bitrix24. Arquitetura de Receita com processo, dados e adocao para operacao comercial previsivel. +450 clientes, +9.500 certificados.',
   keywords: [
     'Bitrix24',
+    'Arquitetura de Receita',
+    'RevOps',
     'Bitrix24 Brasil',
+    'Gold Partner Bitrix24',
+    'implementacao Bitrix24',
     'treinamento Bitrix24',
-    'certificação Bitrix24',
-    'curso Bitrix24',
-    'Bitrix24 preço',
-    'parceiro Bitrix24',
-    'implementação Bitrix24',
     'CRM',
     'CRM para PME',
-    'consultoria Bitrix24',
-    'Gold Partner Bitrix24',
     'CRM WhatsApp',
+    'Fluidsales',
     'Fluidz',
+    'WhatsZopu',
   ],
   authors: [{ name: 'Zopu' }],
   creator: 'Zopu',
@@ -56,23 +55,23 @@ export const metadata: Metadata = {
     locale: 'pt_BR',
     url: 'https://zopu.com.br',
     siteName: 'Zopu',
-    title: 'Parceiro Gold Bitrix24 no Brasil | +9.500 Certificados | Zopu',
+    title: 'Arquitetura de Receita no Bitrix24 | Gold Partner | Zopu',
     description:
-      'Líder global em retenção de clientes Bitrix24. +450 clientes, +9.500 certificados via Fluidz.',
+      'Gold Partner Bitrix24. Arquitetura de Receita com processo, dados e adocao para operacao comercial previsivel.',
     images: [
       {
         url: '/images/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Zopu - Parceiro Gold Bitrix24 no Brasil com +9.500 Certificados',
+        alt: 'Zopu - Arquitetura de Receita no Bitrix24',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Parceiro Gold Bitrix24 no Brasil | +9.500 Certificados | Zopu',
+    title: 'Arquitetura de Receita no Bitrix24 | Gold Partner | Zopu',
     description:
-      'Líder global em retenção de clientes Bitrix24. +450 clientes, +9.500 certificados via Fluidz.',
+      'Gold Partner Bitrix24. Arquitetura de Receita com processo, dados e adocao para operacao comercial previsivel.',
     images: ['/images/og-image.png'],
   },
   robots: {
