@@ -25,7 +25,7 @@ export function RiscosSection() {
           <Reveal delay={0.1}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               "Go-live" não é sucesso.{" "}
-              <span className="text-red-500">
+              <span className="text-danger">
                 É onde 70% dos projetos param.
               </span>
             </h2>

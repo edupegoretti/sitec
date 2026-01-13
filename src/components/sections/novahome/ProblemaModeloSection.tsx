@@ -88,11 +88,8 @@ export function ProblemaModeloSection() {
           <Reveal delay={0.3}>
             <div className="mb-12">
               <div className="text-center mb-10">
-                <p className="text-sm font-semibold text-red-600 uppercase tracking-wide mb-2">
+                <p className="text-lg font-semibold text-gray-900">
                   Reconhece algum desses sintomas?
-                </p>
-                <p className="text-gray-500">
-                  Se marcou mais de dois, seu CRM está em risco.
                 </p>
               </div>
 

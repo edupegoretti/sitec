@@ -8,9 +8,9 @@ import { CaretRight } from "@phosphor-icons/react";
 import { ZOPU_LINKS, ERROS_VS_SOLUCOES_ZOPU } from "@/lib/constants";
 import { useCountUp } from "@/hooks/useCountUp";
 
-// Animated 50% counter
+// Animated 70% counter
 function AnimatedPercent() {
-  const { ref, value: animatedValue } = useCountUp(50, { delay: 500 });
+  const { ref, value: animatedValue } = useCountUp(70, { delay: 500 });
 
   return <span ref={ref}>{Math.round(animatedValue)}</span>;
 }

@@ -5,10 +5,10 @@ export const ZOPU_STATS = {
   paises: "18",
   retencao: "96%",
   churn: "4%",
-  diasParaFuncionar: "30 a 90",
+  diasParaFuncionar: "30 dias",
   alunosFluidz: "9.500+",
   maiorOperacao: "5.000+",
-  taxaFalha: "50%",
+  taxaFalha: "70%",
   equipe: "20",
   tempoResposta: "<5min",
   tempoRespostaContexto: "SLA de primeira resposta",
@@ -46,10 +46,10 @@ export const BITRIX24_SUMMIT_EVIDENCE = {
 
 // Fonte do dado de taxa de falha (validado por Gartner e Forrester)
 export const FONTE_TAXA_FALHA = {
-  percentual: "50%",
+  percentual: "70%",
   fontes: ["Gartner", "Forrester Research"],
   citacao:
-    "Segundo Gartner e Forrester, aproximadamente metade das implementações de CRM não atingem os objetivos esperados devido a falta de estratégia e adoção inadequada.",
+    "Segundo Gartner e Forrester, cerca de 70% das implementações de CRM não atingem os objetivos esperados devido a falta de estratégia e adoção inadequada.",
   ano: "2024-2025",
 } as const;
 
@@ -1190,7 +1190,7 @@ export const BITRIX24_GLOBAL_STATS = {
 export const ESTATISTICAS_MERCADO_CRM = {
   empresasUsandoCRM: "91%",
   empresasUsandoCRMTexto: "das empresas com 10+ funcionários usam CRM",
-  projetosFalham: "50%",
+  projetosFalham: "70%",
   projetosFalhamTexto: "dos projetos de CRM falham em entregar ROI",
   faltaTreinamento: "42%",
   faltaTreinamentoTexto: "citam falta de treinamento como barreira",
@@ -1968,6 +1968,15 @@ export const RISCOS_MERCADO_ZOPU = [
     icon: "GraduationCap",
   },
   {
+    id: "gestao",
+    titulo: "Gestão às cegas",
+    descricao:
+      "Dashboard bonito, decisão zero. Métricas que não viram ação. Gestor continua pedindo relatório no Excel.",
+    impacto: "Investimento sem retorno",
+    impactoTipo: "warning",
+    icon: "ChartNoAxes",
+  },
+  {
     id: "pos-golive",
     titulo: "Pós go-live fraco",
     descricao:
@@ -2048,7 +2057,7 @@ export const CAMINHOS_ENTRADA_ZOPU = [
     prazo: "Até 30 dias",
     descricao:
       "Entrada rápida em operação para estruturar pré-vendas e vendas com o básico bem feito.",
-    nota: "Ideal para começar rápido; para sustentabilidade, recomendamos evolução pelo RevOps Launch™.",
+    nota: "Ideal para quem precisa começar rápido com o básico bem estruturado.",
     destacado: false,
     icon: "Zap",
   },
@@ -2059,9 +2068,8 @@ export const CAMINHOS_ENTRADA_ZOPU = [
     prazo: "Até 60 dias",
     descricao:
       "Estrutura + adoção + métricas + evolução contínua. Para quem quer governança e previsibilidade.",
-    nota: null,
-    destacado: true,
-    recomendado: true,
+    nota: "Para operações que precisam de processo completo desde o início.",
+    destacado: false,
     icon: "Layers",
   },
   {
@@ -2071,7 +2079,7 @@ export const CAMINHOS_ENTRADA_ZOPU = [
     prazo: "Sob medida",
     descricao:
       "Projetos enterprise com múltiplos times, integrações e governança avançada.",
-    nota: null,
+    nota: "Para empresas com operação multiárea e necessidade de integrações.",
     destacado: false,
     icon: "BarChart3",
   },
@@ -2086,9 +2094,10 @@ export const FAQ_POR_QUE_ZOPU = [
       "Porque a maioria dos projetos foca em configurar campos, não em criar rotina. Nosso trabalho é tornar o CRM o sistema de trabalho do time — com rituais, playbooks e treinamento por função. Se não virar rotina em 30 dias, algo está errado na estrutura, não no time.",
   },
   {
-    pergunta: "Por que vocês são mais caros que outros parceiros?",
+    pergunta:
+      "Falei com uma consultoria maior do que a Zopu. Por que devo escolher vocês?",
     resposta:
-      'Porque preço baixo costuma cortar discovery, dados, governança e adoção. O custo real de um CRM que falha é retrabalho, tempo e confiança do time — não "o projeto". Investimos em estrutura para você não precisar refazer.',
+      "Porque 96% dos nossos clientes renovam. Consultoria grande não significa projeto que funciona — significa mais camadas, mais júniors no seu projeto, e menos pele em jogo. Na Zopu, seu projeto é uma % relevante do nosso faturamento, então nosso incentivo é que dê certo. Por isso medimos ROI (8.71x médio) e por isso a Bitrix24 nos cita como referência em retenção.",
   },
   {
     pergunta: "Vocês fazem integração com meu ERP/sistema legado?",
@@ -3236,10 +3245,10 @@ export const SOLUCOES_HUB = {
 // Hero Headlines com variações
 export const GROWTH_ARCHITECTURE_HERO = {
   // Posicionamento: Estatística âncora + AI-Ready (não AI-Powered)
-  // Dados validados: Gartner/Forrester mostram ~50% de falha em CRM
+  // Dados validados: Gartner/Forrester mostram ~70% de falha em CRM
   badge: "Metodologia Fluidsales™",
   headline: {
-    parte1: "50% dos CRMs falham.",
+    parte1: "70% dos CRMs falham.",
     parte2: "O seu não precisa ser um deles.",
   },
   subheadline:
@@ -3287,7 +3296,7 @@ export const GROWTH_ARCHITECTURE_DOR = {
   cards: [
     {
       id: "adocao",
-      titulo: "50% dos CRMs falham",
+      titulo: "70% dos CRMs falham",
       descricao:
         "Causa #1: Adoção. O time não usa porque a ferramenta não reflete o processo real de trabalho.",
       icon: "FileSpreadsheet",

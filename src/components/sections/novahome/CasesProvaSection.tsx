@@ -48,8 +48,7 @@ export function CasesProvaSection() {
 
           <Reveal delay={0.1}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Resultados que você{' '}
-              <span className="text-green-600">consegue auditar.</span>
+              <span className="text-brand">Resultados comprovados.</span>
             </h2>
           </Reveal>
 

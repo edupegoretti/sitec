@@ -17,7 +17,7 @@ import { DiagnosticoModal } from '@/components/shared'
 export const metadata: Metadata = {
   title: 'Metodologia Fluidsales™ | CRM que funciona e AI-Ready — Zopu',
   description:
-    '50% dos CRMs falham. O seu não precisa. A metodologia que 450+ empresas usam para transformar Bitrix24 em motor de receita — com os fundamentos que fazem AI funcionar de verdade. 96% de retenção.',
+    '70% dos CRMs falham. O seu não precisa. A metodologia que 450+ empresas usam para transformar Bitrix24 em motor de receita — com os fundamentos que fazem AI funcionar de verdade. 96% de retenção.',
   keywords: [
     'Metodologia Fluidsales',
     'metodologia CRM',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Metodologia Fluidsales™ | CRM que funciona — e AI-Ready',
     description:
-      '50% dos CRMs falham. O seu não precisa. 450+ empresas comprovaram: processo + dados + adoção = resultado real. 96% de retenção.',
+      '70% dos CRMs falham. O seu não precisa. 450+ empresas comprovaram: processo + dados + adoção = resultado real. 96% de retenção.',
     type: 'website',
     images: [
       {

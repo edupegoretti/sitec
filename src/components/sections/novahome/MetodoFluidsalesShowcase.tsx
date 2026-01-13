@@ -230,17 +230,13 @@ export function MetodoFluidsalesShowcase() {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               <span className="text-brand">Fluidsales™</span>
               <span className="block text-2xl sm:text-3xl lg:text-4xl mt-2 font-semibold text-gray-700">
-                Os 6 pilares que garantem receita auditável
+                Os 6 pilares que garantem previsibilidade de receita
               </span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto">
               Implementação estratégica focada no seu modelo de negócio — não em configurações genéricas.
-              <br />
-              <span className="text-gray-900 font-medium">
-                Tudo isso acontece <span className="text-brand font-semibold">ANTES</span> de configurar a ferramenta.
-              </span>
             </p>
           </Reveal>
         </div>

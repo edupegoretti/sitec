@@ -69,11 +69,11 @@ export function HeroPorQueZopu() {
               </span>
             </div>
 
-            {/* Headline - Challenger: reconhece a desconfiança */}
+            {/* Headline - Insight que educa */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight">
-              Se você já tentou CRM e falhou,
+              A maioria dos projetos de CRM não falha por falta de esforço.
               <br />
-              <span className="text-brand">você está certo em desconfiar.</span>
+              <span className="text-brand">Falha por falta de metodologia.</span>
             </h1>
 
             {/* Subtítulo - Risk Reversal */}

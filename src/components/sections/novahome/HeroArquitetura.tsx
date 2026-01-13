@@ -118,7 +118,7 @@ export function HeroArquitetura() {
               className="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed"
             >
               Nós desenhamos e implementamos o modelo operacional de receita da
-              sua empresa dentro do Bitrix24 — com processo, dados e adoção que
+              sua empresa dentro do Bitrix24 — com processos, dados e adoção que
               se sustentam no longo prazo.
             </motion.p>
 

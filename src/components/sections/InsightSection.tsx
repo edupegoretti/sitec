@@ -114,7 +114,7 @@ export function InsightSection() {
 
           <Reveal delay={0.1}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              50% dos CRMs falham em entregar resultado.{' '}
+              70% dos CRMs falham em entregar resultado.{' '}
               <span className="text-brand">E como evitamos.</span>
             </h2>
           </Reveal>
