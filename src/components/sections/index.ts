@@ -65,18 +65,13 @@ export {
   FAQPorQueZopu,
 } from "./por-que-zopu";
 
-// Metodologia Redesign components
+// Metodologia Redesign components (RevOps Launch page)
 export {
-  HeroMonumental,
-  HeroSegmentador,
-  TensaoEducativa,
-  ProblemaSection as ProblemaSectionMetodologia,
-  TimelineImersiva,
-  PilaresShowcase,
-  ProdutoCards,
-  ComparativoModerno,
+  HeroMetodologia,
+  VantagensSection,
+  FrameworkVisual,
   FluidzShowcase,
-  EvidenciaSocial,
+  AdaptacaoSection,
   CTAMetodologia,
 } from "./metodologia-redesign";
 
