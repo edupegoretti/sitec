@@ -47,6 +47,9 @@ export function FoundationLayersSection() {
   const activeStepRef = useRef(0)
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
   const prefersReducedMotion = useReducedMotion()
+  const [autoState, setAutoState] = useState<'idle' | 'playing' | 'done'>('idle')
+  const autoStateRef = useRef(autoState)
+  const lastStep = PILARES.length - 1
 
   // Detecta se a seção está visível
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
@@ -54,6 +57,36 @@ export function FoundationLayersSection() {
   useEffect(() => {
     activeStepRef.current = activeStep
   }, [activeStep])
+
+  useEffect(() => {
+    autoStateRef.current = autoState
+  }, [autoState])
+
+  useEffect(() => {
+    if (!prefersReducedMotion) return
+    setActiveStep(lastStep)
+    setAutoState('done')
+  }, [lastStep, prefersReducedMotion])
+
+  useEffect(() => {
+    if (!isInView || prefersReducedMotion || autoStateRef.current !== 'idle') return
+
+    setAutoState('playing')
+    const timers: Array<ReturnType<typeof setTimeout>> = []
+    const stepDuration = 720
+
+    PILARES.forEach((_, index) => {
+      timers.push(setTimeout(() => setActiveStep(index), index * stepDuration))
+    })
+
+    timers.push(
+      setTimeout(() => setAutoState('done'), PILARES.length * stepDuration + 200)
+    )
+
+    return () => {
+      timers.forEach((timer) => clearTimeout(timer))
+    }
+  }, [isInView, prefersReducedMotion])
 
   // Scroll-driven active step (premium scrollytelling feel)
   useEffect(() => {
@@ -78,6 +111,8 @@ export function FoundationLayersSection() {
             bestIndex = index
           }
         })
+
+        if (autoStateRef.current === 'playing') return
 
         if (bestRatio >= 0.25 && bestIndex !== activeStepRef.current) {
           setActiveStep(bestIndex)
@@ -136,6 +171,19 @@ export function FoundationLayersSection() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Coluna de Cards */}
             <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
+              <div className="flex items-center justify-between text-sm text-gray-500">
+                <span>4 camadas da fundação</span>
+                <button
+                  type="button"
+                  className="text-brand font-medium hover:text-brand-hover transition-colors"
+                  onClick={() => {
+                    setActiveStep(lastStep)
+                    setAutoState('done')
+                  }}
+                >
+                  Ver fundação completa
+                </button>
+              </div>
               {PILARES.map((pilar, index) => {
                 const Icon = pilar.icon
                 const isActive = index === activeStep
@@ -176,10 +224,7 @@ export function FoundationLayersSection() {
                     onBlur={() => setHoveredStep(null)}
                     onClick={() => {
                       setActiveStep(index)
-                      cardRefs.current[index]?.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center',
-                      })
+                      setAutoState('done')
                     }}
                   >
                     {/* Icon + Title */}
@@ -225,12 +270,12 @@ export function FoundationLayersSection() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <div className="bg-linear-to-br from-gray-50 to-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm">
+              <div className="bg-linear-to-br from-slate-50 via-white to-amber-50/50 rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-lg">
                 <FoundationSVG
                   ref={visualRef}
                   activeLayer={hoveredStep ?? activeStep}
                   visibleLayers={isInView ? activeStep + 1 : 0}
-                  showGrowth={isInView && activeStep === PILARES.length - 1}
+                  showGrowth={isInView && activeStep === lastStep}
                 />
               </div>
             </motion.div>

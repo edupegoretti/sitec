@@ -1,11 +1,14 @@
-import { createClient } from 'next-sanity'
+import { createClient, type SanityClient } from 'next-sanity'
 
-import { apiVersion, dataset, projectId } from './env'
+import { apiVersion, dataset, projectId, isSanityConfigured } from './env'
 
-export const client = createClient({
-  projectId,
-  dataset,
-  apiVersion,
-  useCdn: process.env.NODE_ENV === 'production',
-})
+// Only create client if Sanity is configured
+export const client: SanityClient = isSanityConfigured
+  ? createClient({
+      projectId,
+      dataset,
+      apiVersion,
+      useCdn: process.env.NODE_ENV === 'production',
+    })
+  : (null as unknown as SanityClient)
 
