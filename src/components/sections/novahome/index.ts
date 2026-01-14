@@ -10,6 +10,8 @@ export { EnablementFluidzSection } from "./EnablementFluidzSection";
 export { WhatsZopuSection } from "./WhatsZopuSection";
 export { CasesProvaSection } from "./CasesProvaSection";
 export { ComparacaoSection } from "./ComparacaoSection";
+export { FoundationLayersSection } from "./FoundationLayersSection";
+export { FoundationSVG } from "./FoundationSVG";
 export { OfertasSection } from "./OfertasSection";
 export { CTAFinalSection } from "./CTAFinalSection";
 

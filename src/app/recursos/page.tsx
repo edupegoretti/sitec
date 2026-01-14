@@ -5,6 +5,9 @@ import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
 import { RESOURCE_PERSONAS } from '@/lib/resources/personas'
 import { getWebinarItems, getZopucastItems } from '@/lib/resources/library'
+import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import { latestPostsQuery } from '@/sanity/lib/queries'
 
 export const metadata: Metadata = {
   title: 'Recursos | Conteúdos abertos | Zopu',
@@ -23,7 +26,11 @@ export const metadata: Metadata = {
 export const revalidate = 3600
 
 export default async function RecursosPage() {
-  const [zopucastItems, webinarItems] = await Promise.all([getZopucastItems(), getWebinarItems()])
+  const [zopucastItems, webinarItems, latestPosts] = await Promise.all([
+    getZopucastItems(),
+    getWebinarItems(),
+    sanityFetch<PostCardData[]>({ query: latestPostsQuery, params: { limit: 3 }, tags: ['post'] }),
+  ])
   const latestZopucast = zopucastItems.slice(0, 3)
   const latestWebinar = webinarItems[0]
 
@@ -128,6 +135,33 @@ export default async function RecursosPage() {
               </Reveal>
             ))}
           </div>
+
+          {latestPosts.length ? (
+            <div className="mt-14">
+              <Reveal>
+                <div className="flex items-end justify-between gap-6 mb-8">
+                  <div className="max-w-2xl">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Últimos posts do blog</h3>
+                    <p className="text-gray-600">Guias e artigos para operar com método (e avançar na decisão).</p>
+                  </div>
+                  <Link
+                    href="/recursos/blog"
+                    className="hidden sm:inline-flex items-center gap-2 text-brand font-semibold hover:text-brand-hover transition-colors"
+                  >
+                    Ver blog
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </Reveal>
+              <div className="grid md:grid-cols-3 gap-6">
+                {latestPosts.map((post) => (
+                  <Reveal key={post._id}>
+                    <PostCard post={post} />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {latestWebinar && (
             <div className="mt-10">

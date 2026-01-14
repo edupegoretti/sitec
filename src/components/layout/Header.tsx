@@ -49,6 +49,9 @@ const iconMap: Record<string, PhosphorIcon> = {
   Segurança: Shield,
   // Recursos
   Blog: BookOpenText,
+  Temas: Stack,
+  Interesses: Trophy,
+  "Estágios": ChartLineUp,
   Biblioteca: Files,
   Zopucast: Chats,
   "Webinars Bitrix24": UsersThree,

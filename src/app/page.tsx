@@ -45,6 +45,7 @@ import {
   ProblemaModeloSection,
   ReframeSection,
   MetodoFluidsalesShowcase,
+  FoundationLayersSection,
   EstadoDesejadoSection,
   MetodoFluidsalesSection,
   IAMultiplierSection,
@@ -72,7 +73,10 @@ export default function Home() {
       {/* 4. Metodo Showcase - Fluidsales 6 pilares interativos */}
       <MetodoFluidsalesShowcase />
 
-      {/* 5. Estado Desejado - Receita Auditavel */}
+      {/* 5. Fundação - Os 4 pilares da Arquitetura de Receita */}
+      <FoundationLayersSection />
+
+      {/* 6. Estado Desejado - Receita Auditavel */}
       <EstadoDesejadoSection />
 
       {/* 6. Metodo Timeline - 3 etapas de entrega */}

@@ -1,4 +1,7 @@
 import { MetadataRoute } from 'next'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import { authorSlugsQuery, interestSlugsQuery, postSlugsQuery, seriesSlugsQuery, themeSlugsQuery } from '@/sanity/lib/queries'
+import { RESOURCE_PERSONAS } from '@/lib/resources/personas'
 
 const BASE_URL = 'https://zopu.com.br'
 
@@ -188,6 +191,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
+      url: `${BASE_URL}/recursos/tema`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.65,
+    },
+    {
+      url: `${BASE_URL}/recursos/interesse`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.65,
+    },
+    {
+      url: `${BASE_URL}/recursos/estagio`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.65,
+    },
+    {
       url: `${BASE_URL}/recursos/biblioteca`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
@@ -218,6 +239,69 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.6,
     },
   ]
+
+  const [postSlugs, themeSlugs, interestSlugs, seriesSlugs, authorSlugs] = await Promise.all([
+    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: postSlugsQuery, tags: ['post'], revalidate: 3600 }),
+    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: themeSlugsQuery, tags: ['theme'], revalidate: 3600 }),
+    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: interestSlugsQuery, tags: ['interest'], revalidate: 3600 }),
+    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: seriesSlugsQuery, tags: ['series'], revalidate: 3600 }),
+    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: authorSlugsQuery, tags: ['author'], revalidate: 3600 }),
+  ])
+
+  const blogPages: MetadataRoute.Sitemap = postSlugs.map((item) => ({
+    url: `${BASE_URL}/recursos/blog/${item.slug}`,
+    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  const themePages: MetadataRoute.Sitemap = themeSlugs.map((item) => ({
+    url: `${BASE_URL}/recursos/tema/${item.slug}`,
+    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.55,
+  }))
+
+  const interestPages: MetadataRoute.Sitemap = interestSlugs.map((item) => ({
+    url: `${BASE_URL}/recursos/interesse/${item.slug}`,
+    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.55,
+  }))
+
+  const seriesPages: MetadataRoute.Sitemap = seriesSlugs.map((item) => ({
+    url: `${BASE_URL}/recursos/series/${item.slug}`,
+    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.5,
+  }))
+
+  const authorPages: MetadataRoute.Sitemap = authorSlugs.map((item) => ({
+    url: `${BASE_URL}/recursos/autores/${item.slug}`,
+    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.45,
+  }))
+
+  const recursosPersonaPages: MetadataRoute.Sitemap = RESOURCE_PERSONAS.map((persona) => ({
+    url: `${BASE_URL}/recursos/para/${persona.id}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.55,
+  }))
+
+  const stagePages: MetadataRoute.Sitemap = [
+    'diagnostico',
+    'estruturacao',
+    'implementacao',
+    'otimizacao',
+    'decisao',
+  ].map((stage) => ({
+    url: `${BASE_URL}/recursos/estagio/${stage}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.55,
+  }))
 
   // Páginas institucionais
   const institutionalPages: MetadataRoute.Sitemap = [
@@ -258,6 +342,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...personaPages,
     ...solutionPages,
     ...resourcePages,
+    ...recursosPersonaPages,
+    ...stagePages,
+    ...blogPages,
+    ...themePages,
+    ...interestPages,
+    ...seriesPages,
+    ...authorPages,
     ...institutionalPages,
   ]
 }

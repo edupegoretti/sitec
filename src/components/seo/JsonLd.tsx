@@ -256,6 +256,59 @@ export function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {
   )
 }
 
+// Article Schema - para posts de blog
+interface ArticleJsonLdProps {
+  title: string
+  description?: string
+  url: string
+  image?: string | string[]
+  datePublished: string
+  dateModified?: string
+  authorName: string | string[]
+  section?: string
+}
+
+export function ArticleJsonLd({
+  title,
+  description,
+  url,
+  image,
+  datePublished,
+  dateModified,
+  authorName,
+  section,
+}: ArticleJsonLdProps) {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    url,
+    image,
+    datePublished,
+    dateModified: dateModified ?? datePublished,
+    author: (Array.isArray(authorName) ? authorName : [authorName]).map((name) => ({
+      '@type': 'Person',
+      name,
+    })),
+    publisher: {
+      '@type': 'Organization',
+      name: 'Zopu',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://zopu.com.br/images/logo-zopu.png',
+      },
+    },
+    articleSection: section,
+  }
+
+  return (
+    <script type="application/ld+json" suppressHydrationWarning>
+      {JSON.stringify(schema)}
+    </script>
+  )
+}
+
 // Service Schema - para páginas de serviços
 interface ServiceJsonLdProps {
   name: string

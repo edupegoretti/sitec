@@ -5,6 +5,7 @@ export {
   ProductJsonLd,
   HowToJsonLd,
   BreadcrumbJsonLd,
+  ArticleJsonLd,
   ServiceJsonLd,
   AggregateRatingJsonLd,
   WebPageJsonLd,

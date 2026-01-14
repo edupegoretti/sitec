@@ -6,6 +6,9 @@ import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
 import { getWebinarItems, getZopucastItems } from '@/lib/resources/library'
 import { isResourcePersonaId, RESOURCE_PERSONAS } from '@/lib/resources/personas'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import { postsByPersonaQuery } from '@/sanity/lib/queries'
+import { PostCard, type PostCardData } from '@/components/blog/PostCard'
 
 type PageProps = {
   params: Promise<{ persona: string }>
@@ -41,7 +44,11 @@ export default async function RecursosPersonaDetailPage({ params }: PageProps) {
   const persona = getPersona(personaId)
   if (!persona) notFound()
 
-  const [zopucastItems, webinarItems] = await Promise.all([getZopucastItems(), getWebinarItems()])
+  const [zopucastItems, webinarItems, blogPosts] = await Promise.all([
+    getZopucastItems(),
+    getWebinarItems(),
+    sanityFetch<PostCardData[]>({ query: postsByPersonaQuery, params: { persona: persona.id }, tags: ['post'] }),
+  ])
   const latestZopucast = zopucastItems.slice(0, 3)
   const latestWebinar = webinarItems[0]
 
@@ -85,6 +92,36 @@ export default async function RecursosPersonaDetailPage({ params }: PageProps) {
       <section className="py-16 sm:py-20 bg-white">
         <Container>
           <div className="max-w-6xl mx-auto">
+            {blogPosts.length ? (
+              <div className="mb-14">
+                <Reveal>
+                  <div className="flex items-end justify-between gap-6 mb-10">
+                    <div className="max-w-2xl">
+                      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Guia rápido (Blog)</h2>
+                      <p className="text-gray-600">
+                        Conteúdos recomendados para avançar com clareza no seu desafio.
+                      </p>
+                    </div>
+                    <Link
+                      href="/recursos/blog"
+                      className="hidden sm:inline-flex items-center gap-2 text-brand font-semibold hover:text-brand-hover transition-colors"
+                    >
+                      Ver todos
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </Reveal>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                  {blogPosts.slice(0, 3).map((post) => (
+                    <Reveal key={post._id}>
+                      <PostCard post={post} />
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
             <Reveal>
               <div className="flex items-end justify-between gap-6 mb-10">
                 <div className="max-w-2xl">

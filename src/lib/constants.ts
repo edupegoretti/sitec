@@ -774,6 +774,21 @@ export const NAVIGATION = {
       descricao: "Artigos e guias abertos",
     },
     {
+      nome: "Temas",
+      href: "/recursos/tema",
+      descricao: "Navegação por capítulo",
+    },
+    {
+      nome: "Interesses",
+      href: "/recursos/interesse",
+      descricao: "Navegação por dor/objetivo",
+    },
+    {
+      nome: "Estágios",
+      href: "/recursos/estagio",
+      descricao: "Jornada de decisão",
+    },
+    {
       nome: "Biblioteca",
       href: "/recursos/biblioteca",
       descricao: "Materiais ricos em vídeo",
