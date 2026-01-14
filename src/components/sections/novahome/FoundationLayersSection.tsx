@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { Compass, Users, Shield, Rocket } from 'lucide-react'
 import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
@@ -42,10 +42,60 @@ const PILARES = [
 export function FoundationLayersSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const visualRef = useRef<HTMLDivElement>(null)
-  const [activeLayer, setActiveLayer] = useState<number | null>(null)
+  const cardRefs = useRef<Array<HTMLButtonElement | null>>([])
+  const [activeStep, setActiveStep] = useState(0)
+  const activeStepRef = useRef(0)
+  const [hoveredStep, setHoveredStep] = useState<number | null>(null)
+  const prefersReducedMotion = useReducedMotion()
 
   // Detecta se a seção está visível
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
+
+  useEffect(() => {
+    activeStepRef.current = activeStep
+  }, [activeStep])
+
+  // Scroll-driven active step (premium scrollytelling feel)
+  useEffect(() => {
+    const cards = cardRefs.current.filter(Boolean) as HTMLButtonElement[]
+    if (cards.length === 0) return
+
+    const ratios = new Map<number, number>()
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number((entry.target as HTMLElement).dataset.index)
+          ratios.set(index, entry.isIntersecting ? entry.intersectionRatio : 0)
+        })
+
+        let bestIndex = activeStepRef.current
+        let bestRatio = ratios.get(bestIndex) ?? 0
+
+        ratios.forEach((ratio, index) => {
+          if (ratio > bestRatio) {
+            bestRatio = ratio
+            bestIndex = index
+          }
+        })
+
+        if (bestRatio >= 0.25 && bestIndex !== activeStepRef.current) {
+          setActiveStep(bestIndex)
+        }
+      },
+      {
+        threshold: [0, 0.25, 0.4, 0.6, 0.8, 1],
+        rootMargin: '-25% 0px -55% 0px',
+      }
+    )
+
+    cards.forEach((card, index) => {
+      card.dataset.index = String(index)
+      observer.observe(card)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section
@@ -88,19 +138,49 @@ export function FoundationLayersSection() {
             <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
               {PILARES.map((pilar, index) => {
                 const Icon = pilar.icon
+                const isActive = index === activeStep
+
                 return (
-                  <motion.div
+                  <motion.button
                     key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.3 + index * 0.1,
-                      ease: [0.16, 1, 0.3, 1]
+                    ref={(el) => {
+                      cardRefs.current[index] = el
                     }}
-                    className="pilar-card group p-5 sm:p-6 bg-gray-50 rounded-2xl border border-gray-200 hover:border-brand/30 hover:bg-white hover:shadow-lg transition-all duration-300 cursor-pointer"
-                    onMouseEnter={() => setActiveLayer(index)}
-                    onMouseLeave={() => setActiveLayer(null)}
+                    type="button"
+                    initial={
+                      prefersReducedMotion ? undefined : { opacity: 0, x: -20 }
+                    }
+                    animate={
+                      prefersReducedMotion
+                        ? { opacity: 1, x: 0 }
+                        : isInView
+                          ? { opacity: 1, x: 0 }
+                          : {}
+                    }
+                    transition={{
+                      duration: prefersReducedMotion ? 0 : 0.5,
+                      delay: prefersReducedMotion ? 0 : 0.3 + index * 0.1,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className={[
+                      'pilar-card group w-full text-left p-5 sm:p-6 rounded-2xl border transition-all duration-300',
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white',
+                      isActive
+                        ? 'bg-white border-brand/35 shadow-lg'
+                        : 'bg-gray-50 border-gray-200 hover:border-brand/30 hover:bg-white hover:shadow-lg',
+                    ].join(' ')}
+                    aria-pressed={isActive}
+                    onMouseEnter={() => setHoveredStep(index)}
+                    onMouseLeave={() => setHoveredStep(null)}
+                    onFocus={() => setHoveredStep(index)}
+                    onBlur={() => setHoveredStep(null)}
+                    onClick={() => {
+                      setActiveStep(index)
+                      cardRefs.current[index]?.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center',
+                      })
+                    }}
                   >
                     {/* Icon + Title */}
                     <div className="flex items-start gap-4">
@@ -121,7 +201,7 @@ export function FoundationLayersSection() {
                         </p>
                       </div>
                     </div>
-                  </motion.div>
+                  </motion.button>
                 )
               })}
             </div>
@@ -129,16 +209,28 @@ export function FoundationLayersSection() {
             {/* Coluna do SVG */}
             <motion.div
               className="order-1 lg:order-2 lg:sticky lg:top-24"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              initial={
+                prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95 }
+              }
+              animate={
+                prefersReducedMotion
+                  ? { opacity: 1, scale: 1 }
+                  : isInView
+                    ? { opacity: 1, scale: 1 }
+                    : {}
+              }
+              transition={{
+                duration: prefersReducedMotion ? 0 : 0.6,
+                delay: prefersReducedMotion ? 0 : 0.2,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             >
               <div className="bg-linear-to-br from-gray-50 to-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm">
                 <FoundationSVG
                   ref={visualRef}
-                  activeLayer={activeLayer}
-                  visibleLayers={isInView ? 4 : 0}
-                  showGrowth={isInView}
+                  activeLayer={hoveredStep ?? activeStep}
+                  visibleLayers={isInView ? activeStep + 1 : 0}
+                  showGrowth={isInView && activeStep === PILARES.length - 1}
                 />
               </div>
             </motion.div>

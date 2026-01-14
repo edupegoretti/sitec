@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { authorSlugsQuery, interestSlugsQuery, postSlugsQuery, seriesSlugsQuery, themeSlugsQuery } from '@/sanity/lib/queries'
 import { RESOURCE_PERSONAS } from '@/lib/resources/personas'
+import { isSanityConfigured } from '@/sanity/lib/env'
 
 const BASE_URL = 'https://zopu.com.br'
 
@@ -240,48 +241,57 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  const [postSlugs, themeSlugs, interestSlugs, seriesSlugs, authorSlugs] = await Promise.all([
-    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: postSlugsQuery, tags: ['post'], revalidate: 3600 }),
-    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: themeSlugsQuery, tags: ['theme'], revalidate: 3600 }),
-    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: interestSlugsQuery, tags: ['interest'], revalidate: 3600 }),
-    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: seriesSlugsQuery, tags: ['series'], revalidate: 3600 }),
-    sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: authorSlugsQuery, tags: ['author'], revalidate: 3600 }),
-  ])
+  // Fetch Sanity content only if configured
+  let blogPages: MetadataRoute.Sitemap = []
+  let themePages: MetadataRoute.Sitemap = []
+  let interestPages: MetadataRoute.Sitemap = []
+  let seriesPages: MetadataRoute.Sitemap = []
+  let authorPages: MetadataRoute.Sitemap = []
 
-  const blogPages: MetadataRoute.Sitemap = postSlugs.map((item) => ({
-    url: `${BASE_URL}/recursos/blog/${item.slug}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
-    changeFrequency: 'monthly',
-    priority: 0.6,
-  }))
+  if (isSanityConfigured) {
+    const [postSlugs, themeSlugs, interestSlugs, seriesSlugs, authorSlugs] = await Promise.all([
+      sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: postSlugsQuery, tags: ['post'], revalidate: 3600 }),
+      sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: themeSlugsQuery, tags: ['theme'], revalidate: 3600 }),
+      sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: interestSlugsQuery, tags: ['interest'], revalidate: 3600 }),
+      sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: seriesSlugsQuery, tags: ['series'], revalidate: 3600 }),
+      sanityFetch<Array<{ slug: string; _updatedAt?: string }>>({ query: authorSlugsQuery, tags: ['author'], revalidate: 3600 }),
+    ])
 
-  const themePages: MetadataRoute.Sitemap = themeSlugs.map((item) => ({
-    url: `${BASE_URL}/recursos/tema/${item.slug}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
-    changeFrequency: 'monthly',
-    priority: 0.55,
-  }))
+    blogPages = postSlugs.map((item) => ({
+      url: `${BASE_URL}/recursos/blog/${item.slug}`,
+      lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    }))
 
-  const interestPages: MetadataRoute.Sitemap = interestSlugs.map((item) => ({
-    url: `${BASE_URL}/recursos/interesse/${item.slug}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
-    changeFrequency: 'monthly',
-    priority: 0.55,
-  }))
+    themePages = themeSlugs.map((item) => ({
+      url: `${BASE_URL}/recursos/tema/${item.slug}`,
+      lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.55,
+    }))
 
-  const seriesPages: MetadataRoute.Sitemap = seriesSlugs.map((item) => ({
-    url: `${BASE_URL}/recursos/series/${item.slug}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
-    changeFrequency: 'monthly',
-    priority: 0.5,
-  }))
+    interestPages = interestSlugs.map((item) => ({
+      url: `${BASE_URL}/recursos/interesse/${item.slug}`,
+      lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.55,
+    }))
 
-  const authorPages: MetadataRoute.Sitemap = authorSlugs.map((item) => ({
-    url: `${BASE_URL}/recursos/autores/${item.slug}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
-    changeFrequency: 'monthly',
-    priority: 0.45,
-  }))
+    seriesPages = seriesSlugs.map((item) => ({
+      url: `${BASE_URL}/recursos/series/${item.slug}`,
+      lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    }))
+
+    authorPages = authorSlugs.map((item) => ({
+      url: `${BASE_URL}/recursos/autores/${item.slug}`,
+      lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.45,
+    }))
+  }
 
   const recursosPersonaPages: MetadataRoute.Sitemap = RESOURCE_PERSONAS.map((persona) => ({
     url: `${BASE_URL}/recursos/para/${persona.id}`,

@@ -1,6 +1,7 @@
 import { draftMode } from 'next/headers'
 
 import { client } from './client'
+import { isSanityConfigured } from './env'
 
 type SanityFetchOptions<QueryResponse> = {
   query: string
@@ -15,6 +16,11 @@ export async function sanityFetch<QueryResponse>({
   tags = [],
   revalidate = 60 * 30,
 }: SanityFetchOptions<QueryResponse>): Promise<QueryResponse> {
+  // Return empty result if Sanity is not configured
+  if (!isSanityConfigured) {
+    return [] as unknown as QueryResponse
+  }
+
   const { isEnabled } = await draftMode()
 
   if (isEnabled) {
