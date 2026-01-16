@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import {
   WhatsappLogo,
@@ -12,8 +12,6 @@ import {
   LinkedinLogo,
   InstagramLogo,
   YoutubeLogo,
-  CheckCircle,
-  SpinnerGap,
   PaperPlaneTilt,
 } from '@phosphor-icons/react'
 import { Container } from '@/components/layout'
@@ -21,8 +19,38 @@ import { Badge, Reveal } from '@/components/shared'
 import { ZOPU_LINKS, ZOPU_STATS } from '@/lib/constants'
 import { cn } from '@/lib/utils'
 
+// Company contact info
+const ZOPU_CONTACT = {
+  address: 'Rua Rio Grande do Sul, 385',
+  neighborhood: 'Anita Garibaldi',
+  city: 'Joinville',
+  state: 'SC',
+  cep: '89203-570',
+  country: 'Brasil',
+  tollfree: '0800 042 9000',
+  phone: '+55 47 3307-9280',
+  cnpj: '44.621.554/0001-81',
+  // Google Maps embed URL for the actual address
+  mapsEmbedUrl:
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.1247339999997!2d-48.8494444!3d-26.3047222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deaf9999999999%3A0x0!2sRua%20Rio%20Grande%20do%20Sul%2C%20385%20-%20Am%C3%A9rica%2C%20Joinville%20-%20SC!5e0!3m2!1spt-BR!2sbr!4v1',
+  mapsUrl:
+    'https://www.google.com/maps/search/?api=1&query=Rua+Rio+Grande+do+Sul+385+Joinville+SC+Brasil',
+}
+
 // Contact channels data
 const CONTACT_CHANNELS = [
+  {
+    id: 'tollfree',
+    icon: Phone,
+    title: '0800 042 9000',
+    subtitle: 'Ligação gratuita',
+    value: 'Ligação gratuita de qualquer lugar do Brasil',
+    href: 'tel:08000429000',
+    color: 'from-brand to-brand-gradient',
+    hoverColor: 'group-hover:from-brand-hover group-hover:to-brand',
+    badge: 'Gratuito',
+    description: 'Seg-Sex: 8h às 18h',
+  },
   {
     id: 'whatsapp',
     icon: WhatsappLogo,
@@ -42,20 +70,9 @@ const CONTACT_CHANNELS = [
     subtitle: 'Para assuntos formais',
     value: ZOPU_LINKS.email,
     href: `mailto:${ZOPU_LINKS.email}`,
-    color: 'from-brand to-brand-gradient',
-    hoverColor: 'group-hover:from-brand-hover group-hover:to-brand',
-    description: 'Respondemos em até 24h úteis',
-  },
-  {
-    id: 'phone',
-    icon: Phone,
-    title: 'Telefone',
-    subtitle: 'Ligação direta',
-    value: '+55 47 3307-9280',
-    href: 'tel:+554733079280',
     color: 'from-slate-600 to-slate-700',
     hoverColor: 'group-hover:from-slate-500 group-hover:to-slate-600',
-    description: 'Seg-Sex: 8h às 18h',
+    description: 'Respondemos em até 24h úteis',
   },
 ]
 
@@ -65,59 +82,25 @@ const SOCIAL_LINKS = [
   { icon: YoutubeLogo, href: ZOPU_LINKS.youtube, label: 'YouTube' },
 ]
 
-// Form subjects
-const FORM_SUBJECTS = [
-  { value: 'comercial', label: 'Quero conhecer as soluções' },
-  { value: 'suporte', label: 'Sou cliente e preciso de suporte' },
-  { value: 'parceria', label: 'Proposta de parceria' },
-  { value: 'imprensa', label: 'Imprensa / Assessoria' },
-  { value: 'outro', label: 'Outro assunto' },
-]
+// Bitrix24 CRM Form ID
+const BITRIX24_FORM_SCRIPT = 'https://cdn.bitrix24.com.br/b19877839/crm/form/loader_43.js'
 
 export function ContatoPage() {
-  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    subject: '',
-    message: '',
-  })
+  // Load Bitrix24 CRM form script
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = `${BITRIX24_FORM_SCRIPT}?${Math.floor(Date.now() / 180000)}`
+    script.async = true
+    document.body.appendChild(script)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setFormState('loading')
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    // For now, redirect to WhatsApp with the message
-    const message = `Olá! Meu nome é ${formData.name}${formData.company ? ` da empresa ${formData.company}` : ''}.
-
-Assunto: ${FORM_SUBJECTS.find((s) => s.value === formData.subject)?.label || formData.subject}
-
-${formData.message}
-
-Contato: ${formData.email}${formData.phone ? ` | ${formData.phone}` : ''}`
-
-    const whatsappUrl = `https://wa.me/554733079280?text=${encodeURIComponent(message)}`
-
-    setFormState('success')
-
-    setTimeout(() => {
-      window.open(whatsappUrl, '_blank')
-    }, 1000)
-  }
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }))
-  }
+    return () => {
+      // Cleanup on unmount
+      const existingScript = document.querySelector(`script[src^="${BITRIX24_FORM_SCRIPT}"]`)
+      if (existingScript) {
+        existingScript.remove()
+      }
+    }
+  }, [])
 
   return (
     <main className="bg-white">
@@ -165,14 +148,14 @@ Contato: ${formData.email}${formData.phone ? ` | ${formData.phone}` : ''}`
           </div>
 
           {/* Contact Cards */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
             {CONTACT_CHANNELS.map((channel, index) => (
-              <Reveal key={channel.id} delay={0.3 + index * 0.1}>
+              <Reveal key={channel.id} delay={0.3 + index * 0.1} className="h-full">
                 <a
                   href={channel.href}
                   target={channel.id === 'whatsapp' ? '_blank' : undefined}
                   rel={channel.id === 'whatsapp' ? 'noopener noreferrer' : undefined}
-                  className="group relative block p-6 sm:p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand/10"
+                  className="group relative flex flex-col h-full p-6 sm:p-8 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand/10"
                 >
                   {/* Recommended badge */}
                   {channel.badge && (
@@ -195,8 +178,8 @@ Contato: ${formData.email}${formData.phone ? ` | ${formData.phone}` : ''}`
                   {/* Content */}
                   <h3 className="text-xl font-bold text-white mb-1">{channel.title}</h3>
                   <p className="text-sm text-white/50 mb-3">{channel.subtitle}</p>
-                  <p className="text-white/90 font-medium mb-4">{channel.value}</p>
-                  <p className="text-xs text-white/40">{channel.description}</p>
+                  <p className="text-white/90 font-medium mb-4 flex-1">{channel.value}</p>
+                  <p className="text-xs text-white/40 mt-auto">{channel.description}</p>
 
                   {/* Arrow */}
                   <div className="absolute bottom-6 right-6 w-10 h-10 rounded-full bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-1">
@@ -249,244 +232,113 @@ Contato: ${formData.email}${formData.phone ? ` | ${formData.phone}` : ''}`
                   Prefere enviar uma mensagem?
                 </h2>
                 <p className="text-gray-600 mb-8">
-                  Preencha o formulário abaixo e entraremos em contato em breve. Campos com * são
-                  obrigatórios.
+                  Preencha o formulário abaixo e entraremos em contato em breve.
                 </p>
 
-                {formState === 'success' ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="p-8 rounded-3xl bg-success-light border border-success/20 text-center"
-                  >
-                    <div className="w-16 h-16 rounded-full bg-success/10 flex items-center justify-center mx-auto mb-4">
-                      <CheckCircle size={32} weight="fill" className="text-success" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Mensagem enviada!</h3>
-                    <p className="text-gray-600 mb-4">
-                      Você será redirecionado para o WhatsApp para confirmar o envio.
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      Caso o WhatsApp não abra automaticamente,{' '}
-                      <a
-                        href={ZOPU_LINKS.whatsappEspecialista}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-brand hover:underline"
-                      >
-                        clique aqui
-                      </a>
-                      .
-                    </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    {/* Name & Email row */}
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                          Nome completo *
-                        </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          required
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:border-brand focus:ring-0 transition-colors duration-200"
-                          placeholder="Seu nome"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                          E-mail corporativo *
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:border-brand focus:ring-0 transition-colors duration-200"
-                          placeholder="email@empresa.com"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Phone & Company row */}
-                    <div className="grid sm:grid-cols-2 gap-5">
-                      <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                          Telefone / WhatsApp
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:border-brand focus:ring-0 transition-colors duration-200"
-                          placeholder="(00) 00000-0000"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                          Empresa
-                        </label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:border-brand focus:ring-0 transition-colors duration-200"
-                          placeholder="Nome da empresa"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Subject */}
-                    <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
-                        Assunto *
-                      </label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        required
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-900 focus:border-brand focus:ring-0 transition-colors duration-200 appearance-none cursor-pointer"
-                        style={{
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236B7385'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'right 1rem center',
-                          backgroundSize: '1.25rem',
-                        }}
-                      >
-                        <option value="">Selecione um assunto</option>
-                        {FORM_SUBJECTS.map((subject) => (
-                          <option key={subject.value} value={subject.value}>
-                            {subject.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                        Mensagem *
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        required
-                        rows={5}
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3.5 rounded-xl border-2 border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:border-brand focus:ring-0 transition-colors duration-200 resize-none"
-                        placeholder="Conte-nos mais sobre seu projeto ou dúvida..."
-                      />
-                    </div>
-
-                    {/* Submit */}
-                    <button
-                      type="submit"
-                      disabled={formState === 'loading'}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand text-white font-semibold rounded-2xl hover:bg-brand-hover transition-all duration-300 shadow-elevated shadow-brand/20 hover:shadow-elevated-hover hover:shadow-brand/30 hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-                    >
-                      {formState === 'loading' ? (
-                        <>
-                          <SpinnerGap size={20} className="animate-spin" />
-                          Enviando...
-                        </>
-                      ) : (
-                        <>
-                          Enviar mensagem
-                          <ArrowRight size={20} weight="bold" />
-                        </>
-                      )}
-                    </button>
-
-                    <p className="text-xs text-gray-500 mt-4">
-                      Ao enviar, você será redirecionado para o WhatsApp para confirmar a mensagem.
-                    </p>
-                  </form>
-                )}
+                {/* Bitrix24 CRM Form Container */}
+                <div
+                  className="b24-form-container min-h-100 rounded-2xl overflow-hidden"
+                  data-b24-form="inline/43/xjqt5z"
+                  data-skip-moving="true"
+                />
               </div>
             </Reveal>
 
             {/* Right: Location & Info */}
             <Reveal direction="right" delay={0.2}>
-              <div className="lg:sticky lg:top-24 space-y-8">
-                {/* Location Card */}
-                <div className="relative rounded-3xl overflow-hidden">
-                  {/* Map placeholder - stylized */}
-                  <div className="relative h-64 bg-gradient-to-br from-slate-100 to-slate-200">
-                    {/* Stylized map background */}
-                    <div className="absolute inset-0 opacity-30">
-                      <svg viewBox="0 0 400 200" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-                        <defs>
-                          <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#64748b" strokeWidth="0.5" />
-                          </pattern>
-                        </defs>
-                        <rect width="100%" height="100%" fill="url(#grid)" />
-                        {/* Road lines */}
-                        <line x1="0" y1="100" x2="400" y2="100" stroke="#94a3b8" strokeWidth="4" />
-                        <line x1="200" y1="0" x2="200" y2="200" stroke="#94a3b8" strokeWidth="4" />
-                        <line x1="50" y1="50" x2="350" y2="150" stroke="#cbd5e1" strokeWidth="2" />
-                      </svg>
-                    </div>
-
-                    {/* Location pin */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <motion.div
-                        animate={{ y: [0, -8, 0] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                        className="relative"
-                      >
-                        <div className="w-16 h-16 rounded-full bg-brand/20 flex items-center justify-center">
-                          <div className="w-12 h-12 rounded-full bg-brand flex items-center justify-center shadow-lg shadow-brand/30">
-                            <MapPin size={24} weight="fill" className="text-white" />
-                          </div>
-                        </div>
-                        {/* Pulse effect */}
-                        <div className="absolute inset-0 rounded-full bg-brand/20 animate-ping" />
-                      </motion.div>
-                    </div>
-
-                    {/* City label */}
-                    <div className="absolute bottom-4 left-4 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-lg shadow-sm">
-                      <span className="text-sm font-semibold text-gray-900">Joinville, SC</span>
-                    </div>
+              <div className="lg:sticky lg:top-24 space-y-6">
+                {/* Location Card with Real Map */}
+                <div className="relative rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+                  {/* Google Maps Embed */}
+                  <div className="relative h-64 bg-gray-100">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.124!2d-48.8494!3d-26.3047!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94deaf8b6c0fb5c5%3A0x62b5a3e5a5f5f5f5!2sR.%20Rio%20Grande%20do%20Sul%2C%20385%20-%20Am%C3%A9rica%2C%20Joinville%20-%20SC%2C%2089201-260!5e0!3m2!1spt-BR!2sbr!4v1705000000000!5m2!1spt-BR!2sbr"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Localização Zopu - Joinville, SC"
+                      className="transition-all duration-500"
+                    />
+                    {/* Open in Maps button */}
+                    <a
+                      href={ZOPU_CONTACT.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="absolute top-3 right-3 px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-lg shadow-md text-xs font-semibold text-gray-700 hover:bg-white hover:text-brand transition-colors flex items-center gap-1.5"
+                    >
+                      <MapPin size={14} weight="fill" />
+                      Abrir no Maps
+                    </a>
                   </div>
 
-                  {/* Address info */}
-                  <div className="p-6 bg-white border border-gray-100 border-t-0 rounded-b-3xl">
-                    <h3 className="font-bold text-gray-900 mb-2">Escritório Zopu</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Joinville, Santa Catarina, Brasil
-                      <br />
-                      Atendimento em todo território nacional
-                    </p>
+                  {/* Full Address Info */}
+                  <div className="p-6 bg-white">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-brand/10 flex items-center justify-center shrink-0">
+                        <MapPin size={24} weight="fill" className="text-brand" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-gray-900 mb-1">Escritório Zopu</h3>
+                        <address className="text-gray-600 text-sm leading-relaxed not-italic">
+                          {ZOPU_CONTACT.address}
+                          <br />
+                          {ZOPU_CONTACT.neighborhood} – {ZOPU_CONTACT.city}/{ZOPU_CONTACT.state}
+                          <br />
+                          CEP: {ZOPU_CONTACT.cep}
+                        </address>
+                      </div>
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-xs text-gray-500 flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
+                        Atendimento em todo território nacional
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Quick info cards */}
+                {/* Quick Contact Cards */}
                 <div className="grid grid-cols-2 gap-4">
+                  <div className="p-5 rounded-2xl bg-white border border-gray-100 shadow-sm">
+                    <Phone size={24} weight="fill" className="text-brand mb-3" />
+                    <h4 className="font-semibold text-gray-900 text-sm mb-1">0800 Gratuito</h4>
+                    <a
+                      href="tel:08000429000"
+                      className="text-xs text-gray-600 hover:text-brand transition-colors"
+                    >
+                      {ZOPU_CONTACT.tollfree}
+                    </a>
+                  </div>
                   <div className="p-5 rounded-2xl bg-white border border-gray-100 shadow-sm">
                     <Clock size={24} className="text-brand mb-3" />
                     <h4 className="font-semibold text-gray-900 text-sm mb-1">Horário</h4>
                     <p className="text-xs text-gray-500">Seg-Sex: 8h às 18h</p>
                   </div>
-                  <div className="p-5 rounded-2xl bg-white border border-gray-100 shadow-sm">
-                    <CheckCircle size={24} weight="fill" className="text-success mb-3" />
-                    <h4 className="font-semibold text-gray-900 text-sm mb-1">SLA Garantido</h4>
-                    <p className="text-xs text-gray-500">Resposta em {ZOPU_STATS.tempoResposta}</p>
+                </div>
+
+                {/* Company Info */}
+                <div className="p-5 rounded-2xl bg-gray-50 border border-gray-100">
+                  <h4 className="font-semibold text-gray-900 text-sm mb-3">Dados da Empresa</h4>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">CNPJ:</span>
+                      <span className="text-gray-700 font-medium">{ZOPU_CONTACT.cnpj}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">Telefone:</span>
+                      <a href={`tel:${ZOPU_CONTACT.phone.replace(/\D/g, '')}`} className="text-gray-700 font-medium hover:text-brand transition-colors">
+                        {ZOPU_CONTACT.phone}
+                      </a>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-500">E-mail:</span>
+                      <a href={`mailto:${ZOPU_LINKS.email}`} className="text-gray-700 font-medium hover:text-brand transition-colors">
+                        {ZOPU_LINKS.email}
+                      </a>
+                    </div>
                   </div>
                 </div>
 

@@ -290,27 +290,25 @@ export function Header() {
               label="Recursos"
               items={NAVIGATION.recursos}
             />
+            {/* Link: Contato (sem dropdown) */}
+            <Link
+              href="/contato"
+              className="px-4 py-2.5 text-gray-700 hover:text-gray-900 font-medium transition-colors duration-200"
+            >
+              Contato
+            </Link>
           </div>
 
-          {/* CTAs Desktop - Arcade gradient style */}
-          <div className="hidden lg:flex items-center gap-3">
-            {/* CTA Secundário: Teste grátis Bitrix24 */}
+          {/* CTA Desktop */}
+          <div className="hidden lg:flex items-center">
+            {/* CTA Primário: Comece grátis → Bitrix24 trial */}
             <a
               href={ZOPU_LINKS.testeGratis}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200"
-            >
-              Teste grátis 15 dias
-            </a>
-            {/* CTA Primário: Falar com especialista → WhatsApp */}
-            <a
-              href={ZOPU_LINKS.whatsappEspecialista}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 px-5 py-2.5 bg-brand text-white font-semibold rounded-xl hover:bg-brand-hover transition-all duration-300 shadow-lg shadow-brand/25 hover:shadow-xl hover:shadow-brand/30 hover:-translate-y-0.5"
             >
-              Falar com especialista
+              Comece grátis
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
             </a>
           </div>
@@ -365,26 +363,25 @@ export function Header() {
               onToggle={() => toggleDropdown("recursos")}
               onItemClick={closeMobileMenu}
             />
+            {/* Link: Contato (sem dropdown) */}
+            <Link
+              href="/contato"
+              onClick={closeMobileMenu}
+              className="flex items-center justify-between w-full px-4 py-3.5 text-gray-700 hover:text-gray-900 hover:bg-gray-50/80 rounded-xl font-medium transition-all duration-200"
+            >
+              Contato
+            </Link>
 
-            {/* Mobile CTAs */}
-            <div className="pt-5 space-y-3 px-2">
-              {/* CTA Secundário: Teste grátis */}
+            {/* Mobile CTA */}
+            <div className="pt-5 px-2">
+              {/* CTA Primário: Comece grátis → Bitrix24 trial */}
               <a
                 href={ZOPU_LINKS.testeGratis}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2.5 w-full px-4 py-3.5 text-gray-700 font-semibold border border-gray-200 rounded-xl hover:bg-gray-50 transition-all duration-200"
-              >
-                Teste grátis 15 dias
-              </a>
-              {/* CTA Primário: Falar com especialista → WhatsApp */}
-              <a
-                href={ZOPU_LINKS.whatsappEspecialista}
-                target="_blank"
-                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2.5 w-full px-4 py-3.5 bg-brand text-white font-semibold rounded-xl hover:bg-brand-hover transition-all duration-200 shadow-lg shadow-brand/25"
               >
-                Falar com especialista
+                Comece grátis
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>

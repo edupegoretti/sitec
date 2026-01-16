@@ -316,6 +316,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Páginas institucionais
   const institutionalPages: MetadataRoute.Sitemap = [
     {
+      url: `${BASE_URL}/contato`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/sobre`,
       lastModified: currentDate,
       changeFrequency: 'yearly',

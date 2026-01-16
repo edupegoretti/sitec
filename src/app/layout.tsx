@@ -1,10 +1,14 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
+import Script from 'next/script'
 import { Fustat, JetBrains_Mono } from 'next/font/google'
 import { Header, Footer } from '@/components/layout'
 import { Analytics } from '@/components/shared'
 import { OrganizationJsonLd, LocalBusinessJsonLd } from '@/components/seo'
 import './globals.css'
+
+// Bitrix24 CRM Widget - carrega em todas as páginas
+const BITRIX24_WIDGET_URL = 'https://cdn.bitrix24.com.br/b19877839/crm/site_button/loader_1_d9m6kl.js'
 
 const fustat = Fustat({
   subsets: ['latin'],
@@ -50,6 +54,7 @@ export const metadata: Metadata = {
     shortcut: '/images/favzopu.png',
     apple: '/images/favzopu.png',
   },
+  manifest: '/manifest.json',
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
@@ -60,9 +65,9 @@ export const metadata: Metadata = {
       'Gold Partner Bitrix24. Arquitetura de Receita com processo, dados e adocao para operacao comercial previsivel.',
     images: [
       {
-        url: '/images/og-image.png',
-        width: 1200,
-        height: 630,
+        url: '/images/logo-zopu.png',
+        width: 512,
+        height: 512,
         alt: 'Zopu - Arquitetura de Receita no Bitrix24',
       },
     ],
@@ -72,7 +77,7 @@ export const metadata: Metadata = {
     title: 'Arquitetura de Receita no Bitrix24 | Gold Partner | Zopu',
     description:
       'Gold Partner Bitrix24. Arquitetura de Receita com processo, dados e adocao para operacao comercial previsivel.',
-    images: ['/images/og-image.png'],
+    images: ['/images/logo-zopu.png'],
   },
   robots: {
     index: true,
@@ -88,9 +93,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://zopu.com.br',
   },
-  verification: {
-    google: 'google-site-verification-code',
-  },
+  // verification: {
+  //   google: 'SEU-CODIGO-GOOGLE-SEARCH-CONSOLE-AQUI',
+  // },
   category: 'technology',
 }
 
@@ -112,6 +117,13 @@ export default function RootLayout({
         <Header />
         <div className="pt-16 lg:pt-20">{children}</div>
         <Footer />
+
+        {/* Bitrix24 CRM Widget - Chat/WhatsApp button */}
+        <Script
+          id="bitrix24-widget"
+          strategy="afterInteractive"
+          src={`${BITRIX24_WIDGET_URL}?${Math.floor(Date.now() / 60000)}`}
+        />
       </body>
     </html>
   )
