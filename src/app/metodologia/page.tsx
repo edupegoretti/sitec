@@ -7,7 +7,6 @@ import {
   PilaresShowcaseSection,
   ProcessoFasesSection,
   DiferenciaisSection,
-  ProvasSociaisSection,
   ProdutoSelectorSection,
   FAQMetodologia,
   CTAMetodologiaFinal,
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
 /**
  * Página da Metodologia Fluidsales™
  *
- * Estrutura Premium (reestruturada para melhor narrativa):
+ * Estrutura Premium:
  *
  * 1. Hero - Posicionamento + visualização dos 6 pilares
  * 2. Dor - O problema que resolvemos
@@ -60,11 +59,10 @@ export const metadata: Metadata = {
  * 4. Insight - Princípio central: processo antes de ferramenta
  * 5. Pilares - 6 Pilares interativos com profundidade
  * 6. Processo - 4 Fases de entrega
- * 7. Diferenciais - Comparativo único devastador
- * 8. Provas - Números + Cases
- * 9. FAQ - Objeções
- * 10. Produtos - 3 caminhos (movido para cá)
- * 11. CTA Final
+ * 7. Diferenciais - Comparativo único
+ * 8. FAQ - Objeções
+ * 9. Produtos - 3 caminhos
+ * 10. CTA Final
  */
 export default function MetodologiaPage() {
   return (
@@ -95,16 +93,13 @@ export default function MetodologiaPage() {
       {/* 7. Diferenciais: Comparativo único */}
       <DiferenciaisSection />
 
-      {/* 8. Provas: Números + Cases */}
-      <ProvasSociaisSection />
-
-      {/* 9. FAQ */}
+      {/* 8. FAQ */}
       <FAQMetodologia />
 
-      {/* 10. Produtos: 3 caminhos */}
+      {/* 9. Produtos: 3 caminhos */}
       <ProdutoSelectorSection />
 
-      {/* 11. CTA Final */}
+      {/* 10. CTA Final */}
       <CTAMetodologiaFinal />
     </main>
   )

@@ -59,7 +59,6 @@ export function FAQMetodologia() {
 
   // Group FAQs by category
   const processoFaqs = GROWTH_ARCHITECTURE_FAQ.filter((f) => f.categoria === 'processo')
-  const investimentoFaqs = GROWTH_ARCHITECTURE_FAQ.filter((f) => f.categoria === 'investimento')
   const bitrix24Faqs = GROWTH_ARCHITECTURE_FAQ.filter((f) => f.categoria === 'bitrix24')
 
   return (
@@ -111,31 +110,9 @@ export function FAQMetodologia() {
               </Reveal>
             )}
 
-            {/* Investimento */}
-            {investimentoFaqs.length > 0 && (
-              <Reveal delay={0.4}>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
-                    Sobre Investimento
-                  </p>
-                  <div className="bg-gray-50 rounded-2xl px-6 divide-y divide-gray-200">
-                    {investimentoFaqs.map((faq, index) => (
-                      <FAQItem
-                        key={index}
-                        pergunta={faq.pergunta}
-                        resposta={faq.resposta}
-                        isOpen={openIndex === processoFaqs.length + index}
-                        onToggle={() => handleToggle(processoFaqs.length + index)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            )}
-
             {/* Bitrix24 */}
             {bitrix24Faqs.length > 0 && (
-              <Reveal delay={0.5}>
+              <Reveal delay={0.4}>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">
                     Sobre o Bitrix24
@@ -146,10 +123,8 @@ export function FAQMetodologia() {
                         key={index}
                         pergunta={faq.pergunta}
                         resposta={faq.resposta}
-                        isOpen={openIndex === processoFaqs.length + investimentoFaqs.length + index}
-                        onToggle={() =>
-                          handleToggle(processoFaqs.length + investimentoFaqs.length + index)
-                        }
+                        isOpen={openIndex === processoFaqs.length + index}
+                        onToggle={() => handleToggle(processoFaqs.length + index)}
                       />
                     ))}
                   </div>
