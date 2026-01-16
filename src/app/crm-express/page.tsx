@@ -304,10 +304,10 @@ function LivePipelineSimulation({ isInView }: { isInView: boolean }) {
               {name}
             </div>
 
-            {/* Stage column */}
-            <div className="bg-white/5 backdrop-blur-sm min-h-[180px] rounded-b-lg p-2 border border-white/10 relative overflow-hidden">
+            {/* Stage column - fixed height to prevent layout shift */}
+            <div className="bg-white/5 backdrop-blur-sm h-45 rounded-b-lg p-2 border border-white/10 relative overflow-hidden">
               <AnimatePresence mode="popLayout">
-                {leads.filter(l => l.stage === stageIndex).map((lead) => (
+                {leads.filter(l => l.stage === stageIndex).slice(0, 3).map((lead) => (
                   <motion.div
                     key={lead.id}
                     layout
@@ -481,13 +481,6 @@ function HeroSection() {
                   <ArrowRight size={18} weight="bold" className="relative z-10 transition-transform group-hover:translate-x-1" />
                 </a>
 
-                <a
-                  href="#como-funciona"
-                  className="inline-flex items-center gap-2 px-6 py-3 text-slate-300 font-medium hover:text-white transition-colors"
-                >
-                  Como funciona
-                  <ArrowRight size={16} weight="bold" />
-                </a>
               </motion.div>
 
               {/* Trust metrics */}
@@ -585,6 +578,26 @@ function HeroSection() {
           </div>
         </div>
       </div>
+
+      {/* Scroll indicator - mouse/pill style */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1.8, ease }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+      >
+        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
+          <motion.div
+            className="w-1.5 h-1.5 bg-white/60 rounded-full"
+            animate={{ y: [0, 12, 0] }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              ease: 'easeInOut'
+            }}
+          />
+        </div>
+      </motion.div>
 
     </section>
   )

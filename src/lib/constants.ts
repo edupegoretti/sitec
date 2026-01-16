@@ -788,11 +788,6 @@ export const NAVIGATION = {
       descricao: "Navegação por dor/objetivo",
     },
     {
-      nome: "Estágios",
-      href: "/recursos/estagio",
-      descricao: "Jornada de decisão",
-    },
-    {
       nome: "Biblioteca",
       href: "/recursos/biblioteca",
       descricao: "Materiais ricos em vídeo",
