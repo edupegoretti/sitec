@@ -4,10 +4,13 @@ import Script from 'next/script'
 import { useEffect } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 
-// ID do GA4 - substituir pelo ID real em produção
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'
+// GTM Container ID
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-MR4N7SDW'
 
-// Tipos para eventos de conversão
+// CookieYes ID for cookie consent
+const COOKIEYES_ID = process.env.NEXT_PUBLIC_COOKIEYES_ID || '6e449b35cc3b5f3f8d0292281110b939'
+
+// Tipos para eventos de conversão (enviados via dataLayer para GTM)
 export type ConversionEvent =
   | 'cta_whatsapp_click'
   | 'cta_teste_gratis_click'
@@ -15,21 +18,24 @@ export type ConversionEvent =
   | 'video_play'
   | 'page_scroll_50'
   | 'page_scroll_90'
+  | 'form_submit'
+  | 'lead_generated'
 
-// Função para rastrear eventos de conversão
+// Função para enviar eventos ao dataLayer (GTM processa e envia ao GA4)
 export function trackConversion(event: ConversionEvent, params?: Record<string, string | number>) {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', event, {
+  if (typeof window !== 'undefined' && window.dataLayer) {
+    window.dataLayer.push({
+      event,
       ...params,
-      send_to: GA_MEASUREMENT_ID,
     })
   }
 }
 
-// Função para rastrear page views
+// Função para rastrear page views via dataLayer
 function trackPageView(url: string) {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', GA_MEASUREMENT_ID, {
+  if (typeof window !== 'undefined' && window.dataLayer) {
+    window.dataLayer.push({
+      event: 'page_view',
       page_path: url,
     })
   }
@@ -50,6 +56,14 @@ function saveUTMs(searchParams: URLSearchParams) {
   if (Object.keys(utms).length > 0) {
     localStorage.setItem('zopu_utms', JSON.stringify(utms))
     localStorage.setItem('zopu_utms_timestamp', Date.now().toString())
+
+    // Também envia UTMs para o dataLayer
+    if (typeof window !== 'undefined' && window.dataLayer) {
+      window.dataLayer.push({
+        event: 'utm_captured',
+        ...utms,
+      })
+    }
   }
 }
 
@@ -77,7 +91,7 @@ export function getSavedUTMs(): Record<string, string> | null {
   }
 }
 
-// Componente de Analytics
+// Componente de Analytics com GTM e CookieYes
 export function Analytics() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -93,30 +107,41 @@ export function Analytics() {
     }
   }, [pathname, searchParams])
 
-  // Não carregar em desenvolvimento (opcional)
-  if (process.env.NODE_ENV === 'development' && !GA_MEASUREMENT_ID.startsWith('G-')) {
-    return null
-  }
-
   return (
     <>
-      {/* Google Analytics 4 */}
+      {/* CookieYes - Cookie Consent Banner (deve carregar antes do GTM) */}
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
+        id="cookieyes"
+        src={`https://cdn-cookieyes.com/client_data/${COOKIEYES_ID}/script.js`}
+        strategy="beforeInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+
+      {/* Google Tag Manager - Head Script */}
+      <Script id="gtm-script" strategy="afterInteractive">
         {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_MEASUREMENT_ID}', {
-            page_path: window.location.pathname,
-          });
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${GTM_ID}');
         `}
       </Script>
     </>
   )
 }
 
-// Tipos para window.gtag e dataLayer são declarados em src/lib/analytics.ts
+// Componente noscript do GTM (deve ser usado no body)
+export function GTMNoScript() {
+  return (
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+        height="0"
+        width="0"
+        style={{ display: 'none', visibility: 'hidden' }}
+      />
+    </noscript>
+  )
+}
+
+// Tipos para window.dataLayer são declarados em src/lib/analytics.ts

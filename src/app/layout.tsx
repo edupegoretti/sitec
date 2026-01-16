@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 import Script from 'next/script'
 import { Fustat, JetBrains_Mono } from 'next/font/google'
 import { Header, Footer } from '@/components/layout'
-import { Analytics } from '@/components/shared'
+import { Analytics, GTMNoScript } from '@/components/shared'
 import { OrganizationJsonLd, LocalBusinessJsonLd } from '@/components/seo'
 import './globals.css'
 
@@ -111,6 +111,8 @@ export default function RootLayout({
         <LocalBusinessJsonLd />
       </head>
       <body className="font-sans" suppressHydrationWarning>
+        {/* GTM noscript - para browsers sem JavaScript */}
+        <GTMNoScript />
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
