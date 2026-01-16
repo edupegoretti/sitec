@@ -78,6 +78,16 @@ function parseYouTubePlaylistFeed(xml: string): YouTubePlaylistEntry[] {
 
     if (!videoId || !title || !published || !url) continue
 
+    // Skip private, deleted, or unavailable videos
+    if (
+      title === 'Private video' ||
+      title === 'Deleted video' ||
+      title === 'Vídeo privado' ||
+      title === 'Vídeo excluído'
+    ) {
+      continue
+    }
+
     entries.push({
       videoId,
       title,
@@ -151,6 +161,19 @@ export async function fetchYouTubePlaylistViaAPI(
 
       for (const item of data.items) {
         const videoId = item.snippet.resourceId.videoId
+        const title = item.snippet.title
+
+        // Skip private, deleted, or unavailable videos
+        if (
+          title === 'Private video' ||
+          title === 'Deleted video' ||
+          title === 'Vídeo privado' ||
+          title === 'Vídeo excluído' ||
+          !videoId
+        ) {
+          continue
+        }
+
         const thumbnail =
           item.snippet.thumbnails?.high?.url ||
           item.snippet.thumbnails?.medium?.url ||
@@ -159,7 +182,7 @@ export async function fetchYouTubePlaylistViaAPI(
 
         allEntries.push({
           videoId,
-          title: item.snippet.title,
+          title,
           published: item.snippet.publishedAt,
           url: `https://www.youtube.com/watch?v=${videoId}`,
           thumbnail,
