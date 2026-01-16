@@ -1,32 +1,29 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Arquitetura de Receita no Bitrix24 | Gold Partner | Zopu",
+  title: "Bitrix24: Sistema Operacional do seu Negócio | Gold Partner | Zopu",
   description:
-    "Arquitetura de Receita no Bitrix24 para ROI mensurável e previsibilidade real. Gold Partner com metodologia Fluidsales, treinamento Fluidz e integração WhatsZopu.",
+    "Integramos marketing, pré-vendas, vendas e pós-vendas em um fluxo único no Bitrix24 — para aumentar vendas e margem em 30 dias. Gold Partner Bitrix24.",
   keywords: [
     "Bitrix24",
-    "Arquitetura de Receita",
-    "RevOps",
-    "Bitrix24 Brasil",
+    "implementação Bitrix24",
     "parceiro Bitrix24",
     "Gold Partner Bitrix24",
-    "implementação Bitrix24",
-    "treinamento Bitrix24",
-    "CRM",
-    "CRM para PME",
-    "CRM WhatsApp",
+    "sistema operacional comercial",
+    "integração comercial",
+    "CRM integrado",
+    "Bitrix24 Brasil",
+    "RevOps",
     "Fluidsales",
     "Fluidz",
-    "WhatsZopu",
   ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Arquitetura de Receita no Bitrix24 | Zopu",
+    title: "Transforme o Bitrix24 no Sistema Operacional do seu Negócio | Zopu",
     description:
-      "Gold Partner Bitrix24. Arquitetura de Receita com processo, dados e adoção para operação comercial previsível.",
+      "Integramos marketing, pré-vendas, vendas e pós-vendas em um fluxo único — para aumentar vendas e margem em 30 dias.",
     url: "https://zopu.com.br",
     siteName: "Zopu",
     locale: "pt_BR",
@@ -34,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arquitetura de Receita no Bitrix24 | Zopu",
+    title: "Transforme o Bitrix24 no Sistema Operacional do seu Negócio | Zopu",
     description:
-      "Gold Partner Bitrix24. Arquitetura de Receita com processo, dados e adoção para operação comercial previsível.",
+      "Integramos marketing, pré-vendas, vendas e pós-vendas em um fluxo único — para aumentar vendas e margem em 30 dias.",
   },
 };
 
@@ -61,7 +58,7 @@ import { CRORecognitionSection } from "@/components/sections/CRORecognitionSecti
 export default function Home() {
   return (
     <main>
-      {/* 1. Hero - Arquitetura de Receita + Promessa + Social Proof */}
+      {/* 1. Hero */}
       <HeroArquitetura />
 
       {/* 2. Problema - O modelo mental errado (CRM-first) */}

@@ -1,5 +1,7 @@
 // Core sections
 export { HeroArquitetura } from "./HeroArquitetura";
+export { ReguaEscolhaSection } from "./ReguaEscolhaSection";
+export { Plano90DiasSection } from "./Plano90DiasSection";
 export { ProblemaModeloSection } from "./ProblemaModeloSection";
 export { ReframeSection } from "./ReframeSection";
 export { EstadoDesejadoSection } from "./EstadoDesejadoSection";

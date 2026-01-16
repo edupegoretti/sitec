@@ -70,9 +70,7 @@ export function CRORecognitionSection() {
             <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
               No evento anual de parceiros, a Bitrix24 reconheceu a Zopu como{' '}
               <strong className="text-brand">exemplo a ser seguido</strong>, por manter{' '}
-              <strong className="text-gray-900">96% de retenção anual</strong> — sinal de CRM
-              vivo, uso contínuo e governança real. Nossa metodologia prioriza adoção e
-              resultados.
+              <strong className="text-gray-900">96% de retenção anual</strong> — a maior entre todos os parceiros Bitrix24 do mundo.
             </p>
           </div>
         </Reveal>

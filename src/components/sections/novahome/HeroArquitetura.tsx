@@ -7,22 +7,23 @@ import { ZOPU_LINKS } from "@/lib/constants";
 import { useCountUp } from "@/hooks/useCountUp";
 import { durations, easings, heroEntrance, staggers } from "@/lib/motion";
 
-// Logos com altura baseada em PESO VISUAL (não uniformidade de pixels)
-// Logos bold/grossos precisam de MENOS pixels para ter a mesma presença visual
-// Logos finos/delicados precisam de MAIS pixels para serem legíveis
+// Alturas calculadas individualmente baseadas em:
+// 1. Proporção da imagem (largura:altura) - logos mais largos precisam de altura menor
+// 2. Tamanho do texto dentro do logo - texto pequeno/fino precisa de altura maior
+// 3. Presença visual desejada - todas devem ter impacto visual similar
 const HERO_LOGOS = [
-  { name: "WEG", src: "/images/clients/weg.webp", h: "h-10 sm:h-12" }, // icone quadrado
-  { name: "SBT", src: "/images/clients/sbt.webp", h: "h-10 sm:h-12" }, // icone quadrado
-  { name: "Stone", src: "/images/clients/stone.webp", h: "h-7 sm:h-9" }, // texto médio-bold
-  { name: "TS Shara", src: "/images/clients/ts-shara.webp", h: "h-10 sm:h-12" }, // texto FINO - precisa ser maior
-  { name: "Komeco", src: "/images/clients/komeco.webp", h: "h-6 sm:h-8" }, // texto BOLD caps - precisa ser menor
-  { name: "Unimed", src: "/images/clients/unimed.webp", h: "h-6 sm:h-7" }, // texto MUITO BOLD largo - bem menor
-  { name: "Grupo Litoral", src: "/images/clients/grupo-litoral.webp", h: "h-8 sm:h-10" }, // médio
-  { name: "BoxTop", src: "/images/clients/boxtop.webp", h: "h-9 sm:h-11" }, // texto fino
-  { name: "Posthaus", src: "/images/clients/posthaus.webp", h: "h-10 sm:h-12" }, // texto fino
-  { name: "RK2", src: "/images/clients/rk2.webp", h: "h-10 sm:h-12" }, // icone quadrado
-  { name: "Valorem", src: "/images/clients/valorem.webp", h: "h-6 sm:h-7" }, // texto BOLD largo - menor
-  { name: "Viseu", src: "/images/clients/viseu.webp", h: "h-8 sm:h-10" }, // médio
+  { name: "WEG", src: "/images/clients/weg.webp", h: "h-11 sm:h-12" }, // 100×100 (1:1) - quadrado, texto pequeno interno
+  { name: "SBT", src: "/images/clients/sbt.webp", h: "h-10 sm:h-11" }, // 100×100 (1:1) - círculo colorido, alto impacto visual
+  { name: "Stone", src: "/images/clients/stone.webp", h: "h-8 sm:h-9" }, // 197×100 (2:1) - horizontal, texto médio
+  { name: "TS Shara", src: "/images/clients/ts-shara.webp", h: "h-11 sm:h-12" }, // 171×100 (1.7:1) - subtexto MUITO fino precisa altura
+  { name: "Komeco", src: "/images/clients/komeco.webp", h: "h-7 sm:h-8" }, // 251×100 (2.5:1) - largo, BOLD caps
+  { name: "Unimed", src: "/images/clients/unimed.webp", h: "h-5 sm:h-6" }, // 690×100 (6.9:1) - EXTREMAMENTE largo, precisa ser bem pequeno
+  { name: "Grupo Litoral", src: "/images/clients/grupo-litoral.webp", h: "h-7 sm:h-8" }, // 395×100 (4:1) - largo com ícone
+  { name: "BoxTop", src: "/images/clients/boxtop.webp", h: "h-10 sm:h-11" }, // 178×100 (1.8:1) - compacto com subtexto fino
+  { name: "Posthaus", src: "/images/clients/posthaus.webp", h: "h-12 sm:h-14" }, // 100×100 (1:1) - quadrado, texto MUITO fino/pequeno
+  { name: "RK2", src: "/images/clients/rk2.webp", h: "h-10 sm:h-11" }, // 100×100 (1:1) - quadrado, texto bold interno
+  { name: "Valorem", src: "/images/clients/valorem.webp", h: "h-6 sm:h-7" }, // 441×100 (4.4:1) - largo, texto bold
+  { name: "Viseu", src: "/images/clients/viseu.webp", h: "h-8 sm:h-9" }, // 262×100 (2.6:1) - médio, ilustração + texto
 ] as const;
 
 // Animation variants for staggered entrance
@@ -63,27 +64,20 @@ export function HeroArquitetura() {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Coluna de texto */}
           <div className="max-w-xl">
-            {/* Badge Gold Partner - Premium styling */}
+            {/* Eyebrow */}
             <motion.div
               variants={prefersReducedMotion ? undefined : fadeUp}
               initial="hidden"
               animate="visible"
               transition={{ ...transition, delay: heroEntrance.badge }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 bg-linear-to-r from-amber-50 to-amber-100/80 border border-amber-200/60 rounded-full mb-6 shadow-sm"
+              className="inline-flex items-center gap-2.5 px-4 py-2 bg-linear-to-r from-brand/5 to-brand/10 border border-brand/20 rounded-full mb-6 shadow-sm"
             >
-              <svg
-                className="w-4 h-4 text-amber-500"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-              <span className="text-sm font-medium text-amber-800">
-                Gold Partner Bitrix24
+              <span className="text-sm font-medium text-brand">
+                Organizar para crescer
               </span>
             </motion.div>
 
-            {/* Headline - Nova copy */}
+            {/* Headline */}
             <motion.h1
               variants={prefersReducedMotion ? undefined : fadeUp}
               initial="hidden"
@@ -91,14 +85,13 @@ export function HeroArquitetura() {
               transition={{ ...transition, delay: heroEntrance.title }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.1] tracking-tight"
             >
-              Arquitetura de Receita no Bitrix24
-              <br className="hidden sm:block" />
+              Transforme o Bitrix24 no{" "}
               <span className="text-brand">
-                com processo que o time realmente usa.
+                sistema operacional do seu negócio.
               </span>
             </motion.h1>
 
-            {/* Subtitulo - Nova copy */}
+            {/* Subtitulo */}
             <motion.p
               variants={prefersReducedMotion ? undefined : fadeUp}
               initial="hidden"
@@ -106,12 +99,11 @@ export function HeroArquitetura() {
               transition={{ ...transition, delay: heroEntrance.description }}
               className="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed"
             >
-              Nós desenhamos e implementamos o modelo operacional de receita da
-              sua empresa dentro do Bitrix24 — com processos, dados e adoção que
-              se sustentam no longo prazo.
+              Integramos marketing, pré-vendas, vendas e pós-vendas em um fluxo único
+              — para aumentar vendas e margem em 30 dias.
             </motion.p>
 
-            {/* CTAs - Nova copy */}
+            {/* CTAs */}
             <motion.div
               variants={prefersReducedMotion ? undefined : fadeUp}
               initial="hidden"
