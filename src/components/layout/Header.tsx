@@ -39,6 +39,10 @@ const iconMap: Record<string, PhosphorIcon> = {
   "RevOps Launch": Stack,
   "Mapa de Performance de Receita": ChartLineUp,
   Enterprise: Buildings,
+  // Bitrix24
+  "Visão Geral": Question,
+  "Planos e Preços": CreditCard,
+  "vs Outras Ferramentas": Files,
   // Como funciona
   "Metodologia Fluidsales": ChartLineUp,
   "Por que Bitrix24": Question,
@@ -278,6 +282,7 @@ export function Header() {
           {/* Menu Desktop - Clean spacing like Arcade */}
           <div className="hidden lg:flex items-center gap-0.5">
             <DesktopDropdown label="Soluções" items={NAVIGATION.solucoes} />
+            <DesktopDropdown label="Bitrix24" items={NAVIGATION.bitrix24} />
             <DesktopDropdown
               label="Como funciona"
               items={NAVIGATION.comoFunciona}
@@ -340,6 +345,13 @@ export function Header() {
               items={NAVIGATION.solucoes}
               isOpen={openDropdown === "solucoes"}
               onToggle={() => toggleDropdown("solucoes")}
+              onItemClick={closeMobileMenu}
+            />
+            <MobileDropdown
+              label="Bitrix24"
+              items={NAVIGATION.bitrix24}
+              isOpen={openDropdown === "bitrix24"}
+              onToggle={() => toggleDropdown("bitrix24")}
               onItemClick={closeMobileMenu}
             />
             <MobileDropdown

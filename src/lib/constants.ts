@@ -793,22 +793,22 @@ export const NAVIGATION = {
       descricao: "Sessões abertas e demos",
     },
   ],
-  // Mantido para compatibilidade com código existente
+  // Seção Bitrix24 no menu principal
   bitrix24: [
     {
-      nome: "Por que Bitrix24",
+      nome: "Visão Geral",
       href: "/por-que-bitrix24",
       descricao: "All-in-one empresarial",
     },
     {
-      nome: "Bitrix24 vs Outras Ferramentas",
-      href: "/bitrix24-vs-outras-ferramentas",
-      descricao: "HubSpot, Salesforce, Pipedrive, Zoho, RD Station",
+      nome: "Planos e Preços",
+      href: "/planos-bitrix24",
+      descricao: "Tabela comparativa completa",
     },
     {
-      nome: "Licenças Bitrix24",
-      href: "/licencas-bitrix24",
-      descricao: "Planos e preços em reais",
+      nome: "vs Outras Ferramentas",
+      href: "/bitrix24-vs-outras-ferramentas",
+      descricao: "HubSpot, Salesforce, Pipedrive e mais",
     },
   ],
   segmentos: [
