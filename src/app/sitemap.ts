@@ -1,7 +1,6 @@
 import { MetadataRoute } from 'next'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { authorSlugsQuery, interestSlugsQuery, postSlugsQuery, seriesSlugsQuery, themeSlugsQuery } from '@/sanity/lib/queries'
-import { RESOURCE_PERSONAS } from '@/lib/resources/personas'
 import { isSanityConfigured } from '@/sanity/lib/env'
 
 const BASE_URL = 'https://zopu.com.br'
@@ -89,6 +88,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'yearly',
       priority: 0.7,
     },
+    {
+      url: `${BASE_URL}/metodologia`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
   ]
 
   // Páginas de persona
@@ -113,7 +118,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Páginas de soluções por vertical
+  // Páginas de soluções (apenas as que estão ativas)
   const solutionPages: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/solucoes`,
@@ -139,45 +144,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
-    {
-      url: `${BASE_URL}/solucoes/industrias`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/solucoes/servicos`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/solucoes/tecnologia`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/solucoes/saude`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/solucoes/turismo`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/solucoes/sst`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
   ]
 
-  // Páginas de recursos
+  // Páginas de recursos (apenas as que estão acessíveis via menu)
   const resourcePages: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/recursos`,
@@ -192,31 +161,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/recursos/tema`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.65,
-    },
-    {
-      url: `${BASE_URL}/recursos/interesse`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.65,
-    },
-    {
-      url: `${BASE_URL}/recursos/estagio`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.65,
-    },
-    {
       url: `${BASE_URL}/recursos/biblioteca`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.65,
-    },
-    {
-      url: `${BASE_URL}/recursos/biblioteca/metodologias`,
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.65,
@@ -232,12 +177,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.65,
-    },
-    {
-      url: `${BASE_URL}/recursos/para`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.6,
     },
   ]
 
@@ -293,25 +232,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   }
 
-  const recursosPersonaPages: MetadataRoute.Sitemap = RESOURCE_PERSONAS.map((persona) => ({
-    url: `${BASE_URL}/recursos/para/${persona.id}`,
-    lastModified: currentDate,
-    changeFrequency: 'monthly',
-    priority: 0.55,
-  }))
-
-  const stagePages: MetadataRoute.Sitemap = [
-    'diagnostico',
-    'estruturacao',
-    'implementacao',
-    'otimizacao',
-    'decisao',
-  ].map((stage) => ({
-    url: `${BASE_URL}/recursos/estagio/${stage}`,
-    lastModified: currentDate,
-    changeFrequency: 'monthly',
-    priority: 0.55,
-  }))
+  // Páginas de recursos por persona e estágio removidas do sitemap
+  // (não estão acessíveis via menu principal)
 
   // Páginas institucionais
   const institutionalPages: MetadataRoute.Sitemap = [
@@ -358,8 +280,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...personaPages,
     ...solutionPages,
     ...resourcePages,
-    ...recursosPersonaPages,
-    ...stagePages,
     ...blogPages,
     ...themePages,
     ...interestPages,
