@@ -7,9 +7,6 @@ import { usePathname, useSearchParams } from 'next/navigation'
 // GTM Container ID
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-MR4N7SDW'
 
-// CookieYes ID for cookie consent
-const COOKIEYES_ID = process.env.NEXT_PUBLIC_COOKIEYES_ID || '6e449b35cc3b5f3f8d0292281110b939'
-
 // Tipos para eventos de conversão (enviados via dataLayer para GTM)
 export type ConversionEvent =
   | 'cta_whatsapp_click'
@@ -109,13 +106,6 @@ export function Analytics() {
 
   return (
     <>
-      {/* CookieYes - Cookie Consent Banner (deve carregar antes do GTM) */}
-      <Script
-        id="cookieyes"
-        src={`https://cdn-cookieyes.com/client_data/${COOKIEYES_ID}/script.js`}
-        strategy="beforeInteractive"
-      />
-
       {/* Google Tag Manager - Head Script */}
       <Script id="gtm-script" strategy="afterInteractive">
         {`
