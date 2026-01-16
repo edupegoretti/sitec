@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import dynamic from 'next/dynamic'
+import { useMediaQuery } from '@/hooks/useMousePosition'
 
 // Dynamic import to avoid SSR issues with Three.js
 const Globe3D = dynamic(() => import('@/components/3d/Globe3D').then((mod) => mod.Globe3D), {
@@ -16,6 +17,9 @@ interface BitrixTrajectoryDiagramProps {
 }
 
 export function BitrixTrajectoryDiagram({ className }: BitrixTrajectoryDiagramProps) {
+  // Detect mobile to use static fallback (prevents layout issues with Three.js in foreignObject)
+  const isMobile = useMediaQuery('(max-width: 768px)')
+
   const width = 900
   const height = 360
 
@@ -64,6 +68,13 @@ export function BitrixTrajectoryDiagram({ className }: BitrixTrajectoryDiagramPr
             <stop offset="100%" stopColor="#059669" />
           </linearGradient>
 
+          {/* Globe gradient for mobile fallback */}
+          <linearGradient id="globe-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#3b82f6" />
+            <stop offset="50%" stopColor="#1e40af" />
+            <stop offset="100%" stopColor="#1e3a8a" />
+          </linearGradient>
+
           <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
             <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#0f172a" floodOpacity="0.25" />
           </filter>
@@ -76,20 +87,37 @@ export function BitrixTrajectoryDiagram({ className }: BitrixTrajectoryDiagramPr
           </marker>
         </defs>
 
-        {/* 3D Globe using foreignObject for perfect SVG alignment */}
-        <foreignObject x={globeX} y={globeY} width={globeSize} height={globeSize}>
-          <div className="w-full h-full">
-            <Globe3D
-              size={globeSize}
-              className="w-full h-full"
-              dotColor="#93c5fd"
-              oceanColor="#1e3a8a"
-              rotationSpeed={0.002}
-              showLogo={true}
-              logoSrc="/images/bitrix24_logo.png"
+        {/* Globe: 3D on desktop, static SVG on mobile */}
+        {isMobile ? (
+          // Mobile: Static SVG circle with logo (no Three.js layout issues)
+          <g filter="url(#soft-shadow)">
+            <circle cx={left.cx} cy={left.cy} r={left.r} fill="url(#globe-grad)" />
+            <circle cx={left.cx} cy={left.cy} r={left.r} fill="none" stroke="#60a5fa" strokeWidth="2" opacity="0.3" />
+            <image
+              href="/images/bitrix24_logo.png"
+              x={left.cx - 70}
+              y={left.cy - 35}
+              width="140"
+              height="70"
+              preserveAspectRatio="xMidYMid meet"
             />
-          </div>
-        </foreignObject>
+          </g>
+        ) : (
+          // Desktop: 3D Globe with Three.js
+          <foreignObject x={globeX} y={globeY} width={globeSize} height={globeSize}>
+            <div className="w-full h-full">
+              <Globe3D
+                size={globeSize}
+                className="w-full h-full"
+                dotColor="#93c5fd"
+                oceanColor="#1e3a8a"
+                rotationSpeed={0.002}
+                showLogo={true}
+                logoSrc="/images/bitrix24_logo.png"
+              />
+            </div>
+          </foreignObject>
+        )}
 
         {/* Top trajectory: with operating model */}
         <path
