@@ -38,7 +38,7 @@ const FAQ_ITEMS = [
 
 export function FAQSection() {
   return (
-    <section className="py-16 sm:py-24 bg-[#FAFAFC]">
+    <section className="py-16 sm:py-24 bg-bg-secondary">
       <Container>
         <SectionHeader
           label="Dúvidas"

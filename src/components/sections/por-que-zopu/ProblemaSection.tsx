@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/layout";
 import { Badge, Reveal } from "@/components/shared";
 import { Check, ArrowRight, X } from "lucide-react";
-import { CaretRight } from "@phosphor-icons/react";
 import { ZOPU_LINKS, ERROS_VS_SOLUCOES_ZOPU } from "@/lib/constants";
 import { useCountUp } from "@/hooks/useCountUp";
 
@@ -14,14 +13,6 @@ function AnimatedPercent() {
 
   return <span ref={ref}>{Math.round(animatedValue)}</span>;
 }
-
-const FLOW_SEQUENCE = [
-  "entendimento",
-  "estrutura",
-  "adoção",
-  "métricas",
-  "evolução",
-];
 
 export function ProblemaSection() {
   return (
@@ -165,31 +156,6 @@ export function ProblemaSection() {
                   </div>
                 ))}
               </div>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* Flow Sequence */}
-        <Reveal delay={0.5}>
-          <div className="mt-12 sm:mt-16">
-            <p className="text-center text-sm text-gray-500 uppercase tracking-wider mb-6">
-              A sequência que reduz risco
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-              {FLOW_SEQUENCE.map((step, index) => (
-                <div key={step} className="flex items-center gap-2 sm:gap-3">
-                  <span className="px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 border border-gray-200 shadow-sm">
-                    {step}
-                  </span>
-                  {index < FLOW_SEQUENCE.length - 1 && (
-                    <CaretRight
-                      size={16}
-                      weight="bold"
-                      className="text-brand"
-                    />
-                  )}
-                </div>
-              ))}
             </div>
           </div>
         </Reveal>

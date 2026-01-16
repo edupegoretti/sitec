@@ -25,7 +25,7 @@ export function ProvasSociaisSection() {
   const { numeros, cases, reconhecimentos } = GROWTH_ARCHITECTURE_PROVA_SOCIAL
 
   return (
-    <section className="py-20 sm:py-28 lg:py-32 bg-[#FAFAFC] relative overflow-hidden">
+    <section className="py-20 sm:py-28 lg:py-32 bg-bg-secondary relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-20 right-0 w-80 h-80 bg-brand/3 rounded-full translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-20 left-0 w-64 h-64 bg-green-500/3 rounded-full -translate-x-1/2 blur-3xl" />

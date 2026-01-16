@@ -4,34 +4,38 @@ import { forwardRef, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { useReducedMotion } from 'framer-motion'
 
+// Design System Colors:
+// brand: #635BFF, brand-hover: #5851EA, brand-gradient: #8B5CF6
+// success-bright: #10B981, success-hover: #059669
+
 const LAYERS = [
   {
     id: 'processo',
     titulo: 'Processo',
-    color: '#475569',
-    colorLight: '#64748b',
-    colorDark: '#334155',
+    color: '#475569',      // slate-600 (neutral base)
+    colorLight: '#64748b', // slate-500
+    colorDark: '#334155',  // slate-700
   },
   {
     id: 'adocao',
     titulo: 'Adoção',
-    color: '#6366f1',
-    colorLight: '#818cf8',
-    colorDark: '#4f46e5',
+    color: '#635BFF',      // brand (main purple)
+    colorLight: '#8B5CF6', // brand-gradient
+    colorDark: '#5851EA',  // brand-hover
   },
   {
     id: 'sustentacao',
     titulo: 'Sustentação',
-    color: '#8b5cf6',
-    colorLight: '#a78bfa',
-    colorDark: '#7c3aed',
+    color: '#8B5CF6',      // brand-gradient
+    colorLight: '#A78BFA', // violet-400
+    colorDark: '#7C3AED',  // violet-600
   },
   {
     id: 'evolucao',
     titulo: 'Evolução',
-    color: '#10b981',
-    colorLight: '#34d399',
-    colorDark: '#059669',
+    color: '#10B981',      // success-bright (emerald-500)
+    colorLight: '#34D399', // emerald-400
+    colorDark: '#059669',  // success-hover (emerald-600)
   },
 ] as const
 

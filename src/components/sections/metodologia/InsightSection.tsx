@@ -51,7 +51,7 @@ const PERGUNTAS_ZOPU = [
 
 export function InsightSection() {
   return (
-    <section id="insight" className="py-20 sm:py-28 lg:py-32 bg-[#FAFAFC] overflow-hidden relative">
+    <section id="insight" className="py-20 sm:py-28 lg:py-32 bg-bg-secondary overflow-hidden relative">
       {/* Decorative blurred elements - padrão home/DiferenciaisSection */}
       <div className="absolute top-20 left-0 w-72 h-72 bg-brand/3 rounded-full -translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-20 right-0 w-96 h-96 bg-red-500/3 rounded-full translate-x-1/2 blur-3xl" />

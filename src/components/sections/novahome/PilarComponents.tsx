@@ -64,7 +64,7 @@ export function PilarTimelineCustom({
 
       {/* Linha de progresso animada */}
       <motion.div
-        className="absolute top-1/2 left-0 h-0.5 bg-linear-to-r from-brand to-[#8B5CF6] -translate-y-1/2"
+        className="absolute top-1/2 left-0 h-0.5 bg-linear-to-r from-brand to-brand-gradient -translate-y-1/2"
         initial={{ width: '0%' }}
         animate={{ width: `${currentProgress}%` }}
         transition={isAutoPlaying ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -87,7 +87,7 @@ export function PilarTimelineCustom({
               <motion.div
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-linear-to-br from-brand to-[#8B5CF6] shadow-lg shadow-purple-500/40'
+                    ? 'bg-linear-to-br from-brand to-brand-gradient shadow-lg shadow-purple-500/40'
                     : isCompleted
                       ? 'bg-brand'
                       : 'bg-white border-2 border-gray-300 group-hover:border-brand'
@@ -296,7 +296,7 @@ function JourneyMapVisual() {
         cx="180"
         cy="60"
         r="12"
-        fill="#00D26A"
+        fill="#10B981"
         initial={{ scale: 0 }}
         animate={{ scale: [0, 1.2, 1] }}
         transition={{ delay: 1.6, duration: 0.5 }}
@@ -411,7 +411,7 @@ function ProcessFlowVisual() {
         width="50"
         height="25"
         rx="4"
-        fill="#00D26A"
+        fill="#10B981"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 1.3 }}
@@ -478,7 +478,7 @@ function DataOrgVisual() {
             cx="165"
             cy={69 + row * 25}
             r="6"
-            fill="#00D26A"
+            fill="#10B981"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.8 + row * 0.15 }}
@@ -510,7 +510,7 @@ function ICPTargetVisual() {
         cx="100"
         cy="100"
         r="12"
-        fill="#00D26A"
+        fill="#10B981"
         initial={{ scale: 0 }}
         animate={{ scale: [0, 1.2, 1] }}
         transition={{ delay: 0.6, duration: 0.5 }}
@@ -565,7 +565,7 @@ function AdoptionPlanVisual() {
             height="26"
             rx="4"
             fill={isCompleted ? 'rgba(0, 210, 106, 0.3)' : 'rgba(255,255,255,0.1)'}
-            stroke={isCompleted ? '#00D26A' : 'rgba(255,255,255,0.2)'}
+            stroke={isCompleted ? '#10B981' : 'rgba(255,255,255,0.2)'}
             strokeWidth="1"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -580,7 +580,7 @@ function AdoptionPlanVisual() {
           <motion.path
             key={`check-${i}`}
             d={`M ${33 + col * 32} ${53 + row * 32} l 4 4 l 8 -8`}
-            stroke="#00D26A"
+            stroke="#10B981"
             strokeWidth="2"
             strokeLinecap="round"
             fill="none"
@@ -597,7 +597,7 @@ function AdoptionPlanVisual() {
         width="0"
         height="8"
         rx="4"
-        fill="#00D26A"
+        fill="#10B981"
         animate={{ width: 105 }}
         transition={{ delay: 1.5, duration: 0.8 }}
       />
@@ -644,7 +644,7 @@ function SuccessMetricsVisual() {
       <motion.path
         d="M 25 100 Q 50 90 70 85 Q 100 75 120 60 Q 145 45 165 35"
         fill="none"
-        stroke="#00D26A"
+        stroke="#10B981"
         strokeWidth="3"
         strokeLinecap="round"
         initial={{ pathLength: 0 }}
@@ -653,8 +653,8 @@ function SuccessMetricsVisual() {
       />
       <defs>
         <linearGradient id="greenGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#00D26A" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#00D26A" stopOpacity="0.05" />
+          <stop offset="0%" stopColor="#10B981" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#10B981" stopOpacity="0.05" />
         </linearGradient>
       </defs>
       {[
@@ -673,7 +673,7 @@ function SuccessMetricsVisual() {
             x={card.x + 25}
             y="158"
             textAnchor="middle"
-            fill={i === 0 ? '#00D26A' : 'white'}
+            fill={i === 0 ? '#10B981' : 'white'}
             fontSize="14"
             fontWeight="bold"
           >
@@ -733,7 +733,7 @@ export function PilarVisualCustom({ pilar, index }: PilarVisualProps) {
       className="relative aspect-square max-w-md mx-auto"
     >
       {/* Container com gradiente */}
-      <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-brand to-[#8B5CF6] overflow-hidden">
+      <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-brand to-brand-gradient overflow-hidden">
         {/* Padrão de fundo decorativo */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />

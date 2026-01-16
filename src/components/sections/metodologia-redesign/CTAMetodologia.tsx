@@ -9,7 +9,7 @@ import { ZOPU_LINKS, ZOPU_STATS } from '@/lib/constants'
 
 export function CTAMetodologia() {
   return (
-    <section className="py-20 sm:py-28 bg-linear-to-br from-brand via-[#7C3AED] to-[#8B5CF6] relative overflow-hidden">
+    <section className="py-20 sm:py-28 bg-linear-to-br from-brand via-brand-dark to-[#8B5CF6] relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0">
         {/* Grid pattern */}

@@ -34,7 +34,7 @@ export function CaseDestaque() {
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
 
   return (
-    <section className="py-16 sm:py-24 lg:py-32 bg-[#FAFAFC] overflow-hidden relative">
+    <section className="py-16 sm:py-24 lg:py-32 bg-bg-secondary overflow-hidden relative">
       {/* Decorative blurred elements */}
       <div className="absolute top-20 right-0 w-80 h-80 bg-green-500/5 rounded-full translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-20 left-0 w-64 h-64 bg-brand/5 rounded-full -translate-x-1/2 blur-3xl" />

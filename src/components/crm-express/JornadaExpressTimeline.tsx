@@ -104,7 +104,7 @@ function DiagnosticoVisual() {
           y1={65 + i * 15}
           x2="115"
           y2={65 + i * 15}
-          stroke="#00D26A"
+          stroke="#10B981"
           strokeWidth="3"
           strokeLinecap="round"
           initial={{ pathLength: 0, opacity: 0 }}
@@ -119,7 +119,7 @@ function DiagnosticoVisual() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, duration: 0.3, type: 'spring' }}
       >
-        <circle cx="155" cy="160" r="18" fill="#00D26A" />
+        <circle cx="155" cy="160" r="18" fill="#10B981" />
         <path
           d="M 145 160 L 152 167 L 165 153"
           stroke="white"
@@ -219,7 +219,7 @@ function ConfiguracaoVisual() {
             width="35"
             height="25"
             rx="4"
-            fill={i === 2 ? '#00D26A' : 'rgba(255,255,255,0.2)'}
+            fill={i === 2 ? '#10B981' : 'rgba(255,255,255,0.2)'}
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.5 + i * 0.2, duration: 0.3 }}
@@ -247,7 +247,7 @@ function ConfiguracaoVisual() {
         animate={{ scale: 1 }}
         transition={{ delay: 1.2, type: 'spring' }}
       >
-        <circle cx="160" cy="55" r="16" fill="#00D26A" />
+        <circle cx="160" cy="55" r="16" fill="#10B981" />
         <path
           d="M 151 55 L 157 61 L 169 49"
           stroke="white"
@@ -283,7 +283,7 @@ function TreinamentoVisual() {
       {/* Conteúdo do quadro - gráfico de crescimento */}
       <motion.path
         d="M 50 90 L 70 75 L 95 80 L 120 55 L 150 45"
-        stroke="#00D26A"
+        stroke="#10B981"
         strokeWidth="3"
         fill="none"
         strokeLinecap="round"
@@ -329,7 +329,7 @@ function TreinamentoVisual() {
             cx={x + 10}
             cy="135"
             r="6"
-            fill="#00D26A"
+            fill="#10B981"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 1.3 + i * 0.15, type: 'spring' }}
@@ -398,7 +398,7 @@ function GoLiveVisual() {
           cx={star.x}
           cy={star.y}
           r="3"
-          fill="#00D26A"
+          fill="#10B981"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: [0, 1.5, 1], opacity: 1 }}
           transition={{ delay: star.delay, duration: 0.5 }}
@@ -411,7 +411,7 @@ function GoLiveVisual() {
         animate={{ scale: 1 }}
         transition={{ delay: 1.2, type: 'spring' }}
       >
-        <circle cx="160" cy="170" r="20" fill="#00D26A" />
+        <circle cx="160" cy="170" r="20" fill="#10B981" />
         <path
           d="M 148 170 L 156 178 L 172 162"
           stroke="white"

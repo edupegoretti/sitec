@@ -447,6 +447,10 @@ export const ZOPU_LINKS = {
   testeGratis: "https://www.bitrix24.com.br/create.php?p=15026259",
   fluidz: "https://fluidz.com.br",
   email: "contato@zopu.com.br",
+  // Social
+  linkedin: "https://br.linkedin.com/company/zopu",
+  instagram: "https://www.instagram.com/souzopu/",
+  youtube: "https://www.youtube.com/channel/UCD6akPmq0-7MGC-DSPjDjsw",
 } as const;
 
 // Escopos de implementação (sem preços - levar para conversa com consultor)

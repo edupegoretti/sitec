@@ -237,7 +237,7 @@ export function AIInAction() {
   const [activeCapability, setActiveCapability] = useState(0)
 
   return (
-    <section className="py-16 sm:py-24 lg:py-32 bg-[#F9FAFC] overflow-hidden">
+    <section className="py-16 sm:py-24 lg:py-32 bg-bg-secondary overflow-hidden">
       <Container>
         {/* Header */}
         <div className="text-center mb-10 sm:mb-14">

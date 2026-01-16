@@ -9,6 +9,8 @@ export const client: SanityClient | null = isSanityConfigured
       dataset,
       apiVersion,
       useCdn: process.env.NODE_ENV === 'production',
+      // Disable visual editing to suppress connection warning
+      stega: { enabled: false },
     })
   : null
 

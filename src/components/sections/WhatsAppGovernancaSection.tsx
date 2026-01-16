@@ -29,7 +29,7 @@ const BENEFICIOS = [
 
 export function WhatsAppGovernancaSection() {
   return (
-    <section className="py-16 sm:py-24 bg-[#F9FAFC] relative overflow-hidden">
+    <section className="py-16 sm:py-24 bg-bg-secondary relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-1/2 right-0 w-80 h-80 bg-green-500/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl" />
 

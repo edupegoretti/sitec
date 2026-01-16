@@ -235,7 +235,7 @@ export function RevenuePerformancePage() {
       </section>
 
       {/* Problem */}
-      <section className="py-20 sm:py-28 bg-[#FAFAFC]">
+      <section className="py-20 sm:py-28 bg-bg-secondary">
         <Container>
           <div className="grid lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-start">
             {/* Lado esquerdo: Contexto */}
@@ -420,7 +420,7 @@ export function RevenuePerformancePage() {
       </section>
 
       {/* Deliverables */}
-      <section id="revops-launch" className="py-20 sm:py-28 bg-[#FAFAFC]">
+      <section id="revops-launch" className="py-20 sm:py-28 bg-bg-secondary">
         <Container>
           <Reveal direction="up">
             <SectionHeader

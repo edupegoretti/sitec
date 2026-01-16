@@ -63,7 +63,7 @@ export function CRMKanbanVisual() {
     { color: '#635BFF', opacity: 0.2, fillColor: '#635BFF' },
     { color: '#818cf8', opacity: 0.2, fillColor: '#818cf8' },
     { color: '#a5b4fc', opacity: 0.2, fillColor: '#a5b4fc' },
-    { color: '#22c55e', opacity: 0.2, fillColor: '#22c55e' },
+    { color: '#10B981', opacity: 0.2, fillColor: '#10B981' },
   ]
 
   return (
@@ -95,7 +95,7 @@ export function CRMKanbanVisual() {
                   <rect x={x} y={y} width="80" height="42" rx="6" fill="white" stroke="#e2e8f0" strokeWidth="1" />
                   <rect x={x + 6} y={y + 7} width="55" height="8" rx="2" fill="#334155" />
                   <rect x={x + 6} y={y + 20} width="35" height="6" rx="2" fill="#94a3b8" />
-                  <rect x={x + 6} y={y + 30} width="45" height="6" rx="2" fill="#22c55e" opacity="0.3" />
+                  <rect x={x + 6} y={y + 30} width="45" height="6" rx="2" fill="#10B981" opacity="0.3" />
                   <circle cx={x + 70} cy={y + 35} r="6" fill="#ddd6fe" />
                 </g>
               )
@@ -120,8 +120,8 @@ export function IADashboardVisual() {
       <rect x="20" y="15" width="360" height="35" rx="6" fill="#1e293b" />
       <circle cx="40" cy="32" r="8" fill="#635BFF" />
       <rect x="55" y="27" width="100" height="10" rx="2" fill="#334155" />
-      <rect x="320" y="25" width="50" height="14" rx="4" fill="#22c55e" opacity="0.2" />
-      <text x="345" y="35" textAnchor="middle" fill="#22c55e" fontSize="8" fontWeight="bold">AI ON</text>
+      <rect x="320" y="25" width="50" height="14" rx="4" fill="#10B981" opacity="0.2" />
+      <text x="345" y="35" textAnchor="middle" fill="#10B981" fontSize="8" fontWeight="bold">AI ON</text>
 
       {/* Main chart area */}
       <rect x="20" y="60" width="230" height="120" rx="8" fill="#1e293b" />
@@ -160,7 +160,7 @@ export function IADashboardVisual() {
 
       {/* Insight cards */}
       {[
-        { y: 70, label: 'Lead Score', value: '87%', color: '#22c55e' },
+        { y: 70, label: 'Lead Score', value: '87%', color: '#10B981' },
         { y: 105, label: 'Probabilidade', value: '92%', color: '#635BFF' },
         { y: 140, label: 'Próxima Ação', value: 'Follow-up', color: '#f59e0b' },
       ].map((item, i) => (
@@ -190,7 +190,7 @@ export function IADashboardVisual() {
           >
             <rect x={stat.x} y="0" width="115" height="40" rx="6" fill="#1e293b" />
             <text x={stat.x + 10} y="16" fill="#64748b" fontSize="8">{stat.label}</text>
-            <text x={stat.x + 10} y="32" fill="#22c55e" fontSize="14" fontWeight="bold">{stat.value}</text>
+            <text x={stat.x + 10} y="32" fill="#10B981" fontSize="14" fontWeight="bold">{stat.value}</text>
           </motion.g>
         ))}
       </g>
@@ -215,7 +215,7 @@ export function RevenueArchitectureVisual() {
       {[
         { x: 20, label: 'Processo', color: '#635BFF', items: ['Funil definido', 'Critérios claros', 'SLAs acordados'] },
         { x: 145, label: 'Dados', color: '#f59e0b', items: ['Base limpa', 'Campos validados', 'Dashboards'] },
-        { x: 270, label: 'Adoção', color: '#22c55e', items: ['Treino por função', 'Fluidz', 'Rotina'] },
+        { x: 270, label: 'Adoção', color: '#10B981', items: ['Treino por função', 'Fluidz', 'Rotina'] },
       ].map((col, colIndex) => (
         <motion.g
           key={colIndex}

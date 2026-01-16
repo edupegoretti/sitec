@@ -115,7 +115,7 @@ export function CRMPipelineVisual() {
       className="relative w-full"
     >
       {/* Container principal - Maior e mais imersivo */}
-      <div className="relative rounded-3xl bg-linear-to-br from-brand via-[#7C3AED] to-[#8B5CF6] overflow-hidden shadow-2xl shadow-brand/30">
+      <div className="relative rounded-3xl bg-linear-to-br from-brand via-brand-dark to-[#8B5CF6] overflow-hidden shadow-2xl shadow-brand/30">
         {/* Decorações de fundo */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />

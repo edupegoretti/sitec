@@ -51,7 +51,7 @@ const corClasses = {
 
 export function ReframeSection() {
   return (
-    <section className="py-16 sm:py-24 bg-[#F9FAFC] relative overflow-hidden">
+    <section className="py-16 sm:py-24 bg-bg-secondary relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 right-1/4 w-72 h-72 bg-brand/4 rounded-full -translate-y-1/2 blur-3xl" />
       <div className="absolute bottom-0 left-1/4 w-56 h-56 bg-emerald-500/4 rounded-full translate-y-1/2 blur-3xl" />

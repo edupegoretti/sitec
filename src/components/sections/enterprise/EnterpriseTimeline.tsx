@@ -34,7 +34,7 @@ function AssessmentVisual() {
       <rect x="20" y="34" width="240" height="12" fill="#0A2540" />
       <circle cx="38" cy="28" r="5" fill="#ef4444" opacity="0.8" />
       <circle cx="54" cy="28" r="5" fill="#f59e0b" opacity="0.8" />
-      <circle cx="70" cy="28" r="5" fill="#22c55e" opacity="0.8" />
+      <circle cx="70" cy="28" r="5" fill="#10B981" opacity="0.8" />
       <text x="140" y="32" textAnchor="middle" fill="white" fontSize="10" fontFamily="system-ui" fontWeight="600">Assessment Report</text>
 
       {/* Metrics row */}

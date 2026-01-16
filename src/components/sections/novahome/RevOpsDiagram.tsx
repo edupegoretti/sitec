@@ -26,18 +26,19 @@ export function RevOpsDiagram({ className }: RevOpsDiagramProps) {
   const rFeedbackIn = 265             // Feedback ring inner
   const rFeedbackOut = 330            // Feedback ring outer
 
-  // COLORS - Based on original image (blues and teals)
+  // COLORS - Design System Aligned
+  // Uses brand → success progression for visual flow
   const colors = {
-    feedback: '#1a365d',       // Dark navy blue (outer)
-    feedbackLight: '#2c5282',  // Slightly lighter navy
-    tech: '#2b6cb0',           // Medium blue
-    ops: '#319795',            // Teal
-    opsSegment: '#4fd1c5',     // Lighter teal for segments
-    data: '#81e6d9',           // Light teal
-    dataLight: '#b2f5ea',      // Very light teal
-    core: '#e6fffa',           // Very light (almost white)
-    coreStroke: '#38b2ac',
-    textDark: '#1a365d',
+    feedback: '#0A2540',       // bg-dark (outer ring)
+    feedbackLight: '#1A1F36',  // bg-dark-secondary
+    tech: '#635BFF',           // brand (technology stack)
+    ops: '#8B5CF6',            // brand-gradient (operations)
+    opsSegment: '#A78BFA',     // violet-400 (segment fill)
+    data: '#DCFCE7',           // success-light (data ring)
+    dataLight: '#F0FDF4',      // green-50 (data highlight)
+    core: '#F5F3FF',           // brand-light (center)
+    coreStroke: '#10B981',     // success-bright
+    textDark: '#1A1D2E',       // text-primary
     textLight: '#ffffff',
     divider: '#ffffff',
     strokeLight: 'rgba(255,255,255,0.8)',

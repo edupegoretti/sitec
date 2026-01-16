@@ -60,8 +60,8 @@ export function BitrixTrajectoryDiagram({ className }: BitrixTrajectoryDiagramPr
       >
         <defs>
           <linearGradient id="target-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#22c55e" />
-            <stop offset="100%" stopColor="#16a34a" />
+            <stop offset="0%" stopColor="#10B981" />
+            <stop offset="100%" stopColor="#059669" />
           </linearGradient>
 
           <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -69,7 +69,7 @@ export function BitrixTrajectoryDiagram({ className }: BitrixTrajectoryDiagramPr
           </filter>
 
           <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-            <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#22c55e" />
+            <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#10B981" />
           </marker>
           <marker id="arrow-red" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
             <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="#ef4444" />
@@ -94,13 +94,13 @@ export function BitrixTrajectoryDiagram({ className }: BitrixTrajectoryDiagramPr
         {/* Top trajectory: with operating model */}
         <path
           d={`M ${topStartX} ${topY} L ${topMidX} ${topY}`}
-          stroke="#22c55e"
+          stroke="#10B981"
           strokeWidth="4"
           strokeLinecap="round"
         />
         <path
           d={`M ${topMidX + topGap} ${topY} L ${topEndX} ${topY}`}
-          stroke="#22c55e"
+          stroke="#10B981"
           strokeWidth="4"
           strokeDasharray="10 10"
           strokeLinecap="round"
@@ -120,7 +120,7 @@ export function BitrixTrajectoryDiagram({ className }: BitrixTrajectoryDiagramPr
         {/* Outcome circles */}
         <g filter="url(#soft-shadow)">
           <circle cx={target.cx} cy={target.cy} r={target.r} fill="url(#target-grad)" />
-          <circle cx={target.cx} cy={target.cy} r={target.r} fill="none" stroke="#15803d" strokeWidth="3" />
+          <circle cx={target.cx} cy={target.cy} r={target.r} fill="none" stroke="#166534" strokeWidth="3" />
         </g>
         <g filter="url(#soft-shadow)">
           <circle cx={sink.cx} cy={sink.cy} r={sink.r} fill="#fee2e2" />
@@ -130,7 +130,7 @@ export function BitrixTrajectoryDiagram({ className }: BitrixTrajectoryDiagramPr
         </g>
 
         {/* Labels */}
-        <text x={topLabelX} y={topY - 18} textAnchor="middle" fill="#16a34a" fontSize="14" fontWeight="600">
+        <text x={topLabelX} y={topY - 18} textAnchor="middle" fill="#059669" fontSize="14" fontWeight="600">
           Com modelo operacional
         </text>
         <text x={bottomLabelX} y={bottomEndY + 32} textAnchor="middle" fill="#dc2626" fontSize="14" fontWeight="600">

@@ -27,7 +27,7 @@ export function PilarTimeline({ pilares, activeIndex, onSelect, loadingProgress 
 
       {/* Linha de progresso animada */}
       <motion.div
-        className="absolute top-1/2 left-0 h-0.5 bg-linear-to-r from-brand to-[#8B5CF6] -translate-y-1/2"
+        className="absolute top-1/2 left-0 h-0.5 bg-linear-to-r from-brand to-brand-gradient -translate-y-1/2"
         initial={{ width: '0%' }}
         animate={{ width: `${currentProgress}%` }}
         transition={isAutoPlaying ? { duration: 0 } : { duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -50,7 +50,7 @@ export function PilarTimeline({ pilares, activeIndex, onSelect, loadingProgress 
               <motion.div
                 className={`w-10 h-10 rounded-full flex items-center justify-center transition-all cursor-pointer ${
                   isActive
-                    ? 'bg-linear-to-br from-brand to-[#8B5CF6] shadow-lg shadow-purple-500/40'
+                    ? 'bg-linear-to-br from-brand to-brand-gradient shadow-lg shadow-purple-500/40'
                     : isCompleted
                       ? 'bg-brand'
                       : 'bg-white border-2 border-gray-300 group-hover:border-brand'

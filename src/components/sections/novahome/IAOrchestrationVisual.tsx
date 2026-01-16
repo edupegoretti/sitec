@@ -95,7 +95,7 @@ export function IAOrchestrationVisual() {
         <motion.path
           d="M 240 100 C 260 100 270 43 290 43"
           fill="none"
-          stroke="#22c55e"
+          stroke="#10B981"
           strokeWidth="2"
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
@@ -133,9 +133,9 @@ export function IAOrchestrationVisual() {
           transition={{ delay: 0.8 }}
         >
           <rect x="290" y="25" width="90" height="36" rx="6" fill="#1e293b" />
-          <rect x="290" y="25" width="3" height="36" rx="1.5" fill="#22c55e" />
+          <rect x="290" y="25" width="3" height="36" rx="1.5" fill="#10B981" />
           <text x="300" y="40" fill="#94a3b8" fontSize="8">Lead Score</text>
-          <text x="300" y="54" fill="#22c55e" fontSize="13" fontWeight="bold">87%</text>
+          <text x="300" y="54" fill="#10B981" fontSize="13" fontWeight="bold">87%</text>
         </motion.g>
 
         {/* Próxima Ação */}

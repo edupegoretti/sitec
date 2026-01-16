@@ -61,7 +61,6 @@ export {
   ProblemaSection,
   RiscosSection,
   DiferenciaisZopu,
-  CaminhosSection,
   FAQPorQueZopu,
 } from "./por-que-zopu";
 

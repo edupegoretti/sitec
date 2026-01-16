@@ -56,7 +56,7 @@ function CRMIllustration() {
             width="80"
             height="20"
             rx="4"
-            fill={col === 0 ? '#635BFF' : col === 1 ? '#818cf8' : col === 2 ? '#a5b4fc' : '#22c55e'}
+            fill={col === 0 ? '#635BFF' : col === 1 ? '#818cf8' : col === 2 ? '#a5b4fc' : '#10B981'}
             opacity="0.2"
           />
           <rect
@@ -65,7 +65,7 @@ function CRMIllustration() {
             width="50"
             height="8"
             rx="2"
-            fill={col === 0 ? '#635BFF' : col === 1 ? '#818cf8' : col === 2 ? '#a5b4fc' : '#22c55e'}
+            fill={col === 0 ? '#635BFF' : col === 1 ? '#818cf8' : col === 2 ? '#a5b4fc' : '#10B981'}
           />
 
           {/* Cards */}
@@ -103,7 +103,7 @@ function CRMIllustration() {
                 width="45"
                 height="6"
                 rx="2"
-                fill="#22c55e"
+                fill="#10B981"
                 opacity="0.3"
               />
               <circle cx={100 + col * 90} cy={130 + idx * 50} r="6" fill="#ddd6fe" />
@@ -214,7 +214,7 @@ function ComunicacaoIllustration() {
       <rect x="120" y="30" width="250" height="35" rx="4" fill="#f8fafc" />
       <circle cx="140" cy="47" r="12" fill="#c4b5fd" />
       <rect x="160" y="40" width="80" height="8" rx="2" fill="#334155" />
-      <rect x="160" y="52" width="50" height="5" rx="2" fill="#22c55e" />
+      <rect x="160" y="52" width="50" height="5" rx="2" fill="#10B981" />
 
       {/* Messages */}
       <rect x="130" y="80" width="140" height="35" rx="12" fill="#f1f5f9" />
@@ -257,11 +257,11 @@ function AutomacaoIllustration() {
       </g>
 
       {/* Branch lines */}
-      <path d="M 210 115 L 250 80" stroke="#22c55e" strokeWidth="2" />
+      <path d="M 210 115 L 250 80" stroke="#10B981" strokeWidth="2" />
       <path d="M 210 135 L 250 170" stroke="#ef4444" strokeWidth="2" />
 
       {/* Yes action */}
-      <rect x="250" y="55" width="70" height="50" rx="8" fill="#22c55e" />
+      <rect x="250" y="55" width="70" height="50" rx="8" fill="#10B981" />
       <rect x="265" y="70" width="40" height="6" rx="2" fill="white" />
       <rect x="265" y="80" width="30" height="5" rx="2" fill="white" opacity="0.7" />
 
@@ -302,7 +302,7 @@ function IAIllustration() {
 
       {/* Info do negócio */}
       <rect x="40" y="90" width="60" height="6" rx="2" fill="#64748b" />
-      <rect x="40" y="102" width="100" height="10" rx="2" fill="#22c55e" />
+      <rect x="40" y="102" width="100" height="10" rx="2" fill="#10B981" />
 
       <rect x="40" y="125" width="60" height="6" rx="2" fill="#64748b" />
       <rect x="40" y="137" width="80" height="8" rx="2" fill="#334155" />

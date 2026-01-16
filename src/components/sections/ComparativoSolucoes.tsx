@@ -82,7 +82,7 @@ const featureLabels = [
 
 export function ComparativoSolucoes() {
   return (
-    <section className="py-16 sm:py-24 bg-[#F9FAFC]">
+    <section className="py-16 sm:py-24 bg-bg-secondary">
       <Container>
         <div className="text-center mb-12">
           <Reveal>

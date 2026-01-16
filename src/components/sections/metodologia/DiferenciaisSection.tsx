@@ -77,7 +77,7 @@ const IA_DESTAQUE = {
 
 export function DiferenciaisSection() {
   return (
-    <section className="py-20 sm:py-28 lg:py-32 bg-[#FAFAFC] relative overflow-hidden">
+    <section className="py-20 sm:py-28 lg:py-32 bg-bg-secondary relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-20 left-0 w-72 h-72 bg-brand/3 rounded-full -translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-20 right-0 w-96 h-96 bg-red-500/3 rounded-full translate-x-1/2 blur-3xl" />

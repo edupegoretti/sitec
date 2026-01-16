@@ -1,245 +1,230 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { Award } from 'lucide-react'
-import { ZOPU_LINKS, ZOPU_STATS, ZOPU_RECONHECIMENTO } from '@/lib/constants'
+import Link from "next/link";
+import Image from "next/image";
+import {
+  LinkedinLogo,
+  InstagramLogo,
+  YoutubeLogo,
+  WhatsappLogo,
+  EnvelopeSimple,
+  ArrowUpRight,
+} from "@phosphor-icons/react/dist/ssr";
+import { ZOPU_LINKS } from "@/lib/constants";
+
+// Footer navigation structure based on site architecture
+const FOOTER_NAV = {
+  solucoes: {
+    title: "Soluções",
+    links: [
+      { label: "CRM Express", href: "/crm-express" },
+      { label: "RevOps Launch", href: "/revopslaunch" },
+      { label: "Mapa de Performance", href: "/mapadeperformance" },
+      { label: "Enterprise", href: "/bitrix24-enterprise" },
+      { label: "Licenças Bitrix24", href: "/licencas-bitrix24" },
+    ],
+  },
+  empresa: {
+    title: "Empresa",
+    links: [
+      { label: "Por que Zopu", href: "/por-que-zopu" },
+      { label: "Por que Bitrix24", href: "/por-que-bitrix24" },
+      { label: "Cases de Sucesso", href: "/cases" },
+      { label: "Metodologia", href: "/metodologia" },
+      { label: "Trabalhe Conosco", href: "/trabalhe-conosco" },
+    ],
+  },
+  recursos: {
+    title: "Recursos",
+    links: [
+      { label: "Blog", href: "/recursos/blog" },
+      { label: "Zopucast", href: "/recursos/biblioteca/zopucast" },
+      { label: "Webinars", href: "/recursos/biblioteca/webinars-bitrix24" },
+      {
+        label: "Fluidz Academy",
+        href: ZOPU_LINKS.fluidz,
+        external: true,
+      },
+      {
+        label: "Diagnóstico Gratuito",
+        href: ZOPU_LINKS.diagnostico,
+        external: true,
+      },
+    ],
+  },
+  paraVoce: {
+    title: "Para você",
+    links: [
+      { label: "Time Comercial", href: "/para/comercial" },
+      { label: "Gestores", href: "/para/gestores" },
+      { label: "TI", href: "/para/ti" },
+      { label: "Bitrix24 para PMEs", href: "/bitrix24-para-pmes" },
+    ],
+  },
+} as const;
+
+const SOCIAL_LINKS = [
+  {
+    name: "LinkedIn",
+    href: ZOPU_LINKS.linkedin,
+    icon: LinkedinLogo,
+  },
+  {
+    name: "Instagram",
+    href: ZOPU_LINKS.instagram,
+    icon: InstagramLogo,
+  },
+  {
+    name: "YouTube",
+    href: ZOPU_LINKS.youtube,
+    icon: YoutubeLogo,
+  },
+];
 
 export function Footer() {
   return (
-    <footer className="bg-bg-dark pt-16 pb-8">
-      {/* Barra de reconhecimento no topo do footer */}
-      <div className="border-b border-white/10 pb-8 mb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <Award className="w-6 h-6 text-brand" />
-              <div>
-                <p className="text-white font-semibold">Gold Partner Bitrix24</p>
-                <p className="text-sm text-gray-400">
-                  {ZOPU_RECONHECIMENTO.titulo} • {ZOPU_RECONHECIMENTO.periodo}
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-6 text-sm text-gray-400">
-              <span>{ZOPU_STATS.clientes} clientes</span>
-              <span className="text-green-400">{ZOPU_STATS.retencao} retenção</span>
-              <span>{ZOPU_STATS.paises} países</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Grid principal */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 pb-12 border-b border-white/10">
-          {/* Logo e descrição */}
-          <div className="col-span-2 lg:col-span-2">
+    <footer className="bg-gray-950 text-white">
+      {/* Main Footer */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+        {/* Navigation Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 lg:gap-10">
+          {/* Logo Column */}
+          <div className="col-span-2">
             <Image
               src="/images/logo-zopu.png"
               alt="Zopu"
               width={120}
               height={40}
-              className="h-10 w-auto brightness-0 invert"
+              className="h-8 w-auto brightness-0 invert"
             />
-            <p className="text-gray-400 text-sm leading-relaxed mt-4 mb-6 max-w-sm">
-              Transformamos Bitrix24 em estratégia de receita. Gold Partner oficial
-              reconhecido pela Bitrix24 como referência em retenção de clientes.
+            <p className="mt-4 text-sm text-gray-400 leading-relaxed max-w-xs">
+              O parceiro de crescimento que os clientes da Bitrix24 mais confiam ❤️
             </p>
-            <div className="flex items-center gap-2 px-3 py-2 bg-white/10 rounded-lg w-fit">
-              <span className="text-sm font-medium text-white">
-                Suporte {ZOPU_STATS.tempoResposta}
-              </span>
-              <span className="text-xs text-gray-400">
-                {ZOPU_STATS.tempoRespostaContexto}
-              </span>
-            </div>
-          </div>
 
-          {/* Soluções */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Soluções</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/crm-express"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  CRM Express
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/revopslaunch"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  RevOps Launch
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/mapadeperformance"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Mapa de Performance de Receita
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/bitrix24-enterprise"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Enterprise
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Empresa */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Empresa</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/mapadeperformance"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Mapa de Performance
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/por-que-zopu"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Por que Zopu
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/cases"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Cases
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/por-que-bitrix24"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Por que Bitrix24
-                </Link>
-              </li>
-              <li>
+            {/* Social Icons */}
+            <div className="flex items-center gap-2 mt-6">
+              {SOCIAL_LINKS.map((social) => (
                 <a
-                  href={ZOPU_LINKS.fluidz}
+                  key={social.name}
+                  href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  aria-label={social.name}
+                  className="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all duration-200 hover:-translate-y-0.5"
                 >
-                  Fluidz Academy
+                  <social.icon
+                    weight="duotone"
+                    className="w-[18px] h-[18px] text-gray-400 hover:text-white transition-colors"
+                  />
                 </a>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
+          {/* Navigation Columns */}
+          {Object.values(FOOTER_NAV).map((section) => (
+            <div key={section.title}>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+                {section.title}
+              </h4>
+              <ul className="space-y-3">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    {"external" in link && link.external ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-1 text-sm text-gray-400 hover:text-white transition-colors"
+                      >
+                        {link.label}
+                        <ArrowUpRight
+                          weight="bold"
+                          className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"
+                        />
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-gray-400 hover:text-white transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-          {/* Contato */}
+          {/* Contact Column */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Contato</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+              Contato
+            </h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href={ZOPU_LINKS.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-gray-400 hover:text-white text-sm transition-colors"
+                  className="group flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors"
                 >
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                  </svg>
+                  <span className="w-8 h-8 rounded-lg bg-[#25D366]/10 flex items-center justify-center group-hover:bg-[#25D366]/20 transition-colors">
+                    <WhatsappLogo
+                      weight="duotone"
+                      className="w-4 h-4 text-[#25D366]"
+                    />
+                  </span>
                   WhatsApp
                 </a>
               </li>
               <li>
                 <a
-                  href={ZOPU_LINKS.whatsappEspecialista}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Falar com especialista
-                </a>
-              </li>
-              <li>
-                <a
                   href={`mailto:${ZOPU_LINKS.email}`}
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="group flex items-center gap-2.5 text-sm text-gray-400 hover:text-white transition-colors"
                 >
+                  <span className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                    <EnvelopeSimple
+                      weight="duotone"
+                      className="w-4 h-4 text-gray-400"
+                    />
+                  </span>
                   {ZOPU_LINKS.email}
                 </a>
               </li>
             </ul>
-
-            <h4 className="text-white font-semibold mb-4 mt-8">Para seu time</h4>
-            <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/para/comercial"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Para Comercial
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/para/gestores"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Para Gestores
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/para/ti"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
-                >
-                  Para TI
-                </Link>
-              </li>
-            </ul>
           </div>
         </div>
+      </div>
 
-        {/* Bottom */}
-        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} Zopu. Todos os direitos reservados.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/seguranca"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
-            >
-              Segurança
-            </Link>
-            <Link
-              href="/privacidade"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
-            >
-              Privacidade
-            </Link>
-            <Link
-              href="/cookies"
-              className="text-gray-400 hover:text-white text-sm transition-colors"
-            >
-              Cookies
-            </Link>
+      {/* Bottom Bar */}
+      <div className="border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-gray-500">
+              © {new Date().getFullYear()} Zopu. Todos os direitos reservados.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/seguranca"
+                className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              >
+                Segurança
+              </Link>
+              <Link
+                href="/privacidade"
+                className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              >
+                Privacidade
+              </Link>
+              <Link
+                href="/cookies"
+                className="text-xs text-gray-500 hover:text-gray-300 transition-colors"
+              >
+                Cookies
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

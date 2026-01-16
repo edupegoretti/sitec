@@ -12,13 +12,17 @@ const config: Config = {
         'bg-secondary': '#F6F9FC',
         'bg-tertiary': '#EDF2F7',
         'bg-dark': '#0A2540',
+        'bg-dark-hover': '#0D2D4D',
         'bg-dark-secondary': '#1A1F36',
+        'bg-dark-elevated': '#1E293B',
 
-        // Brand
+        // Brand (expanded for gradients)
         'brand': {
           DEFAULT: '#635BFF',
           hover: '#5851EA',
           light: '#F5F3FF',
+          gradient: '#8B5CF6',
+          dark: '#4F46E5',
         },
 
         // Text
@@ -27,9 +31,10 @@ const config: Config = {
         'text-muted': '#6B7385',
         'text-light': '#8892A2',
 
-        // Semantic
+        // Semantic (expanded)
         'success': {
           DEFAULT: '#00A67E',
+          bright: '#10B981',
           hover: '#059669',
           light: '#DCFCE7',
           dark: '#166534',
@@ -49,6 +54,14 @@ const config: Config = {
           DEFAULT: '#3B82F6',
           hover: '#2563EB',
           light: '#DBEAFE',
+        },
+
+        // Data Visualization
+        'chart': {
+          primary: '#635BFF',
+          secondary: '#10B981',
+          tertiary: '#F59E0B',
+          quaternary: '#3B82F6',
         },
 
         // Borders

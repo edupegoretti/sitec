@@ -24,7 +24,7 @@ const EXPRESS_FASES = [
 
 export function TimelineComparison({ className }: TimelineComparisonProps) {
   return (
-    <section className={`py-16 sm:py-24 lg:py-32 bg-[#FAFAFC] overflow-hidden relative ${className || ''}`}>
+    <section className={`py-16 sm:py-24 lg:py-32 bg-bg-secondary overflow-hidden relative ${className || ''}`}>
       {/* Decorative blurred elements */}
       <div className="absolute top-32 right-0 w-80 h-80 bg-brand/3 rounded-full translate-x-1/2 blur-3xl" />
       <div className="absolute bottom-20 left-0 w-64 h-64 bg-success/3 rounded-full -translate-x-1/2 blur-3xl" />

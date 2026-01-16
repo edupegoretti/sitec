@@ -66,7 +66,7 @@ function DiscoveryVisual() {
         transition={{ delay: 0.6, duration: 1, type: 'spring' }}
         style={{ transformOrigin: '100px 100px' }}
       >
-        <polygon points="100,50 95,100 105,100" fill="#00D26A" />
+        <polygon points="100,50 95,100 105,100" fill="#10B981" />
         <polygon points="100,150 95,100 105,100" fill="rgba(255,255,255,0.3)" />
       </motion.g>
 
@@ -142,7 +142,7 @@ function ConfiguracaoVisual() {
         y1="90"
         x2="115"
         y2="105"
-        stroke="#00D26A"
+        stroke="#10B981"
         strokeWidth="3"
         strokeLinecap="round"
         initial={{ pathLength: 0 }}
@@ -156,7 +156,7 @@ function ConfiguracaoVisual() {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay: 1, duration: 0.3 }}
       >
-        <circle cx="160" cy="160" r="20" fill="#00D26A" />
+        <circle cx="160" cy="160" r="20" fill="#10B981" />
         <path
           d="M150 160 L157 167 L170 153"
           stroke="white"
@@ -191,7 +191,7 @@ function TreinamentoVisual() {
       {/* Conteúdo do quadro - gráfico */}
       <motion.path
         d="M 50 100 L 70 85 L 90 90 L 110 70 L 130 75 L 150 55"
-        stroke="#00D26A"
+        stroke="#10B981"
         strokeWidth="3"
         fill="none"
         strokeLinecap="round"
@@ -217,7 +217,7 @@ function TreinamentoVisual() {
             cx={x + 12}
             cy="140"
             r="6"
-            fill="#00D26A"
+            fill="#10B981"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 1.2 + i * 0.2 }}
@@ -284,7 +284,7 @@ function GoLiveVisual() {
           cx={star.x}
           cy={star.y}
           r="3"
-          fill="#00D26A"
+          fill="#10B981"
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: [0, 1.5, 1], opacity: 1 }}
           transition={{ delay: star.delay, duration: 0.5 }}
@@ -297,7 +297,7 @@ function GoLiveVisual() {
         animate={{ scale: 1 }}
         transition={{ delay: 1.2, type: 'spring' }}
       >
-        <circle cx="160" cy="170" r="18" fill="#00D26A" />
+        <circle cx="160" cy="170" r="18" fill="#10B981" />
         <path
           d="M 150 170 L 157 177 L 170 163"
           stroke="white"
@@ -450,7 +450,7 @@ export function PMETimeline30Dias() {
 
               {/* Linha de progresso animada */}
               <div
-                className="absolute top-1/2 left-0 h-1 bg-linear-to-r from-brand via-[#8B5CF6] to-green-500 -translate-y-1/2 rounded-full transition-none"
+                className="absolute top-1/2 left-0 h-1 bg-linear-to-r from-brand via-brand-gradient to-green-500 -translate-y-1/2 rounded-full transition-none"
                 style={{ width: `${currentProgress}%` }}
               />
 
@@ -474,7 +474,7 @@ export function PMETimeline30Dias() {
                           isActive
                             ? isLast
                               ? 'bg-linear-to-br from-green-400 to-green-600 shadow-lg shadow-green-500/40'
-                              : 'bg-linear-to-br from-brand to-[#8B5CF6] shadow-lg shadow-purple-500/40'
+                              : 'bg-linear-to-br from-brand to-brand-gradient shadow-lg shadow-purple-500/40'
                             : isCompleted
                               ? 'bg-brand'
                               : 'bg-white border-2 border-gray-300 group-hover:border-brand'
@@ -548,7 +548,7 @@ export function PMETimeline30Dias() {
                 <div className={`absolute inset-0 rounded-3xl overflow-hidden ${
                   activeIndex === 3
                     ? 'bg-linear-to-br from-green-500 to-green-700'
-                    : 'bg-linear-to-br from-brand to-[#8B5CF6]'
+                    : 'bg-linear-to-br from-brand to-brand-gradient'
                 }`}>
                   {/* Padrão de fundo decorativo */}
                   <div className="absolute inset-0 opacity-10">

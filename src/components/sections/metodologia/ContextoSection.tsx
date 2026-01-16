@@ -42,7 +42,7 @@ const PRINCIPIOS_METODOLOGIA = [
 
 export function ContextoSection() {
   return (
-    <section className="py-20 sm:py-28 lg:py-32 bg-[#FAFAFC] relative overflow-hidden">
+    <section className="py-20 sm:py-28 lg:py-32 bg-bg-secondary relative overflow-hidden">
       {/* Decoração sutil */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-brand/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand/3 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />

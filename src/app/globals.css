@@ -6,12 +6,16 @@
   --color-bg-secondary: #F6F9FC;
   --color-bg-tertiary: #EDF2F7;
   --color-bg-dark: #0A2540;
+  --color-bg-dark-hover: #0D2D4D;
   --color-bg-dark-secondary: #1A1F36;
+  --color-bg-dark-elevated: #1E293B;
 
-  /* Brand */
+  /* Brand (expanded for gradients) */
   --color-brand: #635BFF;
   --color-brand-hover: #5851EA;
   --color-brand-light: #F5F3FF;
+  --color-brand-gradient: #8B5CF6;
+  --color-brand-dark: #4F46E5;
 
   /* Text - Light backgrounds */
   --color-text-primary: #1A1D2E;
@@ -23,8 +27,9 @@
   --color-text-on-dark: #FFFFFF;
   --color-text-on-dark-secondary: #A3ACBA;
 
-  /* Semantic */
+  /* Semantic (expanded) */
   --color-success: #00A67E;
+  --color-success-bright: #10B981;
   --color-success-hover: #059669;
   --color-success-light: #DCFCE7;
   --color-success-dark: #166534;
@@ -41,6 +46,12 @@
   --color-info: #3B82F6;
   --color-info-hover: #2563EB;
   --color-info-light: #DBEAFE;
+
+  /* Data Visualization */
+  --color-chart-primary: #635BFF;
+  --color-chart-secondary: #10B981;
+  --color-chart-tertiary: #F59E0B;
+  --color-chart-quaternary: #3B82F6;
 
   /* Borders */
   --color-border-light: #E2E8F0;

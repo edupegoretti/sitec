@@ -39,7 +39,6 @@ import {
   RiscosSection,
   DiferenciaisZopu,
   MetodologiaVisual,
-  CaminhosSection,
   FAQPorQueZopu,
   CTASection,
 } from "@/components/sections";
@@ -62,18 +61,15 @@ export default function PorQueZopuPage() {
       {/* 5. Metodologia Fluidsales™ - Reutiliza componente da Home */}
       <MetodologiaVisual />
 
-      {/* 6. Caminhos de Entrada - 3 opções */}
-      <CaminhosSection />
-
-      {/* 7. FAQ - Objeções reais */}
+      {/* 6. FAQ - Objeções reais */}
       <FAQPorQueZopu />
 
-      {/* 8. CTA Final */}
+      {/* 7. CTA Final */}
       <CTASection
         title="Próximo passo: conversa de 20 min (sem compromisso)"
         description="Você sai com um plano claro — mesmo que não avance conosco. Se não fizer sentido para sua empresa, a gente fala na hora."
         ctaText="Quero diagnóstico gratuito"
-        showStats={true}
+        showStats={false}
         showBadges={true}
       />
     </main>
