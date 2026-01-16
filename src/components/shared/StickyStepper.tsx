@@ -362,10 +362,15 @@ interface MobileStepperProps {
 export function MobileStepper({ className }: MobileStepperProps) {
   const { steps, activeStep, onStepChange, variant } = useStepper()
   const scrollRef = useRef<HTMLDivElement>(null)
+  const hasMounted = useRef(false)
   const isDark = variant === 'dark'
 
-  // Auto-scroll to active step
+  // Auto-scroll to active step (only after user interaction, not on mount)
   useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true
+      return
+    }
     if (scrollRef.current) {
       const activeIndex = steps.findIndex((s) => s.id === activeStep)
       const buttons = scrollRef.current.querySelectorAll('button')

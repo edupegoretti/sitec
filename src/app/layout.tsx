@@ -110,11 +110,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${fustat.variable} ${jetbrainsMono.variable}`}>
       <head>
-        {/* Disable browser scroll restoration - must run before any other script */}
+        {/* Disable browser scroll restoration - comprehensive fix for mobile */}
         <Script
           id="scroll-restoration-fix"
           strategy="beforeInteractive"
-        >{`if(history.scrollRestoration)history.scrollRestoration='manual';window.scrollTo(0,0);`}</Script>
+        >{`(function(){if(history.scrollRestoration)history.scrollRestoration='manual';function fix(){window.scrollTo({top:0,left:0,behavior:'instant'})}fix();document.addEventListener('DOMContentLoaded',fix);window.addEventListener('load',function(){fix();setTimeout(fix,100);setTimeout(fix,300)})})();`}</Script>
         {/* CookieYes - Cookie Consent Banner (deve carregar primeiro) */}
         <Script
           id="cookieyes"

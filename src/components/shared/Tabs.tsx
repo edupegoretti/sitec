@@ -353,9 +353,14 @@ export function MobileTabsList({
 }: MobileTabsProps) {
   const { value, onValueChange } = useTabs()
   const scrollRef = useRef<HTMLDivElement>(null)
+  const hasMounted = useRef(false)
 
-  // Auto-scroll to active tab
+  // Auto-scroll to active tab (only after user interaction, not on mount)
   useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true
+      return
+    }
     if (scrollRef.current) {
       const activeIndex = tabValues.indexOf(value)
       const buttons = scrollRef.current.querySelectorAll('button')

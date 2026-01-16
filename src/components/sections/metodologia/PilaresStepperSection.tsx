@@ -649,9 +649,14 @@ function MobileStepper({
   onSelect: (index: number) => void
 }) {
   const scrollRef = useRef<HTMLDivElement>(null)
+  const hasMounted = useRef(false)
 
-  // Auto-scroll to active
+  // Auto-scroll to active (only after user interaction, not on mount)
   useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true
+      return
+    }
     if (scrollRef.current) {
       const buttons = scrollRef.current.querySelectorAll('button')
       if (buttons[activeIndex]) {
