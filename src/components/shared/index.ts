@@ -15,4 +15,3 @@ export { Analytics, GTMNoScript, trackConversion, getSavedUTMs } from './Analyti
 export type { ConversionEvent } from './Analytics'
 export { ContextualCTA, ContextualCTADual } from './ContextualCTA'
 export { DiagnosticoModal, DiagnosticoButton } from './DiagnosticoModal'
-export { ScrollToTop } from './ScrollToTop'

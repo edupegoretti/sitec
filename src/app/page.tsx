@@ -54,14 +54,10 @@ import {
   CTAFinalSection,
 } from "@/components/sections/novahome";
 import { CRORecognitionSection } from "@/components/sections/CRORecognitionSection";
-import { ScrollToTop } from "@/components/shared";
 
 export default function Home() {
   return (
     <main>
-      {/* Fix mobile scroll restoration issue */}
-      <ScrollToTop />
-
       {/* 1. Hero */}
       <HeroArquitetura />
 

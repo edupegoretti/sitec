@@ -110,6 +110,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={`${fustat.variable} ${jetbrainsMono.variable}`}>
       <head>
+        {/* Disable browser scroll restoration - must run before any other script */}
+        <Script
+          id="scroll-restoration-fix"
+          strategy="beforeInteractive"
+        >{`if(history.scrollRestoration)history.scrollRestoration='manual';window.scrollTo(0,0);`}</Script>
         {/* CookieYes - Cookie Consent Banner (deve carregar primeiro) */}
         <Script
           id="cookieyes"
