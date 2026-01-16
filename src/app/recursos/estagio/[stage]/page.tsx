@@ -12,11 +12,15 @@ import { STAGE_LABEL, type PostStage } from '@/sanity/lib/labels'
 
 export const revalidate = 1800
 
+const STAGES: readonly PostStage[] = ['diagnostico', 'estruturacao', 'implementacao', 'otimizacao', 'decisao'] as const
+
+export async function generateStaticParams() {
+  return STAGES.map((stage) => ({ stage }))
+}
+
 type PageProps = {
   params: Promise<{ stage: string }>
 }
-
-const STAGES: readonly PostStage[] = ['diagnostico', 'estruturacao', 'implementacao', 'otimizacao', 'decisao'] as const
 
 function isStage(value: string): value is PostStage {
   return (STAGES as readonly string[]).includes(value)

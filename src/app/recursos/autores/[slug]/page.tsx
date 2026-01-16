@@ -7,10 +7,18 @@ import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
 import { PostCard, type PostCardData } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { authorBySlugQuery, postsByAuthorQuery } from '@/sanity/lib/queries'
+import { authorBySlugQuery, authorSlugsQuery, postsByAuthorQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
 
 export const revalidate = 1800
+
+export async function generateStaticParams() {
+  const authors = await sanityFetch<Array<{ slug: string }>>({
+    query: authorSlugsQuery,
+    tags: ['author'],
+  })
+  return authors.map((author) => ({ slug: author.slug }))
+}
 
 type PageProps = {
   params: Promise<{ slug: string }>

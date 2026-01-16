@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "tsx scripts/seed-sanity.ts"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -41,8 +42,10 @@
     "three": "^0.182.0"
   },
   "devDependencies": {
+    "dotenv": "^16.5.0",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.0.10",
+    "tsx": "^4.19.0",
     "typescript": "5.9.3"
   }
 }

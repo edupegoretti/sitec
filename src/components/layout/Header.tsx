@@ -290,7 +290,6 @@ export function Header() {
             <DesktopDropdown
               label="Recursos"
               items={NAVIGATION.recursos}
-              comingSoon
             />
           </div>
 
@@ -366,7 +365,6 @@ export function Header() {
               isOpen={openDropdown === "recursos"}
               onToggle={() => toggleDropdown("recursos")}
               onItemClick={closeMobileMenu}
-              comingSoon
             />
 
             {/* Mobile CTAs */}

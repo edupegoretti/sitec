@@ -42,36 +42,27 @@ const PILARES = [
 export function FoundationLayersSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const visualRef = useRef<HTMLDivElement>(null)
-  const cardRefs = useRef<Array<HTMLButtonElement | null>>([])
   const [activeStep, setActiveStep] = useState(0)
-  const activeStepRef = useRef(0)
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
   const prefersReducedMotion = useReducedMotion()
-  const [autoState, setAutoState] = useState<'idle' | 'playing' | 'done'>('idle')
-  const autoStateRef = useRef(autoState)
+  const hasPlayedRef = useRef(false)
+  const [autoPlaying, setAutoPlaying] = useState(false)
   const lastStep = PILARES.length - 1
 
   // Detecta se a seção está visível
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
   useEffect(() => {
-    activeStepRef.current = activeStep
-  }, [activeStep])
-
-  useEffect(() => {
-    autoStateRef.current = autoState
-  }, [autoState])
-
-  useEffect(() => {
     if (!prefersReducedMotion) return
     setActiveStep(lastStep)
-    setAutoState('done')
+    setAutoPlaying(false)
   }, [lastStep, prefersReducedMotion])
 
   useEffect(() => {
-    if (!isInView || prefersReducedMotion || autoStateRef.current !== 'idle') return
+    if (!isInView || prefersReducedMotion || hasPlayedRef.current) return
 
-    setAutoState('playing')
+    hasPlayedRef.current = true
+    setAutoPlaying(true)
     const timers: Array<ReturnType<typeof setTimeout>> = []
     const stepDuration = 720
 
@@ -80,57 +71,16 @@ export function FoundationLayersSection() {
     })
 
     timers.push(
-      setTimeout(() => setAutoState('done'), PILARES.length * stepDuration + 200)
+      setTimeout(() => {
+        setActiveStep(lastStep)
+        setAutoPlaying(false)
+      }, PILARES.length * stepDuration + 200)
     )
 
     return () => {
       timers.forEach((timer) => clearTimeout(timer))
     }
-  }, [isInView, prefersReducedMotion])
-
-  // Scroll-driven active step (premium scrollytelling feel)
-  useEffect(() => {
-    const cards = cardRefs.current.filter(Boolean) as HTMLButtonElement[]
-    if (cards.length === 0) return
-
-    const ratios = new Map<number, number>()
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = Number((entry.target as HTMLElement).dataset.index)
-          ratios.set(index, entry.isIntersecting ? entry.intersectionRatio : 0)
-        })
-
-        let bestIndex = activeStepRef.current
-        let bestRatio = ratios.get(bestIndex) ?? 0
-
-        ratios.forEach((ratio, index) => {
-          if (ratio > bestRatio) {
-            bestRatio = ratio
-            bestIndex = index
-          }
-        })
-
-        if (autoStateRef.current === 'playing') return
-
-        if (bestRatio >= 0.25 && bestIndex !== activeStepRef.current) {
-          setActiveStep(bestIndex)
-        }
-      },
-      {
-        threshold: [0, 0.25, 0.4, 0.6, 0.8, 1],
-        rootMargin: '-25% 0px -55% 0px',
-      }
-    )
-
-    cards.forEach((card, index) => {
-      card.dataset.index = String(index)
-      observer.observe(card)
-    })
-
-    return () => observer.disconnect()
-  }, [])
+  }, [isInView, lastStep, prefersReducedMotion])
 
   return (
     <section
@@ -171,30 +121,13 @@ export function FoundationLayersSection() {
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Coluna de Cards */}
             <div className="space-y-4 sm:space-y-6 order-2 lg:order-1">
-              <div className="flex items-center justify-between text-sm text-gray-500">
-                <span>4 camadas da fundação</span>
-                <button
-                  type="button"
-                  className="text-brand font-medium hover:text-brand-hover transition-colors"
-                  onClick={() => {
-                    setActiveStep(lastStep)
-                    setAutoState('done')
-                  }}
-                >
-                  Ver fundação completa
-                </button>
-              </div>
               {PILARES.map((pilar, index) => {
                 const Icon = pilar.icon
                 const isActive = index === activeStep
 
                 return (
-                  <motion.button
+                  <motion.div
                     key={index}
-                    ref={(el) => {
-                      cardRefs.current[index] = el
-                    }}
-                    type="button"
                     initial={
                       prefersReducedMotion ? undefined : { opacity: 0, x: -20 }
                     }
@@ -212,19 +145,17 @@ export function FoundationLayersSection() {
                     }}
                     className={[
                       'pilar-card group w-full text-left p-5 sm:p-6 rounded-2xl border transition-all duration-300',
-                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/30 focus-visible:ring-offset-2 focus-visible:ring-offset-white',
                       isActive
                         ? 'bg-white border-brand/35 shadow-lg'
                         : 'bg-gray-50 border-gray-200 hover:border-brand/30 hover:bg-white hover:shadow-lg',
                     ].join(' ')}
-                    aria-pressed={isActive}
-                    onMouseEnter={() => setHoveredStep(index)}
-                    onMouseLeave={() => setHoveredStep(null)}
-                    onFocus={() => setHoveredStep(index)}
-                    onBlur={() => setHoveredStep(null)}
-                    onClick={() => {
-                      setActiveStep(index)
-                      setAutoState('done')
+                    onMouseEnter={() => {
+                      if (autoPlaying) return
+                      setHoveredStep(index)
+                    }}
+                    onMouseLeave={() => {
+                      if (autoPlaying) return
+                      setHoveredStep(null)
                     }}
                   >
                     {/* Icon + Title */}
@@ -246,7 +177,7 @@ export function FoundationLayersSection() {
                         </p>
                       </div>
                     </div>
-                  </motion.button>
+                  </motion.div>
                 )
               })}
             </div>
@@ -273,7 +204,7 @@ export function FoundationLayersSection() {
               <div className="bg-linear-to-br from-slate-50 via-white to-amber-50/50 rounded-3xl p-6 sm:p-8 border border-slate-200/70 shadow-lg">
                 <FoundationSVG
                   ref={visualRef}
-                  activeLayer={hoveredStep ?? activeStep}
+                  activeLayer={autoPlaying ? activeStep : hoveredStep ?? activeStep}
                   visibleLayers={isInView ? activeStep + 1 : 0}
                   showGrowth={isInView && activeStep === lastStep}
                 />

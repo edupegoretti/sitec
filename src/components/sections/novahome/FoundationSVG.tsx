@@ -1,118 +1,79 @@
 'use client'
 
-import { forwardRef, useEffect, useMemo, useRef } from 'react'
+import { forwardRef, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { useReducedMotion } from 'framer-motion'
 
 const LAYERS = [
   {
     id: 'processo',
-    numero: '01',
     titulo: 'Processo',
-    subtitulo: 'A fundação',
-    accent: '#334155',
+    color: '#475569',
+    colorLight: '#64748b',
+    colorDark: '#334155',
   },
   {
     id: 'adocao',
-    numero: '02',
     titulo: 'Adoção',
-    subtitulo: 'Por função',
-    accent: '#635BFF',
+    color: '#6366f1',
+    colorLight: '#818cf8',
+    colorDark: '#4f46e5',
   },
   {
     id: 'sustentacao',
-    numero: '03',
     titulo: 'Sustentação',
-    subtitulo: 'Contínua',
-    accent: '#7C3AED',
+    color: '#8b5cf6',
+    colorLight: '#a78bfa',
+    colorDark: '#7c3aed',
   },
   {
     id: 'evolucao',
-    numero: '04',
     titulo: 'Evolução',
-    subtitulo: 'Com o negócio',
-    accent: '#10B981',
+    color: '#10b981',
+    colorLight: '#34d399',
+    colorDark: '#059669',
   },
 ] as const
-
-type LayerGeometry = {
-  x: number
-  y: number
-  w: number
-  h: number
-  depthX: number
-  depthY: number
-}
-
-function hexToRgb(hex: string) {
-  const normalized = hex.replace('#', '').trim()
-  const value =
-    normalized.length === 3
-      ? normalized
-          .split('')
-          .map((c) => c + c)
-          .join('')
-      : normalized
-
-  const int = Number.parseInt(value, 16)
-  const r = (int >> 16) & 255
-  const g = (int >> 8) & 255
-  const b = int & 255
-  return { r, g, b }
-}
-
-function rgba(hex: string, alpha: number) {
-  const { r, g, b } = hexToRgb(hex)
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`
-}
-
-function mixColor(base: string, mix: string, amount: number) {
-  const a = hexToRgb(base)
-  const b = hexToRgb(mix)
-  const r = Math.round(a.r + (b.r - a.r) * amount)
-  const g = Math.round(a.g + (b.g - a.g) * amount)
-  const bValue = Math.round(a.b + (b.b - a.b) * amount)
-  return `rgb(${r}, ${g}, ${bValue})`
-}
-
-function pointsToString(points: Array<[number, number]>) {
-  return points.map((point) => point.join(',')).join(' ')
-}
-
-function topFacePoints(layer: LayerGeometry) {
-  const { x, y, w, depthX, depthY } = layer
-  return pointsToString([
-    [x, y],
-    [x + w, y],
-    [x + w + depthX, y - depthY],
-    [x + depthX, y - depthY],
-  ])
-}
-
-function frontFacePoints(layer: LayerGeometry) {
-  const { x, y, w, h } = layer
-  return pointsToString([
-    [x, y],
-    [x + w, y],
-    [x + w, y + h],
-    [x, y + h],
-  ])
-}
-
-function sideFacePoints(layer: LayerGeometry) {
-  const { x, y, w, h, depthX, depthY } = layer
-  return pointsToString([
-    [x + w, y],
-    [x + w + depthX, y - depthY],
-    [x + w + depthX, y - depthY + h],
-    [x + w, y + h],
-  ])
-}
 
 interface FoundationSVGProps {
   activeLayer?: number | null
   visibleLayers?: number
   showGrowth?: boolean
+}
+
+/*
+ * GEOMETRIA ISOMÉTRICA - PIRÂMIDE MAXIMIZADA
+ *
+ * ViewBox: 400 x 440 (inclui espaço para apex)
+ * Pirâmide ocupa ~90% do espaço horizontal
+ * centerX = 200, baseY = 340
+ */
+const PYRAMID_GEOMETRY = {
+  viewBox: { w: 400, h: 440 },
+  centerX: 200,
+  layers: [
+    // Layer 0 - Processo (base maior, r=95)
+    {
+      base: { front: { x: 200, y: 420 }, right: { x: 390, y: 325 }, back: { x: 200, y: 230 }, left: { x: 10, y: 325 } },
+      top: { front: { x: 200, y: 355 }, right: { x: 355, y: 277 }, back: { x: 200, y: 200 }, left: { x: 45, y: 277 } },
+    },
+    // Layer 1 - Adoção (r=78)
+    {
+      base: { front: { x: 200, y: 355 }, right: { x: 355, y: 277 }, back: { x: 200, y: 200 }, left: { x: 45, y: 277 } },
+      top: { front: { x: 200, y: 295 }, right: { x: 322, y: 233 }, back: { x: 200, y: 170 }, left: { x: 78, y: 233 } },
+    },
+    // Layer 2 - Sustentação (r=61)
+    {
+      base: { front: { x: 200, y: 295 }, right: { x: 322, y: 233 }, back: { x: 200, y: 170 }, left: { x: 78, y: 233 } },
+      top: { front: { x: 200, y: 238 }, right: { x: 290, y: 190 }, back: { x: 200, y: 142 }, left: { x: 110, y: 190 } },
+    },
+    // Layer 3 - Evolução (r=45)
+    {
+      base: { front: { x: 200, y: 238 }, right: { x: 290, y: 190 }, back: { x: 200, y: 142 }, left: { x: 110, y: 190 } },
+      top: { front: { x: 200, y: 185 }, right: { x: 260, y: 150 }, back: { x: 200, y: 115 }, left: { x: 140, y: 150 } },
+    },
+  ],
+  apex: { x: 200, y: 60 },
 }
 
 export const FoundationSVG = forwardRef<HTMLDivElement, FoundationSVGProps>(
@@ -123,467 +84,227 @@ export const FoundationSVG = forwardRef<HTMLDivElement, FoundationSVGProps>(
     const svgRef = useRef<SVGSVGElement>(null)
     const prefersReducedMotion = useReducedMotion()
 
-    const geometry = useMemo(() => {
-      const viewBox = { w: 720, h: 520 }
-      const depth = { x: 72, y: 32 }
-      const base = {
-        x: 190,
-        y: 330,
-        w: 330,
-        h: 34,
-        gap: 12,
-      }
-
-      const layers = Array.from({ length: LAYERS.length }, (_, index) => {
-        const w = base.w - index * 26
-        const x = base.x + index * 13
-        const y = base.y - index * (base.h + base.gap)
-        return {
-          x,
-          y,
-          w,
-          h: base.h,
-          depthX: depth.x,
-          depthY: depth.y,
-        }
-      })
-
-      const spineX = 86
-      const spineTop = layers[layers.length - 1].y + base.h / 2 - 8
-      const spineBottom = layers[0].y + base.h / 2 + 22
-      const connectorLen = layers[0].x - spineX - 12
-
-      const ground = {
-        x: base.x - 40,
-        y: base.y + base.h + 18,
-        w: base.w + 80,
-        depthX: depth.x + 18,
-        depthY: depth.y + 8,
-      }
-
-      const topLayer = layers[layers.length - 1]
-      const growth = {
-        x: topLayer.x + topLayer.w - 150,
-        y: topLayer.y - 88,
-        w: 150,
-        h: 22,
-        depthX: depth.x - 10,
-        depthY: depth.y - 6,
-      }
-
-      return {
-        viewBox,
-        depth,
-        base,
-        layers,
-        spineX,
-        spineTop,
-        spineBottom,
-        connectorLen,
-        ground,
-        growth,
-      }
-    }, [])
-
+    // Animação das camadas aparecendo
     useEffect(() => {
       if (!svgRef.current) return
 
-      const duration = prefersReducedMotion ? 0 : 0.55
-      const microDuration = prefersReducedMotion ? 0 : 0.32
+      const duration = prefersReducedMotion ? 0 : 0.6
       const q = gsap.utils.selector(svgRef.current)
 
-      geometry.layers.forEach((_, index) => {
+      PYRAMID_GEOMETRY.layers.forEach((_, index) => {
         const isBuilt = index < visibleLayers
 
-        gsap.to(q(`.foundation-layer[data-index="${index}"]`), {
+        gsap.to(q(`.pyramid-layer[data-index="${index}"]`), {
           opacity: isBuilt ? 1 : 0,
-          y: isBuilt ? 0 : 18,
-          scale: isBuilt ? 1 : 0.98,
+          y: isBuilt ? 0 : 20,
           duration,
-          ease: 'power3.out',
-          overwrite: 'auto',
-          transformOrigin: 'center',
-        })
-
-        gsap.to(q(`.step-node[data-index="${index}"] .node-fill`), {
-          opacity: isBuilt ? 1 : 0,
-          scale: isBuilt ? 1 : 0,
-          duration: microDuration,
-          ease: 'back.out(1.6)',
-          transformOrigin: 'center',
-          overwrite: 'auto',
-        })
-
-        gsap.to(q(`.step-node[data-index="${index}"] .node-label`), {
-          opacity: isBuilt ? 1 : 0.4,
-          duration: microDuration,
           ease: 'power2.out',
           overwrite: 'auto',
         })
       })
-    }, [geometry, prefersReducedMotion, visibleLayers])
+    }, [prefersReducedMotion, visibleLayers])
 
+    // Animação do layer ativo
     useEffect(() => {
       if (!svgRef.current) return
 
-      const microDuration = prefersReducedMotion ? 0 : 0.32
+      const duration = prefersReducedMotion ? 0 : 0.3
       const q = gsap.utils.selector(svgRef.current)
 
-      geometry.layers.forEach((_, index) => {
+      PYRAMID_GEOMETRY.layers.forEach((_, index) => {
         const isActive = activeLayer === index
+        const isBuilt = index < visibleLayers
 
         gsap.to(q(`.layer-highlight[data-index="${index}"]`), {
-          opacity: isActive ? 1 : 0,
-          duration: microDuration,
+          opacity: isActive && isBuilt ? 1 : 0,
+          duration,
           ease: 'power2.out',
-          overwrite: 'auto',
-        })
-
-        gsap.to(q(`.layer-glow[data-index="${index}"]`), {
-          opacity: isActive ? 0.35 : 0,
-          duration: microDuration,
-          ease: 'power2.out',
-          overwrite: 'auto',
-        })
-
-        gsap.to(q(`.step-node[data-index="${index}"] .node-ring`), {
-          opacity: isActive ? 1 : 0.3,
-          scale: isActive ? 1 : 0.92,
-          duration: microDuration,
-          ease: 'power2.out',
-          transformOrigin: 'center',
-          overwrite: 'auto',
-        })
-
-        gsap.to(q(`.step-node[data-index="${index}"] .node-connector`), {
-          opacity: isActive ? 1 : 0,
-          scaleX: isActive ? 1 : 0,
-          duration: microDuration,
-          ease: 'power3.out',
-          transformOrigin: 'left center',
           overwrite: 'auto',
         })
       })
-    }, [activeLayer, geometry, prefersReducedMotion])
+    }, [activeLayer, prefersReducedMotion, visibleLayers])
 
+    // Animação do apex
     const shouldShowGrowth = showGrowth && visibleLayers >= LAYERS.length
 
     useEffect(() => {
       if (!svgRef.current) return
 
-      const duration = prefersReducedMotion ? 0 : 0.55
-      const microDuration = prefersReducedMotion ? 0 : 0.32
+      const duration = prefersReducedMotion ? 0 : 0.7
       const q = gsap.utils.selector(svgRef.current)
 
-      gsap.to(q('.growth'), {
+      gsap.to(q('.apex-group'), {
         opacity: shouldShowGrowth ? 1 : 0,
-        y: shouldShowGrowth ? 0 : 14,
+        y: shouldShowGrowth ? 0 : 15,
         duration,
-        ease: 'power3.out',
-        overwrite: 'auto',
-      })
-
-      const growthPath = svgRef.current.querySelector(
-        '.growth-line'
-      ) as SVGPathElement | null
-      if (growthPath) {
-        const length = growthPath.getTotalLength()
-        gsap.set(growthPath, {
-          strokeDasharray: length,
-          strokeDashoffset: length,
-        })
-        gsap.to(growthPath, {
-          strokeDashoffset: shouldShowGrowth ? 0 : length,
-          duration: prefersReducedMotion ? 0 : 0.9,
-          ease: 'power2.out',
-          delay: shouldShowGrowth && !prefersReducedMotion ? 0.14 : 0,
-          overwrite: 'auto',
-        })
-      }
-
-      gsap.to(q('.growth-dot'), {
-        opacity: shouldShowGrowth ? 1 : 0,
-        scale: shouldShowGrowth ? 1 : 0,
-        duration: microDuration,
-        ease: 'back.out(1.6)',
-        delay: shouldShowGrowth && !prefersReducedMotion ? 0.62 : 0,
-        transformOrigin: 'center',
+        ease: 'power2.out',
         overwrite: 'auto',
       })
     }, [prefersReducedMotion, shouldShowGrowth])
 
-    const viewBox = `0 0 ${geometry.viewBox.w} ${geometry.viewBox.h}`
-    const stroke = rgba('#0F172A', 0.22)
+    const geo = PYRAMID_GEOMETRY
+    const viewBox = `0 0 ${geo.viewBox.w} ${geo.viewBox.h}`
 
     return (
-      <div ref={ref} className="relative w-full max-w-xl mx-auto">
+      <div ref={ref} className="relative w-full mx-auto">
         <svg
           ref={svgRef}
           viewBox={viewBox}
           className="w-full h-auto"
           role="img"
-          aria-label="Camadas de fundação da Arquitetura de Receita"
+          aria-label="Pirâmide da Arquitetura de Receita"
         >
           <defs>
-            <radialGradient id="foundation-bg" cx="50%" cy="35%" r="60%">
-              <stop offset="0%" stopColor={rgba('#FFFFFF', 1)} />
-              <stop offset="55%" stopColor={rgba('#F8FAFC', 1)} />
-              <stop offset="100%" stopColor={rgba('#EEF2FF', 0.7)} />
-            </radialGradient>
-
-            <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="160%">
-              <feDropShadow
-                dx="0"
-                dy="10"
-                stdDeviation="12"
-                floodColor="#0F172A"
-                floodOpacity="0.18"
-              />
+            {/* Gradientes para cada camada */}
+            {LAYERS.map((layer, index) => (
+              <linearGradient
+                key={`left-${layer.id}`}
+                id={`left-${index}`}
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor={layer.colorDark} />
+                <stop offset="100%" stopColor={layer.color} />
+              </linearGradient>
+            ))}
+            {LAYERS.map((layer, index) => (
+              <linearGradient
+                key={`right-${layer.id}`}
+                id={`right-${index}`}
+                x1="100%"
+                y1="0%"
+                x2="0%"
+                y2="100%"
+              >
+                <stop offset="0%" stopColor={layer.colorLight} />
+                <stop offset="100%" stopColor={layer.color} />
+              </linearGradient>
+            ))}
+            {LAYERS.map((layer, index) => (
+              <linearGradient
+                key={`top-${layer.id}`}
+                id={`top-${index}`}
+                x1="0%"
+                y1="100%"
+                x2="100%"
+                y2="0%"
+              >
+                <stop offset="0%" stopColor={layer.color} />
+                <stop offset="100%" stopColor={layer.colorLight} />
+              </linearGradient>
+            ))}
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="6" stdDeviation="10" floodColor="#0f172a" floodOpacity="0.15" />
             </filter>
           </defs>
 
-          <rect
-            x="0"
-            y="0"
-            width={geometry.viewBox.w}
-            height={geometry.viewBox.h}
-            fill="url(#foundation-bg)"
+          {/* Sombra no chão - posicionada abaixo da base da pirâmide */}
+          <ellipse
+            cx={geo.centerX}
+            cy={428}
+            rx={170}
+            ry={35}
+            fill="rgba(15, 23, 42, 0.12)"
           />
 
-          <polygon
-            points={pointsToString([
-              [geometry.ground.x, geometry.ground.y],
-              [geometry.ground.x + geometry.ground.w, geometry.ground.y],
-              [
-                geometry.ground.x + geometry.ground.w + geometry.ground.depthX,
-                geometry.ground.y - geometry.ground.depthY,
-              ],
-              [
-                geometry.ground.x + geometry.ground.depthX,
-                geometry.ground.y - geometry.ground.depthY,
-              ],
-            ])}
-            fill={rgba('#0F172A', 0.08)}
-          />
+          {/* Camadas da pirâmide */}
+          <g filter="url(#shadow)">
+            {geo.layers.map((layerGeo, index) => {
+              const layer = LAYERS[index]
+              const { base, top } = layerGeo
 
-          <line
-            x1={geometry.spineX}
-            y1={geometry.spineTop}
-            x2={geometry.spineX}
-            y2={geometry.spineBottom}
-            stroke={rgba('#0F172A', 0.18)}
-            strokeWidth="2"
-            strokeDasharray="6 10"
-            vectorEffect="non-scaling-stroke"
-          />
+              // Face esquerda (front-left)
+              const leftFace = `M ${base.front.x} ${base.front.y} L ${base.left.x} ${base.left.y} L ${top.left.x} ${top.left.y} L ${top.front.x} ${top.front.y} Z`
 
-          {geometry.layers.map((layer, index) => {
-            const y = layer.y + layer.h / 2
-            const accent = LAYERS[index].accent
-            return (
-              <g
-                key={LAYERS[index].id}
-                className="step-node"
-                data-index={index}
-                transform={`translate(${geometry.spineX}, ${y})`}
-              >
+              // Face direita (front-right)
+              const rightFace = `M ${base.front.x} ${base.front.y} L ${base.right.x} ${base.right.y} L ${top.right.x} ${top.right.y} L ${top.front.x} ${top.front.y} Z`
+
+              // Face superior
+              const topFace = `M ${top.front.x} ${top.front.y} L ${top.right.x} ${top.right.y} L ${top.back.x} ${top.back.y} L ${top.left.x} ${top.left.y} Z`
+
+              // Outline para highlight
+              const outline = `M ${base.left.x} ${base.left.y} L ${base.front.x} ${base.front.y} L ${base.right.x} ${base.right.y} L ${top.right.x} ${top.right.y} L ${top.front.x} ${top.front.y} L ${top.left.x} ${top.left.y} Z`
+
+              return (
                 <g
-                  className="node-connector"
-                  opacity={0}
-                  transform="scale(0, 1)"
-                  style={{
-                    transformBox: 'fill-box',
-                    transformOrigin: 'left center',
-                  }}
+                  key={layer.id}
+                  className="pyramid-layer"
+                  data-index={index}
+                  opacity="0"
                 >
-                  <line
-                    x1="0"
-                    y1="0"
-                    x2={geometry.connectorLen}
-                    y2="0"
-                    stroke={rgba(accent, 0.7)}
-                    strokeWidth="2"
-                    strokeDasharray="3 8"
+                  <path d={leftFace} fill={`url(#left-${index})`} />
+                  <path d={rightFace} fill={`url(#right-${index})`} />
+                  <path d={topFace} fill={`url(#top-${index})`} />
+
+                  {/* Highlight edges */}
+                  <path
+                    d={`M ${top.left.x} ${top.left.y} L ${top.front.x} ${top.front.y} L ${top.right.x} ${top.right.y}`}
+                    fill="none"
+                    stroke="rgba(255,255,255,0.4)"
+                    strokeWidth="1.5"
                     strokeLinecap="round"
-                    vectorEffect="non-scaling-stroke"
+                  />
+
+                  {/* Active highlight */}
+                  <path
+                    className="layer-highlight"
+                    data-index={index}
+                    d={outline}
+                    fill="none"
+                    stroke={layer.colorLight}
+                    strokeWidth="3"
+                    opacity="0"
                   />
                 </g>
+              )
+            })}
+          </g>
 
-                <circle
-                  className="node-ring"
-                  cx="0"
-                  cy="0"
-                  r="14"
-                  fill="none"
-                  stroke={rgba(accent, 0.6)}
-                  strokeWidth="2"
-                  vectorEffect="non-scaling-stroke"
-                  opacity={0.3}
-                />
-                <circle
-                  cx="0"
-                  cy="0"
-                  r="9"
-                  fill={rgba('#FFFFFF', 0.95)}
-                  stroke={rgba('#0F172A', 0.16)}
-                  strokeWidth="2"
-                  vectorEffect="non-scaling-stroke"
-                />
-                <circle
-                  className="node-fill"
-                  cx="0"
-                  cy="0"
-                  r="4.5"
-                  fill={accent}
-                  opacity={0}
-                  transform="scale(0)"
-                />
-                <text
-                  className="node-label"
-                  x="-38"
-                  y="4"
-                  fill={rgba('#0F172A', 0.6)}
-                  fontSize="12"
-                  fontWeight="600"
-                  letterSpacing="1"
-                  opacity={0.4}
-                >
-                  {LAYERS[index].numero}
-                </text>
-              </g>
-            )
-          })}
-
-          {geometry.layers.map((layer, index) => {
-            const accent = LAYERS[index].accent
-            const topFill = mixColor(accent, '#FFFFFF', 0.45)
-            const frontFill = mixColor(accent, '#0B1220', 0.08)
-            const sideFill = mixColor(accent, '#0B1220', 0.2)
-
-            return (
-              <g
-                key={LAYERS[index].id}
-                className="foundation-layer"
-                data-index={index}
-                opacity={0}
-                filter="url(#soft-shadow)"
-                style={{
-                  transformBox: 'fill-box',
-                  transformOrigin: 'center',
-                }}
-              >
-                <polygon points={sideFacePoints(layer)} fill={sideFill} />
-                <polygon points={frontFacePoints(layer)} fill={frontFill} />
-
-                <path
-                  d={`M ${layer.x + 16} ${layer.y + layer.h * 0.4} H ${
-                    layer.x + layer.w - 16
-                  }`}
-                  stroke={rgba('#0F172A', 0.18)}
-                  strokeWidth="1"
-                />
-                <path
-                  d={`M ${layer.x + 16} ${layer.y + layer.h * 0.7} H ${
-                    layer.x + layer.w - 16
-                  }`}
-                  stroke={rgba('#0F172A', 0.12)}
-                  strokeWidth="1"
-                />
-
-                <polygon
-                  className="layer-glow"
-                  data-index={index}
-                  points={topFacePoints(layer)}
-                  fill={rgba(accent, 0.55)}
-                  opacity={0}
-                />
-
-                <polygon
-                  points={topFacePoints(layer)}
-                  fill={topFill}
-                  stroke={stroke}
-                  strokeWidth="1.5"
-                  vectorEffect="non-scaling-stroke"
-                />
-
-                <polyline
-                  points={pointsToString([
-                    [layer.x + 20, layer.y + 6],
-                    [layer.x + layer.w - 20, layer.y + 6],
-                  ])}
-                  stroke={rgba('#FFFFFF', 0.6)}
-                  strokeWidth="1.4"
-                  vectorEffect="non-scaling-stroke"
-                />
-
-                <polygon
-                  className="layer-highlight"
-                  data-index={index}
-                  points={topFacePoints(layer)}
-                  fill="none"
-                  stroke={rgba(accent, 0.9)}
-                  strokeWidth="2.4"
-                  vectorEffect="non-scaling-stroke"
-                  opacity={0}
-                />
-              </g>
-            )
-          })}
-
-          <g className="growth" opacity={0} transform="translate(0, 14)">
-            <polygon
-              points={sideFacePoints(geometry.growth)}
-              fill={mixColor('#10B981', '#0B1220', 0.18)}
-            />
-            <polygon
-              points={frontFacePoints(geometry.growth)}
-              fill={mixColor('#10B981', '#0B1220', 0.06)}
-            />
-            <polygon
-              points={topFacePoints(geometry.growth)}
-              fill={mixColor('#10B981', '#FFFFFF', 0.45)}
-              stroke={rgba('#10B981', 0.65)}
-              strokeWidth="1.4"
-              vectorEffect="non-scaling-stroke"
-            />
-
+          {/* Apex - Crescimento */}
+          <g className="apex-group" opacity="0">
+            {/* Linha conectora do apex até o topo da pirâmide */}
             <line
-              x1={geometry.growth.x + geometry.growth.w - 32}
-              y1={geometry.growth.y + geometry.growth.h + 12}
-              x2={geometry.growth.x + geometry.growth.w - 32}
-              y2={geometry.growth.y + geometry.growth.h + 38}
-              stroke={rgba('#0F172A', 0.25)}
-              strokeWidth="3"
-              strokeLinecap="round"
+              x1={geo.apex.x}
+              y1={geo.apex.y + 20}
+              x2={geo.apex.x}
+              y2={geo.layers[3].top.back.y + 5}
+              stroke="#10b981"
+              strokeWidth="2"
+              strokeDasharray="5 3"
+              opacity="0.7"
             />
-
+            {/* Diamante isométrico no apex */}
+            <polygon
+              points={`${geo.apex.x},${geo.apex.y - 6} ${geo.apex.x + 12},${geo.apex.y + 8} ${geo.apex.x},${geo.apex.y + 22} ${geo.apex.x - 12},${geo.apex.y + 8}`}
+              fill="#10b981"
+            />
+            <polygon
+              points={`${geo.apex.x},${geo.apex.y} ${geo.apex.x + 7},${geo.apex.y + 8} ${geo.apex.x},${geo.apex.y + 16} ${geo.apex.x - 7},${geo.apex.y + 8}`}
+              fill="#34d399"
+            />
+            {/* Seta indicando crescimento */}
             <path
-              className="growth-line"
-              d={`M ${geometry.growth.x + 22} ${geometry.growth.y + 48}
-                  L ${geometry.growth.x + 58} ${geometry.growth.y + 34}
-                  L ${geometry.growth.x + 88} ${geometry.growth.y + 38}
-                  L ${geometry.growth.x + 122} ${geometry.growth.y + 20}`}
-              stroke="#10B981"
-              strokeWidth="3"
+              d={`M ${geo.apex.x} ${geo.apex.y - 20} L ${geo.apex.x - 6} ${geo.apex.y - 11} M ${geo.apex.x} ${geo.apex.y - 20} L ${geo.apex.x + 6} ${geo.apex.y - 11}`}
+              stroke="#10b981"
+              strokeWidth="2.5"
+              strokeLinecap="round"
               fill="none"
-              strokeLinecap="round"
-              vectorEffect="non-scaling-stroke"
             />
-            <circle
-              className="growth-dot"
-              cx={geometry.growth.x + 122}
-              cy={geometry.growth.y + 20}
-              r="5"
-              fill="#10B981"
-              opacity={0}
-              transform="scale(0)"
-            />
-            <path
-              d={`M ${geometry.growth.x + 122} ${geometry.growth.y + 20}
-                  L ${geometry.growth.x + 132} ${geometry.growth.y + 16}
-                  L ${geometry.growth.x + 126} ${geometry.growth.y + 26} Z`}
-              fill={rgba('#10B981', 0.95)}
-            />
+            {/* Label CRESCIMENTO */}
+            <text
+              x={geo.apex.x}
+              y={geo.apex.y - 30}
+              fill="#059669"
+              fontSize="14"
+              fontWeight="700"
+              fontFamily="system-ui, sans-serif"
+              textAnchor="middle"
+              letterSpacing="1"
+            >
+              CRESCIMENTO
+            </text>
           </g>
         </svg>
       </div>

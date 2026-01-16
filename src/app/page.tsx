@@ -46,7 +46,6 @@ import {
   ReframeSection,
   MetodoFluidsalesShowcase,
   FoundationLayersSection,
-  EstadoDesejadoSection,
   MetodoFluidsalesSection,
   IAMultiplierSection,
   EnablementFluidzSection,
@@ -57,6 +56,7 @@ import {
   OfertasSection,
   CTAFinalSection,
 } from "@/components/sections/novahome";
+import { CRORecognitionSection } from "@/components/sections/CRORecognitionSection";
 
 export default function Home() {
   return (
@@ -76,9 +76,6 @@ export default function Home() {
       {/* 5. Fundação - Os 4 pilares da Arquitetura de Receita */}
       <FoundationLayersSection />
 
-      {/* 6. Estado Desejado - Receita Auditavel */}
-      <EstadoDesejadoSection />
-
       {/* 6. Metodo Timeline - 3 etapas de entrega */}
       <MetodoFluidsalesSection />
 
@@ -97,7 +94,10 @@ export default function Home() {
       {/* 11. Prova - Cases com metricas reais */}
       <CasesProvaSection />
 
-      {/* 12. Arquitetura de Receita - 4 Pilares */}
+      {/* 12. Reconhecimento - Gold Partner + Certificações */}
+      <CRORecognitionSection />
+
+      {/* 13. Arquitetura de Receita - 4 Pilares */}
       <ComparacaoSection />
 
       {/* 13. Ofertas - CRM Express, RevOps Launch, Enterprise */}

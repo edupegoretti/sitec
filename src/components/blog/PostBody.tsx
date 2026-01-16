@@ -4,6 +4,7 @@ import type { PortableTextComponents } from '@portabletext/react'
 import { PortableText } from 'next-sanity'
 
 import { urlForImage } from '@/sanity/lib/image'
+import { ContentUpgradeInline, type ContentUpgradeData } from './ContentUpgradeInline'
 
 const components: PortableTextComponents = {
   types: {
@@ -20,6 +21,28 @@ const components: PortableTextComponents = {
           </div>
           {caption ? <figcaption className="mt-2 text-sm text-gray-500">{caption}</figcaption> : null}
         </figure>
+      )
+    },
+    contentUpgradeBlock: ({ value }) => {
+      if (!value?.contentUpgrade) return null
+
+      const contentUpgrade: ContentUpgradeData = {
+        _id: value.contentUpgrade._id,
+        title: value.contentUpgrade.title,
+        slug: value.contentUpgrade.slug?.current || value.contentUpgrade._id,
+        format: value.contentUpgrade.format || 'checklist',
+        headline: value.contentUpgrade.headline,
+        description: value.contentUpgrade.description,
+        bulletPoints: value.contentUpgrade.bulletPoints,
+        ctaText: value.contentUpgrade.ctaText,
+        thankYouMessage: value.contentUpgrade.thankYouMessage,
+      }
+
+      return (
+        <ContentUpgradeInline
+          contentUpgrade={contentUpgrade}
+          variant={value.variant || 'card'}
+        />
       )
     },
   },

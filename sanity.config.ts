@@ -3,9 +3,25 @@ import { deskTool } from 'sanity/desk'
 import { visionTool } from '@sanity/vision'
 import { presentationTool } from 'sanity/presentation'
 
-import { dataset, projectId, siteUrl, studioTitle } from './src/sanity/lib/env'
+import { dataset, projectId, isSanityConfigured, siteUrl, studioTitle } from './src/sanity/lib/env'
 import { schemaTypes } from './src/sanity/schemaTypes'
 import { structure } from './src/sanity/structure'
+
+// Throw helpful error if Sanity is not configured
+if (!isSanityConfigured) {
+  console.error(`
+╔══════════════════════════════════════════════════════════════════╗
+║                    SANITY NAO CONFIGURADO                        ║
+╠══════════════════════════════════════════════════════════════════╣
+║  Para usar o Sanity Studio, configure as variaveis de ambiente:  ║
+║                                                                  ║
+║  1. Crie o arquivo .env.local na raiz do projeto                 ║
+║  2. Adicione: NEXT_PUBLIC_SANITY_PROJECT_ID=seu_project_id       ║
+║                                                                  ║
+║  Consulte docs/GUIA-SANITY.md para instrucoes completas.         ║
+╚══════════════════════════════════════════════════════════════════╝
+`)
+}
 
 const plugins = [
   deskTool({ structure }),

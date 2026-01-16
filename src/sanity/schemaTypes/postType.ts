@@ -181,6 +181,45 @@ export const postType = defineType({
             defineField({ name: 'caption', title: 'Legenda', type: 'string' }),
           ],
         },
+        {
+          name: 'contentUpgradeBlock',
+          title: 'Content Upgrade',
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'contentUpgrade',
+              title: 'Material',
+              type: 'reference',
+              to: [{ type: 'contentUpgrade' }],
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'variant',
+              title: 'Variante visual',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Card (padrão)', value: 'card' },
+                  { title: 'Banner', value: 'banner' },
+                  { title: 'Minimal', value: 'minimal' },
+                ],
+              },
+              initialValue: 'card',
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'contentUpgrade.title',
+              format: 'contentUpgrade.format',
+            },
+            prepare({ title, format }) {
+              return {
+                title: title || 'Content Upgrade',
+                subtitle: `📦 ${format || 'Material'}`,
+              }
+            },
+          },
+        },
       ],
       validation: (rule) => rule.required(),
     }),

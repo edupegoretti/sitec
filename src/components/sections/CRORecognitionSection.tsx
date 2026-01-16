@@ -100,15 +100,70 @@ export function CRORecognitionSection() {
           </div>
         </Reveal>
 
-        {/* Verificar credenciais */}
+        {/* Bitrix24 - Reconhecimento de mercado */}
         <Reveal delay={0.5}>
           <div className="mt-12 sm:mt-16 pt-10 border-t border-gray-200">
-            <div className="flex items-center justify-center mb-8">
+            <div className="flex items-center justify-center mb-6">
               <p className="text-xs text-gray-500 uppercase tracking-wider">
-                Certificações e credenciais
+                Bitrix24: plataforma reconhecida pelo mercado
               </p>
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-14">
+            <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10">
+              <Image
+                src="/images/bitrix24screen/b24bedges/capterracrm.png"
+                alt="Capterra Best CRM"
+                width={100}
+                height={100}
+                className="w-20 h-20 sm:w-24 sm:h-24 object-contain hover:scale-105 transition-transform"
+              />
+              <Image
+                src="/images/bitrix24screen/b24bedges/capterratask.png"
+                alt="Capterra Best Task Management"
+                width={100}
+                height={100}
+                className="w-20 h-20 sm:w-24 sm:h-24 object-contain hover:scale-105 transition-transform"
+              />
+              <Image
+                src="/images/bitrix24screen/b24bedges/capterrabmanagement.webp"
+                alt="Capterra Best Business Management"
+                width={100}
+                height={100}
+                className="w-20 h-20 sm:w-24 sm:h-24 object-contain hover:scale-105 transition-transform"
+              />
+              <Image
+                src="/images/bitrix24screen/b24bedges/frontrunner.png"
+                alt="Capterra FrontRunner"
+                width={100}
+                height={100}
+                className="w-20 h-20 sm:w-24 sm:h-24 object-contain hover:scale-105 transition-transform"
+              />
+              <Image
+                src="/images/bitrix24screen/b24bedges/g2highperformer.webp"
+                alt="G2 High Performer"
+                width={100}
+                height={100}
+                className="w-20 h-20 sm:w-24 sm:h-24 object-contain hover:scale-105 transition-transform"
+              />
+              <Image
+                src="/images/bitrix24screen/b24bedges/g2business.webp"
+                alt="G2 Business"
+                width={100}
+                height={100}
+                className="w-20 h-20 sm:w-24 sm:h-24 object-contain hover:scale-105 transition-transform"
+              />
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Certificações da equipe Zopu */}
+        <Reveal delay={0.6}>
+          <div className="mt-10 sm:mt-12 pt-10 border-t border-gray-200">
+            <div className="flex items-center justify-center mb-6">
+              <p className="text-xs text-gray-500 uppercase tracking-wider">
+                Certificações e credenciais da equipe
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
               <a
                 href="https://www.bitrix24.com.br/partners/brazil/1892406/"
                 target="_blank"
@@ -118,38 +173,38 @@ export function CRORecognitionSection() {
                 <Image
                   src="/images/bitrix24screen/gold-partner.png"
                   alt="Gold Partner Bitrix24 - Verificar"
-                  width={128}
-                  height={128}
-                  className="w-28 h-28 sm:w-32 sm:h-32 object-contain"
+                  width={112}
+                  height={112}
+                  className="w-24 h-24 sm:w-28 sm:h-28 object-contain"
                 />
               </a>
               <Image
                 src="/images/bitrix24screen/aicpasoc2.webp"
                 alt="AICPA SOC 2 Type II"
-                width={128}
-                height={128}
-                className="w-28 h-28 sm:w-32 sm:h-32 object-contain hover:scale-105 transition-transform"
+                width={112}
+                height={112}
+                className="w-24 h-24 sm:w-28 sm:h-28 object-contain hover:scale-105 transition-transform"
               />
               <Image
                 src="/images/bitrix24screen/pmp.webp"
                 alt="PMP Certified"
-                width={128}
-                height={128}
-                className="w-28 h-28 sm:w-32 sm:h-32 object-contain hover:scale-105 transition-transform"
+                width={112}
+                height={112}
+                className="w-24 h-24 sm:w-28 sm:h-28 object-contain hover:scale-105 transition-transform"
               />
               <Image
                 src="/images/bitrix24screen/awscertified.webp"
                 alt="AWS Certified"
-                width={128}
-                height={128}
-                className="w-28 h-28 sm:w-32 sm:h-32 object-contain hover:scale-105 transition-transform"
+                width={112}
+                height={112}
+                className="w-24 h-24 sm:w-28 sm:h-28 object-contain hover:scale-105 transition-transform"
               />
               <Image
                 src="/images/bitrix24screen/googlegenai.png"
                 alt="Google Gen AI"
-                width={128}
-                height={128}
-                className="w-28 h-28 sm:w-32 sm:h-32 object-contain hover:scale-105 transition-transform"
+                width={112}
+                height={112}
+                className="w-24 h-24 sm:w-28 sm:h-28 object-contain hover:scale-105 transition-transform"
               />
             </div>
           </div>

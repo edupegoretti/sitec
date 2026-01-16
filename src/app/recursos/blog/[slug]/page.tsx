@@ -12,11 +12,19 @@ import { PostCard, type PostCardData } from '@/components/blog/PostCard'
 import { formatPtBrDate } from '@/lib/date'
 import { ZOPU_LINKS } from '@/lib/constants'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { postBySlugQuery, relatedPostsQuery } from '@/sanity/lib/queries'
+import { postBySlugQuery, postSlugsQuery, relatedPostsQuery } from '@/sanity/lib/queries'
 import { FORMAT_LABEL, STAGE_LABEL, type PostFormat, type PostStage } from '@/sanity/lib/labels'
 import { urlForImage } from '@/sanity/lib/image'
 
 export const revalidate = 1800
+
+export async function generateStaticParams() {
+  const posts = await sanityFetch<Array<{ slug: string }>>({
+    query: postSlugsQuery,
+    tags: ['post'],
+  })
+  return posts.map((post) => ({ slug: post.slug }))
+}
 
 type PageProps = {
   params: Promise<{ slug: string }>

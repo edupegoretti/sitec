@@ -8,10 +8,18 @@ import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
 import { PostCard, type PostCardData } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { seriesBySlugQuery } from '@/sanity/lib/queries'
+import { seriesBySlugQuery, seriesSlugsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
 
 export const revalidate = 1800
+
+export async function generateStaticParams() {
+  const seriesList = await sanityFetch<Array<{ slug: string }>>({
+    query: seriesSlugsQuery,
+    tags: ['series'],
+  })
+  return seriesList.map((series) => ({ slug: series.slug }))
+}
 
 type PageProps = {
   params: Promise<{ slug: string }>

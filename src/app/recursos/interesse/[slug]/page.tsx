@@ -7,9 +7,17 @@ import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
 import { PostCard, type PostCardData } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { interestBySlugQuery, interestsQuery, postsByInterestQuery } from '@/sanity/lib/queries'
+import { interestBySlugQuery, interestSlugsQuery, interestsQuery, postsByInterestQuery } from '@/sanity/lib/queries'
 
 export const revalidate = 1800
+
+export async function generateStaticParams() {
+  const interests = await sanityFetch<Array<{ slug: string }>>({
+    query: interestSlugsQuery,
+    tags: ['interest'],
+  })
+  return interests.map((interest) => ({ slug: interest.slug }))
+}
 
 type PageProps = {
   params: Promise<{ slug: string }>

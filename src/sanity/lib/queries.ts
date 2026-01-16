@@ -85,7 +85,23 @@ export const postBySlugQuery = groq`
     stage,
     format,
     coverImage,
-    body,
+    body[]{
+      ...,
+      _type == "contentUpgradeBlock" => {
+        ...,
+        "contentUpgrade": contentUpgrade->{
+          _id,
+          title,
+          slug,
+          format,
+          headline,
+          description,
+          bulletPoints,
+          ctaText,
+          thankYouMessage
+        }
+      }
+    },
     nextStep,
     seo,
     "primaryThemeId": primaryTheme._ref,
@@ -189,7 +205,7 @@ export const authorBySlugQuery = groq`
     "slug": slug.current,
     role,
     image,
-    bio,
+    "bio": pt::text(bio),
     links
   }
 `
@@ -227,5 +243,36 @@ export const relatedPostsQuery = groq`
   ]
   | order(publishedAt desc) [0...6]{
     ${postCardFields}
+  }
+`
+
+// Posts with word count for reading time calculation
+export const postsWithWordCountQuery = groq`
+  *[_type == "post" && defined(slug.current) && publishedAt <= now()]
+    | order(publishedAt desc) {
+      ${postCardFields},
+      "wordCount": length(pt::text(body))
+    }
+`
+
+// Themes with post count
+export const themesWithCountQuery = groq`
+  *[_type == "theme" && defined(slug.current)] | order(order asc, title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    "count": count(*[_type == "post" && references(^._id)])
+  }
+`
+
+// Post count by stage
+export const postCountByStageQuery = groq`
+  {
+    "diagnostico": count(*[_type == "post" && stage == "diagnostico" && defined(slug.current) && publishedAt <= now()]),
+    "estruturacao": count(*[_type == "post" && stage == "estruturacao" && defined(slug.current) && publishedAt <= now()]),
+    "implementacao": count(*[_type == "post" && stage == "implementacao" && defined(slug.current) && publishedAt <= now()]),
+    "otimizacao": count(*[_type == "post" && stage == "otimizacao" && defined(slug.current) && publishedAt <= now()]),
+    "decisao": count(*[_type == "post" && stage == "decisao" && defined(slug.current) && publishedAt <= now()])
   }
 `

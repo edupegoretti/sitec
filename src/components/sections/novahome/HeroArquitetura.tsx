@@ -2,39 +2,28 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Workflow, GraduationCap, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { ZOPU_LINKS } from "@/lib/constants";
 import { useCountUp } from "@/hooks/useCountUp";
 import { durations, easings, heroEntrance, staggers } from "@/lib/motion";
 
-// Logos com altura ajustada por proporcao para peso visual uniforme
-// Categorias: square (1:1), medium (1.5-2.5:1), wide (3-5:1), extrawide (6+:1)
+// Logos com altura baseada em PESO VISUAL (não uniformidade de pixels)
+// Logos bold/grossos precisam de MENOS pixels para ter a mesma presença visual
+// Logos finos/delicados precisam de MAIS pixels para serem legíveis
 const HERO_LOGOS = [
-  { name: "WEG", src: "/images/clients/weg.webp", size: "square" },
-  { name: "SBT", src: "/images/clients/sbt.webp", size: "square" },
-  { name: "Stone", src: "/images/clients/stone.webp", size: "medium" },
-  { name: "TS Shara", src: "/images/clients/ts-shara.webp", size: "medium" },
-  { name: "Komeco", src: "/images/clients/komeco.webp", size: "medium" },
-  { name: "Unimed", src: "/images/clients/unimed.webp", size: "extrawide" },
-  {
-    name: "Grupo Litoral",
-    src: "/images/clients/grupo-litoral.webp",
-    size: "wide",
-  },
-  { name: "BoxTop", src: "/images/clients/boxtop.webp", size: "medium" },
-  { name: "Posthaus", src: "/images/clients/posthaus.webp", size: "square" },
-  { name: "RK2", src: "/images/clients/rk2.webp", size: "square" },
-  { name: "Valorem", src: "/images/clients/valorem.webp", size: "wide" },
-  { name: "Viseu", src: "/images/clients/viseu.webp", size: "medium" },
+  { name: "WEG", src: "/images/clients/weg.webp", h: "h-10 sm:h-12" }, // icone quadrado
+  { name: "SBT", src: "/images/clients/sbt.webp", h: "h-10 sm:h-12" }, // icone quadrado
+  { name: "Stone", src: "/images/clients/stone.webp", h: "h-7 sm:h-9" }, // texto médio-bold
+  { name: "TS Shara", src: "/images/clients/ts-shara.webp", h: "h-10 sm:h-12" }, // texto FINO - precisa ser maior
+  { name: "Komeco", src: "/images/clients/komeco.webp", h: "h-6 sm:h-8" }, // texto BOLD caps - precisa ser menor
+  { name: "Unimed", src: "/images/clients/unimed.webp", h: "h-6 sm:h-7" }, // texto MUITO BOLD largo - bem menor
+  { name: "Grupo Litoral", src: "/images/clients/grupo-litoral.webp", h: "h-8 sm:h-10" }, // médio
+  { name: "BoxTop", src: "/images/clients/boxtop.webp", h: "h-9 sm:h-11" }, // texto fino
+  { name: "Posthaus", src: "/images/clients/posthaus.webp", h: "h-10 sm:h-12" }, // texto fino
+  { name: "RK2", src: "/images/clients/rk2.webp", h: "h-10 sm:h-12" }, // icone quadrado
+  { name: "Valorem", src: "/images/clients/valorem.webp", h: "h-6 sm:h-7" }, // texto BOLD largo - menor
+  { name: "Viseu", src: "/images/clients/viseu.webp", h: "h-8 sm:h-10" }, // médio
 ] as const;
-
-// Mapeamento de tamanhos para classes de altura
-const sizeClasses = {
-  square: "h-10 sm:h-12", // 40px/48px - logos quadrados
-  medium: "h-8 sm:h-10", // 32px/40px - logos medios
-  wide: "h-6 sm:h-8", // 24px/32px - logos largos
-  extrawide: "h-5 sm:h-6", // 20px/24px - logos muito largos
-} as const;
 
 // Animation variants for staggered entrance
 const fadeUp = {
@@ -147,35 +136,6 @@ export function HeroArquitetura() {
               </a>
             </motion.div>
 
-            {/* Trust badges visuais */}
-            <motion.div
-              variants={prefersReducedMotion ? undefined : fadeUp}
-              initial="hidden"
-              animate="visible"
-              transition={{
-                ...transition,
-                delay: heroEntrance.cta + staggers.items,
-              }}
-              className="mt-8 flex flex-wrap gap-2"
-            >
-              {/* Fluidsales Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-brand/5 border border-brand/10 rounded-full">
-                <Workflow className="w-3.5 h-3.5 text-brand" />
-                <span className="text-xs font-medium text-gray-700">Fluidsales™</span>
-              </div>
-
-              {/* Fluidz Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 border border-blue-100 rounded-full">
-                <GraduationCap className="w-3.5 h-3.5 text-blue-600" />
-                <span className="text-xs font-medium text-gray-700">Fluidz</span>
-              </div>
-
-              {/* WhatsZopu Badge */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 border border-green-100 rounded-full">
-                <MessageCircle className="w-3.5 h-3.5 text-green-600" />
-                <span className="text-xs font-medium text-gray-700">WhatsZopu</span>
-              </div>
-            </motion.div>
           </div>
 
           {/* Coluna da imagem */}
@@ -233,7 +193,7 @@ export function HeroArquitetura() {
                     alt={logo.name}
                     width={200}
                     height={60}
-                    className={`${sizeClasses[logo.size]} w-auto object-contain`}
+                    className={`${logo.h} w-auto object-contain`}
                   />
                 </div>
               ))}
@@ -248,7 +208,7 @@ export function HeroArquitetura() {
                     alt={logo.name}
                     width={200}
                     height={60}
-                    className={`${sizeClasses[logo.size]} w-auto object-contain`}
+                    className={`${logo.h} w-auto object-contain`}
                   />
                 </div>
               ))}

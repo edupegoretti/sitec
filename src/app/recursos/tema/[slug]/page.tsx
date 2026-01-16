@@ -7,9 +7,17 @@ import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
 import { PostCard, type PostCardData } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { postsByThemeQuery, themeBySlugQuery, themesQuery } from '@/sanity/lib/queries'
+import { postsByThemeQuery, themeBySlugQuery, themeSlugsQuery, themesQuery } from '@/sanity/lib/queries'
 
 export const revalidate = 1800
+
+export async function generateStaticParams() {
+  const themes = await sanityFetch<Array<{ slug: string }>>({
+    query: themeSlugsQuery,
+    tags: ['theme'],
+  })
+  return themes.map((theme) => ({ slug: theme.slug }))
+}
 
 type PageProps = {
   params: Promise<{ slug: string }>

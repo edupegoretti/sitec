@@ -300,34 +300,6 @@ export function MetodoFluidsalesShowcase() {
           </button>
         </div>
 
-        {/* Footer CTA */}
-        <Reveal delay={0.5}>
-          <motion.div
-            className="bg-bg-dark rounded-2xl p-8 sm:p-10 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p className="text-brand font-semibold mb-3">O resultado</p>
-            <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-              Receita auditável — quando você pergunta, o sistema responde
-            </h3>
-            <p className="text-gray-400 mb-6 max-w-xl mx-auto">
-              Retenção anual de {ZOPU_STATS.retencao} porque o CRM vira rotina, não obrigação.
-              <span className="text-gray-300"> É assim que ROI deixa de ser promessa e vira número.</span>
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button href="#metodo" variant="primary">
-                Ver as 3 fases de entrega
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
-              <Button href={ZOPU_LINKS.whatsappEspecialista} variant="secondary" external>
-                Agendar diagnóstico
-              </Button>
-            </div>
-          </motion.div>
-        </Reveal>
       </Container>
     </section>
   )
