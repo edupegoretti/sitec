@@ -153,16 +153,16 @@ export const APP_CATEGORIES = {
   ai: { name: 'Inteligência Artificial', color: '#F59E0B' },
 }
 
-// Preços do Bitrix24 por faixa de usuários (mensal)
+// Preços do Bitrix24 por faixa de usuários (mensal - valores oficiais jan/2026)
 export const BITRIX24_PRICING = [
   { maxUsers: 5, price: 0, plan: 'Free' },
-  { maxUsers: 24, price: 249, plan: 'Basic' },
-  { maxUsers: 50, price: 499, plan: 'Standard' },
-  { maxUsers: 100, price: 699, plan: 'Professional' },
-  { maxUsers: 250, price: 1399, plan: 'Enterprise 250' },
-  { maxUsers: 500, price: 2799, plan: 'Enterprise 500' },
-  { maxUsers: 1000, price: 5599, plan: 'Enterprise 1000' },
-  { maxUsers: 10000, price: 11199, plan: 'Enterprise 10000' },
+  { maxUsers: 5, price: 349, plan: 'Basic' },
+  { maxUsers: 50, price: 699, plan: 'Standard' },
+  { maxUsers: 100, price: 1399, plan: 'Professional' },
+  { maxUsers: 250, price: 2799, plan: 'Enterprise 250' },
+  { maxUsers: 500, price: 5599, plan: 'Enterprise 500' },
+  { maxUsers: 1000, price: 11199, plan: 'Enterprise 1000' },
+  { maxUsers: 10000, price: 55999, plan: 'Enterprise 10000' },
 ]
 
 export function getBitrix24Price(users: number): { price: number; plan: string } {

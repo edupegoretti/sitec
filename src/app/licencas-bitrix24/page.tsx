@@ -9,7 +9,7 @@ import { ArrowRight, Check, Lightning, Stack, Buildings } from '@phosphor-icons/
 export const metadata: Metadata = {
   title: 'Preços Bitrix24 [Janeiro 2026] — Tabela em Reais + Comparativo de Planos',
   description:
-    'Tabela de preços Bitrix24 atualizada em reais. Plano Free (gratuito), Standard R$249/mês, Professional R$499/mês, Enterprise sob consulta. Inclui 1 ano de suporte Zopu Gold Partner.',
+    'Tabela de preços Bitrix24 atualizada em reais. Plano Free (gratuito), Standard R$559/mês, Professional R$1.119/mês, Enterprise sob consulta. Inclui 1 ano de suporte Zopu Gold Partner.',
   keywords: [
     'Bitrix24 preço',
     'Bitrix24 quanto custa',

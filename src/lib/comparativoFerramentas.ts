@@ -1,5 +1,5 @@
 // Dados para página de comparativo Bitrix24 vs Outras Ferramentas
-// Última atualização: Dezembro 2025
+// Última atualização: Janeiro 2026
 
 // =======================
 // PREÇOS BITRIX24 BRASIL
@@ -7,9 +7,9 @@
 
 export const BITRIX24_PRECOS = {
   standard: {
-    mensal: 558,
+    mensal: 559,
     modalidade: 'Anual com 20% desconto',
-    usuarios: 'Ilimitados',
+    usuarios: '50 usuários',
     armazenamento: '100 GB',
     beneficios: [
       'Suporte ilimitado Zopu incluso',
@@ -20,7 +20,7 @@ export const BITRIX24_PRECOS = {
   professional: {
     mensal: 1119,
     modalidade: 'Anual com 20% desconto',
-    usuarios: 'Ilimitados',
+    usuarios: '100 usuários',
     armazenamento: '1024 GB',
     beneficios: [
       'Suporte ilimitado Zopu incluso',
@@ -29,13 +29,13 @@ export const BITRIX24_PRECOS = {
     ],
   },
   enterprise: {
-    mensal: 2238,
-    modalidade: 'Anual com 20% desconto',
-    usuarios: 'Ilimitados',
+    mensal: 2799,
+    modalidade: 'Mensal',
+    usuarios: '250+ usuários',
     armazenamento: '3 TB',
     beneficios: [
       'Suporte ilimitado Zopu incluso',
-      '13 meses pelo preço de 12 (30 dias grátis)',
+      'SLA 99.95% garantido',
       'Preço fixo em reais',
     ],
   },

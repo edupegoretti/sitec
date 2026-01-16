@@ -77,8 +77,8 @@ export function ProblemaModeloSection() {
           {/* Trajectory Diagram */}
           <Reveal delay={0.25}>
             <div className="mb-12">
-              <p className="text-center text-sm text-gray-500 mb-6">
-                O que falta: um <strong className="text-gray-700">modelo operacional de receita</strong> integrado
+              <p className="text-center text-lg sm:text-xl text-gray-600 mb-6">
+                O que falta: um <strong className="text-gray-900">modelo operacional de receita</strong> integrado
               </p>
               <BitrixTrajectoryDiagram />
             </div>
