@@ -1,7 +1,7 @@
 import { RESOURCES_CONFIG } from './config'
 import { buildYouTubeSlug } from './slug'
 import type { ResourcePersonaId } from './personas'
-import { fetchYouTubeOEmbed, fetchYouTubePlaylistEntries, formatPtBrDate } from './youtube'
+import { fetchYouTubeOEmbed, fetchYouTubePlaylistEntries, fetchYouTubePlaylistViaAPI, formatPtBrDate } from './youtube'
 
 export type ResourceType = 'zopucast' | 'webinar' | 'metodologia'
 
@@ -39,11 +39,13 @@ export async function getZopucastItems(): Promise<ResourceItem[]> {
 }
 
 export async function getWebinarItems(): Promise<ResourceItem[]> {
-  const entries = await fetchYouTubePlaylistEntries(RESOURCES_CONFIG.webinars.youtubePlaylistId, {
+  // Uses YouTube Data API v3 to fetch ALL videos (requires YOUTUBE_API_KEY)
+  // Falls back to RSS feed (limited to 15 videos) if no API key
+  const entries = await fetchYouTubePlaylistViaAPI(RESOURCES_CONFIG.webinars.youtubePlaylistId, {
     revalidateSeconds: 60 * 60,
   })
 
-  // YouTube RSS feed já retorna em ordem de mais recente primeiro
+  // Videos are already sorted by most recent first
   return entries.map((entry) => {
     const slug = buildYouTubeSlug(entry.title, entry.videoId)
     return {

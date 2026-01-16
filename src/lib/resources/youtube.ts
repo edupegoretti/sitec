@@ -6,6 +6,26 @@ type YouTubePlaylistEntry = {
   thumbnail: string
 }
 
+type YouTubeAPIPlaylistItem = {
+  snippet: {
+    publishedAt: string
+    title: string
+    resourceId: {
+      videoId: string
+    }
+    thumbnails?: {
+      high?: { url: string }
+      medium?: { url: string }
+      default?: { url: string }
+    }
+  }
+}
+
+type YouTubeAPIResponse = {
+  items: YouTubeAPIPlaylistItem[]
+  nextPageToken?: string
+}
+
 function decodeHtmlEntities(value: string): string {
   return value
     .replace(/&amp;/g, '&')
@@ -86,6 +106,77 @@ export async function fetchYouTubePlaylistEntries(
     return parseYouTubePlaylistFeed(xml)
   } catch {
     return []
+  }
+}
+
+/**
+ * Fetches ALL videos from a YouTube playlist using the Data API v3.
+ * Requires YOUTUBE_API_KEY environment variable.
+ * Returns videos sorted by most recent first (by publishedAt).
+ */
+export async function fetchYouTubePlaylistViaAPI(
+  playlistId: string,
+  { revalidateSeconds = 60 * 60 }: { revalidateSeconds?: number } = {}
+): Promise<YouTubePlaylistEntry[]> {
+  const apiKey = process.env.YOUTUBE_API_KEY
+  if (!apiKey) {
+    console.warn('[YouTube] No YOUTUBE_API_KEY found, falling back to RSS feed (limited to 15 videos)')
+    return fetchYouTubePlaylistEntries(playlistId, { revalidateSeconds })
+  }
+
+  const allEntries: YouTubePlaylistEntry[] = []
+  let pageToken: string | undefined
+
+  try {
+    do {
+      const params = new URLSearchParams({
+        part: 'snippet',
+        playlistId,
+        maxResults: '50',
+        key: apiKey,
+      })
+      if (pageToken) params.set('pageToken', pageToken)
+
+      const url = `https://www.googleapis.com/youtube/v3/playlistItems?${params}`
+      const res = await fetch(url, {
+        next: { revalidate: revalidateSeconds },
+      })
+
+      if (!res.ok) {
+        console.error('[YouTube API] Error:', res.status, await res.text())
+        break
+      }
+
+      const data = (await res.json()) as YouTubeAPIResponse
+
+      for (const item of data.items) {
+        const videoId = item.snippet.resourceId.videoId
+        const thumbnail =
+          item.snippet.thumbnails?.high?.url ||
+          item.snippet.thumbnails?.medium?.url ||
+          item.snippet.thumbnails?.default?.url ||
+          `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
+
+        allEntries.push({
+          videoId,
+          title: item.snippet.title,
+          published: item.snippet.publishedAt,
+          url: `https://www.youtube.com/watch?v=${videoId}`,
+          thumbnail,
+        })
+      }
+
+      pageToken = data.nextPageToken
+    } while (pageToken)
+
+    // Sort by publishedAt descending (most recent first)
+    allEntries.sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime())
+
+    return allEntries
+  } catch (err) {
+    console.error('[YouTube API] Fetch error:', err)
+    // Fallback to RSS feed
+    return fetchYouTubePlaylistEntries(playlistId, { revalidateSeconds })
   }
 }
 

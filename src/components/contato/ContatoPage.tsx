@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import {
   WhatsappLogo,
@@ -82,25 +82,37 @@ const SOCIAL_LINKS = [
   { icon: YoutubeLogo, href: ZOPU_LINKS.youtube, label: 'YouTube' },
 ]
 
-// Bitrix24 CRM Form ID
-const BITRIX24_FORM_SCRIPT = 'https://cdn.bitrix24.com.br/b19877839/crm/form/loader_43.js'
+// Bitrix24 CRM Form Component
+function Bitrix24Form() {
+  const containerRef = useRef<HTMLDivElement>(null)
 
-export function ContatoPage() {
-  // Load Bitrix24 CRM form script
   useEffect(() => {
+    if (!containerRef.current) return
+
+    // Create the inline script that Bitrix24 expects
     const script = document.createElement('script')
-    script.src = `${BITRIX24_FORM_SCRIPT}?${Math.floor(Date.now() / 180000)}`
-    script.async = true
-    document.body.appendChild(script)
+    script.setAttribute('data-b24-form', 'inline/43/vqwyoc')
+    script.setAttribute('data-skip-moving', 'true')
+    script.innerHTML = `
+      (function(w,d,u){
+        var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);
+        var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+      })(window,document,'https://cdn.bitrix24.com.br/b19877839/crm/form/loader_43.js');
+    `
+    containerRef.current.appendChild(script)
 
     return () => {
-      // Cleanup on unmount
-      const existingScript = document.querySelector(`script[src^="${BITRIX24_FORM_SCRIPT}"]`)
-      if (existingScript) {
-        existingScript.remove()
+      // Cleanup
+      if (containerRef.current) {
+        containerRef.current.innerHTML = ''
       }
     }
   }, [])
+
+  return <div ref={containerRef} className="b24-form-wrapper min-h-[400px]" />
+}
+
+export function ContatoPage() {
 
   return (
     <main className="bg-white">
@@ -235,12 +247,8 @@ export function ContatoPage() {
                   Preencha o formulário abaixo e entraremos em contato em breve.
                 </p>
 
-                {/* Bitrix24 CRM Form Container */}
-                <div
-                  className="b24-form-container min-h-100 rounded-2xl overflow-hidden"
-                  data-b24-form="inline/43/xjqt5z"
-                  data-skip-moving="true"
-                />
+                {/* Bitrix24 CRM Form */}
+                <Bitrix24Form />
               </div>
             </Reveal>
 
