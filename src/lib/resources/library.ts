@@ -39,24 +39,23 @@ export async function getZopucastItems(): Promise<ResourceItem[]> {
 }
 
 export async function getWebinarItems(): Promise<ResourceItem[]> {
-  const items: ResourceItem[] = []
+  const entries = await fetchYouTubePlaylistEntries(RESOURCES_CONFIG.webinars.youtubePlaylistId, {
+    revalidateSeconds: 60 * 60,
+  })
 
-  for (const videoId of RESOURCES_CONFIG.webinars.seedVideos) {
-    const oembed = await fetchYouTubeOEmbed(videoId, { revalidateSeconds: 60 * 60 })
-    const title = oembed?.title ?? 'Webinar Bitrix24'
-    const slug = buildYouTubeSlug(title, videoId)
-
-    items.push({
-      id: videoId,
+  // YouTube RSS feed já retorna em ordem de mais recente primeiro
+  return entries.map((entry) => {
+    const slug = buildYouTubeSlug(entry.title, entry.videoId)
+    return {
+      id: entry.videoId,
       type: 'webinar',
-      title,
+      title: entry.title,
+      dateLabel: formatPtBrDate(entry.published),
       href: `/recursos/biblioteca/webinars-bitrix24/${slug}`,
-      externalUrl: `https://www.youtube.com/watch?v=${videoId}`,
-      thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-    })
-  }
-
-  return items
+      externalUrl: entry.url,
+      thumbnail: entry.thumbnail,
+    }
+  })
 }
 
 export async function getMetodologiaItems(): Promise<ResourceItem[]> {

@@ -6,9 +6,9 @@ export const RESOURCES_CONFIG = {
     youtubePlaylistUrl: 'https://www.youtube.com/playlist?list=PLs4wt-PwfpmmmQMF2e9AX-qgpuA7vpvHK',
   },
   webinars: {
-    // Você compartilhou um link de live/vídeo. Para ingestão automática (RSS), precisamos do playlist_id.
-    seedVideos: ['zPj2fRTHnok'],
-    youtubeUrl: 'https://www.youtube.com/live/zPj2fRTHnok',
+    youtubePlaylistId: 'PLs4wt-PwfpmnYg7kiyB45WZJ3sylhWqmv',
+    youtubePlaylistUrl: 'https://www.youtube.com/playlist?list=PLs4wt-PwfpmnYg7kiyB45WZJ3sylhWqmv',
+    youtubeUrl: 'https://www.youtube.com/playlist?list=PLs4wt-PwfpmnYg7kiyB45WZJ3sylhWqmv',
   },
   metodologias: {
     // Vídeos soltos no canal — começamos com curadoria manual.
