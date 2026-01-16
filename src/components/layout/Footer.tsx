@@ -29,6 +29,7 @@ const FOOTER_NAV = {
       { label: "Por que Bitrix24", href: "/por-que-bitrix24" },
       { label: "Cases de Sucesso", href: "/cases" },
       { label: "Metodologia", href: "/metodologia" },
+      { label: "Contato", href: "/contato" },
       { label: "Trabalhe Conosco", href: "/trabalhe-conosco" },
     ],
   },
