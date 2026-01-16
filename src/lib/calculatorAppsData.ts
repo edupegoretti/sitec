@@ -153,25 +153,33 @@ export const APP_CATEGORIES = {
   ai: { name: 'Inteligência Artificial', color: '#F59E0B' },
 }
 
-// Preços do Bitrix24 por faixa de usuários (mensal - valores oficiais jan/2026)
+// Preços do Bitrix24 por faixa de usuários (valores oficiais jan/2026)
+// Anual tem 20% de desconto sobre mensal
 export const BITRIX24_PRICING = [
-  { maxUsers: 5, price: 0, plan: 'Free' },
-  { maxUsers: 5, price: 349, plan: 'Basic' },
-  { maxUsers: 50, price: 699, plan: 'Standard' },
-  { maxUsers: 100, price: 1399, plan: 'Professional' },
-  { maxUsers: 250, price: 2799, plan: 'Enterprise 250' },
-  { maxUsers: 500, price: 5599, plan: 'Enterprise 500' },
-  { maxUsers: 1000, price: 11199, plan: 'Enterprise 1000' },
-  { maxUsers: 10000, price: 55999, plan: 'Enterprise 10000' },
+  { maxUsers: 5, priceMonthly: 0, priceAnnual: 0, plan: 'Free' },
+  { maxUsers: 5, priceMonthly: 349, priceAnnual: 279, plan: 'Basic' },
+  { maxUsers: 50, priceMonthly: 699, priceAnnual: 559, plan: 'Standard' },
+  { maxUsers: 100, priceMonthly: 1399, priceAnnual: 1119, plan: 'Professional' },
+  { maxUsers: 250, priceMonthly: 2799, priceAnnual: 2239, plan: 'Enterprise 250' },
+  { maxUsers: 500, priceMonthly: 4499, priceAnnual: 3599, plan: 'Enterprise 500' },
+  { maxUsers: 1000, priceMonthly: 5599, priceAnnual: 4479, plan: 'Enterprise 1000' },
+  { maxUsers: 10000, priceMonthly: 55999, priceAnnual: 44799, plan: 'Enterprise 10000' },
 ]
 
-export function getBitrix24Price(users: number): { price: number; plan: string } {
+export type BillingCycle = 'monthly' | 'annual'
+
+export function getBitrix24Price(users: number, billing: BillingCycle = 'annual'): { price: number; plan: string } {
   for (const tier of BITRIX24_PRICING) {
     if (users <= tier.maxUsers) {
-      return { price: tier.price, plan: tier.plan }
+      const price = billing === 'annual' ? tier.priceAnnual : tier.priceMonthly
+      return { price, plan: tier.plan }
     }
   }
-  return { price: 11199, plan: 'Enterprise 10000' }
+  const lastTier = BITRIX24_PRICING[BITRIX24_PRICING.length - 1]
+  return {
+    price: billing === 'annual' ? lastTier.priceAnnual : lastTier.priceMonthly,
+    plan: lastTier.plan
+  }
 }
 
 // Features incluídas no Bitrix24 (para exibir ao lado)

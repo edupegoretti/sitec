@@ -552,14 +552,14 @@ export const ZOPU_PRODUTOS = [
   },
 ] as const;
 
-// Planos Bitrix24 (Standard, Professional, Enterprise)
+// Planos Bitrix24 (Standard, Professional, Enterprise) - Preços Janeiro 2026
 export const BITRIX24_PLANOS = [
   {
     id: "standard",
     nome: "Standard",
     para: "Para quem está começando",
-    precoMensal: "R$ 699",
-    precoAnual: "R$ 559",
+    precoMensal: 699,
+    precoAnual: 559,
     usuarios: "50",
     storage: "100 GB",
     destaque: false,
@@ -576,8 +576,8 @@ export const BITRIX24_PLANOS = [
     id: "professional",
     nome: "Professional",
     para: "Para quem precisa de todas as funcionalidades",
-    precoMensal: "R$ 1.399",
-    precoAnual: "R$ 1.119",
+    precoMensal: 1399,
+    precoAnual: 1119,
     usuarios: "100",
     storage: "1 TB",
     destaque: true,
@@ -594,8 +594,8 @@ export const BITRIX24_PLANOS = [
     id: "enterprise",
     nome: "Enterprise",
     para: "Para empresas grandes que precisam de ambiente dedicado",
-    precoMensal: "A partir de R$ 2.799",
-    precoAnual: "Sob consulta",
+    precoMensal: 2799,
+    precoAnual: 2239,
     usuarios: "250+",
     storage: "3 TB+",
     destaque: false,
