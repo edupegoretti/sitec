@@ -1649,7 +1649,7 @@ export const ENTERPRISE_CAPABILITIES_DETAILED = [
       "Data residency configurável",
       "SLA de disponibilidade contratual",
     ],
-    metrica: { numero: "99.9%", label: "SLA de disponibilidade" },
+    metrica: { numero: "99.95%", label: "SLA de disponibilidade" },
   },
 ] as const;
 

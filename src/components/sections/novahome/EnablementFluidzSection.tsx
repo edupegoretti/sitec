@@ -52,7 +52,7 @@ export function EnablementFluidzSection() {
 
               <Reveal delay={0.2}>
                 <p className="text-lg text-gray-600 leading-relaxed mb-8">
-                  Com o Fluidz, cada papel aprende o que precisa para operar (Vendas, CS, Gestão,
+                  Com a Fluidz, cada papel aprende o que precisa para operar (Vendas, CS, Gestão,
                   Admin). Isso reduz dependência de "campeões internos" e evita que o CRM morra
                   quando alguém sai.
                 </p>

@@ -31,7 +31,7 @@ export function WhatsZopuSection() {
   return (
     <section className="py-16 sm:py-24 bg-bg-secondary relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-1/2 right-0 w-80 h-80 bg-green-500/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl" />
+      <div className="absolute top-1/2 right-0 w-80 h-80 bg-red-500/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl" />
 
       <Container>
         <div className="max-w-5xl mx-auto">
@@ -39,17 +39,17 @@ export function WhatsZopuSection() {
             {/* Left: Visual */}
             <Reveal>
               <div className="relative">
-                <div className="bg-gradient-to-br from-green-50 to-green-100/80 rounded-3xl p-8 sm:p-10 border border-green-200/60">
+                <div className="bg-gradient-to-br from-red-50 to-orange-50/80 rounded-3xl p-8 sm:p-10 border border-red-200/60">
                   {/* WhatsApp mockup */}
                   <div className="bg-white rounded-2xl shadow-card overflow-hidden">
-                    {/* Header */}
-                    <div className="bg-green-600 px-4 py-3 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                        <MessageSquare className="w-5 h-5 text-white" />
+                    {/* Header - WhatsApp genérico */}
+                    <div className="bg-[#075E54] px-4 py-3 flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 font-bold text-sm">
+                        <Users className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="text-white font-semibold text-sm">WhatsZopu</p>
-                        <p className="text-green-100 text-xs">API Oficial Meta</p>
+                        <p className="text-white font-semibold text-sm">Vendas</p>
+                        <p className="text-green-100 text-xs">online</p>
                       </div>
                     </div>
 
@@ -61,7 +61,7 @@ export function WhatsZopuSection() {
                       </div>
                       <div className="flex justify-start">
                         <div className="bg-white rounded-lg px-3 py-2 max-w-[85%] shadow-sm">
-                          <p className="text-sm text-gray-800">Olá! Vi o anúncio de vocês. Preciso de um CRM para minha equipe de 8 vendedores</p>
+                          <p className="text-sm text-gray-800">Olá! Vi o anúncio de vocês. Preciso de um orçamento para 50 licenças</p>
                           <p className="text-[10px] text-gray-500 text-right mt-1">10:15 ✓✓</p>
                         </div>
                       </div>
@@ -83,7 +83,7 @@ export function WhatsZopuSection() {
                       </div>
                       <div className="flex justify-start">
                         <div className="bg-white rounded-lg px-3 py-2 max-w-[85%] shadow-sm">
-                          <p className="text-sm text-gray-800">Pessoal, ainda aguardando retorno... vocês trabalham com Bitrix24?</p>
+                          <p className="text-sm text-gray-800">Pessoal, ainda aguardo o orçamento... é urgente</p>
                           <p className="text-[10px] text-gray-500 text-right mt-1">09:30 ✓✓</p>
                         </div>
                       </div>
@@ -94,7 +94,7 @@ export function WhatsZopuSection() {
                       </div>
                       <div className="flex justify-start">
                         <div className="bg-white rounded-lg px-3 py-2 max-w-[85%] shadow-sm">
-                          <p className="text-sm text-gray-800">Última tentativa. Fechei com outra empresa. Obrigado.</p>
+                          <p className="text-sm text-gray-800">Fechei com o concorrente. Vocês demoraram demais.</p>
                           <p className="text-[10px] text-gray-500 text-right mt-1">16:20 ✓✓</p>
                         </div>
                       </div>
@@ -115,7 +115,7 @@ export function WhatsZopuSection() {
                     <div className="flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 text-red-500" />
                       <span className="text-sm font-medium text-red-700">
-                        Sem rastreabilidade no CRM
+                        WhatsApp fora do CRM
                       </span>
                     </div>
                   </div>
