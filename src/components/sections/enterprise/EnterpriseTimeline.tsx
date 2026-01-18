@@ -267,7 +267,7 @@ function HypercareVisual() {
       {/* KPI Cards - 3 cards */}
       <g transform="translate(20, 52)">
         <rect width="75" height="55" rx="6" fill="white" stroke="#e2e8f0" strokeWidth="1" />
-        <text x="37" y="24" textAnchor="middle" fill="#635BFF" fontSize="16" fontWeight="700">99.99%</text>
+        <text x="37" y="24" textAnchor="middle" fill="#635BFF" fontSize="16" fontWeight="700">99.999%</text>
         <text x="37" y="42" textAnchor="middle" fill="#64748b" fontSize="8">Uptime</text>
       </g>
       <g transform="translate(102, 52)">

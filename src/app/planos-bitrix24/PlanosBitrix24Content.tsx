@@ -109,7 +109,7 @@ const TABELA_COMPARATIVA: ComparisonRow[] = [
   { feature: 'BI - linhas de dados', categoria: 'bi', free: false, standard: '100k', professional: '250k', enterprise: '10M', destaque: true },
   { feature: 'Dashboards personalizados', categoria: 'bi', free: false, standard: true, professional: true, enterprise: true },
   { feature: 'SSO/SAML', categoria: 'bi', free: false, standard: false, professional: true, enterprise: true },
-  { feature: 'SLA contratual', categoria: 'bi', free: false, standard: false, professional: false, enterprise: '99.95%', destaque: true },
+  { feature: 'SLA contratual', categoria: 'bi', free: false, standard: false, professional: false, enterprise: '99.999%', destaque: true },
   { feature: 'Servidor dedicado', categoria: 'bi', free: false, standard: false, professional: false, enterprise: true, destaque: true },
   { feature: 'Backup', categoria: 'bi', free: '7 dias', standard: '7 dias', professional: '7 dias', enterprise: '30 dias' },
 ]
@@ -245,7 +245,7 @@ const PLANOS = [
       { texto: 'E-commerce enterprise', categoria: 'sites' },
       { texto: 'RH completo + compliance', categoria: 'rh' },
       { texto: 'BI ILIMITADO + 10M linhas dashboard', categoria: 'bi', destaque: true },
-      { texto: 'SLA 99.95% contratual', categoria: 'bi', destaque: true },
+      { texto: 'SLA 99.999% contratual', categoria: 'bi', destaque: true },
       { texto: 'Servidor dedicado', categoria: 'bi', destaque: true },
       { texto: 'Backup 30 dias', categoria: 'bi' },
       { texto: 'Criptografia em repouso', categoria: 'bi' },
@@ -365,7 +365,7 @@ const PERFIS_OPERACAO = [
     perfisIdeais: [
       {
         titulo: 'Operações que não toleram indisponibilidade',
-        descricao: 'SLA 99.95% contratual com garantias formais',
+        descricao: 'SLA 99.999% contratual com garantias formais',
       },
       {
         titulo: 'Multi-filiais com isolamento de dados',
@@ -449,7 +449,7 @@ const COMPARATIVO_DETALHADO = {
   'Administração & Segurança': [
     { nome: 'Administradores', free: '1', standard: '5', professional: '10', enterprise: '25', destaque: false },
     { nome: 'Logs de auditoria', free: false, standard: true, professional: true, enterprise: true, destaque: false },
-    { nome: 'SLA garantido', free: '-', standard: '-', professional: '-', enterprise: '99.95%', destaque: true },
+    { nome: 'SLA garantido', free: '-', standard: '-', professional: '-', enterprise: '99.999%', destaque: true },
     { nome: 'Multi-filiais com isolamento', free: false, standard: false, professional: false, enterprise: true, destaque: true },
     { nome: '2FA obrigatório', free: false, standard: true, professional: true, enterprise: true, destaque: false },
     { nome: 'SSO/SAML', free: false, standard: false, professional: true, enterprise: true, destaque: false },

@@ -601,7 +601,7 @@ export const BITRIX24_PLANOS = [
     destaque: false,
     features: [
       "Tudo do Professional",
-      "SLA 99.95% contratual",
+      "SLA 99.999% contratual",
       "Suporte multi-filiais",
       "Servidor dedicado",
       "2 datacenters distribuídos",
@@ -1649,7 +1649,7 @@ export const ENTERPRISE_CAPABILITIES_DETAILED = [
       "Data residency configurável",
       "SLA de disponibilidade contratual",
     ],
-    metrica: { numero: "99.95%", label: "SLA de disponibilidade" },
+    metrica: { numero: "99.999%", label: "SLA de disponibilidade" },
   },
 ] as const;
 

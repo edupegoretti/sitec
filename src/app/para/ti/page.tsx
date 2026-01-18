@@ -53,7 +53,7 @@ const techSpecs = [
   {
     icon: CloudCheck,
     title: 'Cloud ou On-Premise',
-    description: 'SaaS com SLA 99.95% ou instalação local para casos específicos.',
+    description: 'SaaS com SLA 99.999% ou instalação local para casos específicos.',
   },
   {
     icon: Code,

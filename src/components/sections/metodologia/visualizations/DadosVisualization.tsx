@@ -264,7 +264,7 @@ export function DadosVisualization({ color }: DadosVisualizationProps) {
     () => {
       if (prefersReducedMotion) {
         if (duplicateCounterRef.current) duplicateCounterRef.current.textContent = '0'
-        if (accuracyCounterRef.current) accuracyCounterRef.current.textContent = '99.8%'
+        if (accuracyCounterRef.current) accuracyCounterRef.current.textContent = '99.999%'
         return
       }
 

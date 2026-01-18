@@ -110,7 +110,7 @@ export function Bitrix24Showcase() {
               { numero: '35+', label: 'ferramentas integradas' },
               { numero: '100+', label: 'integrações prontas' },
               { numero: 'R$', label: 'preço fixo em reais' },
-              { numero: '99.95%', label: 'disponibilidade' },
+              { numero: '99.999%', label: 'disponibilidade' },
             ].map((item, index) => (
               <div
                 key={index}

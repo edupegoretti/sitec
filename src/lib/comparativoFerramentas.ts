@@ -35,7 +35,7 @@ export const BITRIX24_PRECOS = {
     armazenamento: '3 TB',
     beneficios: [
       'Suporte ilimitado Zopu incluso',
-      'SLA 99.95% garantido',
+      'SLA 99.999% garantido',
       'Preço fixo em reais',
     ],
   },
