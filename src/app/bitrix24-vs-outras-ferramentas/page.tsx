@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { ArrowRight, Check } from '@phosphor-icons/react'
+import { ArrowRight } from '@phosphor-icons/react'
 import { Container } from '@/components/layout'
 import { Badge, Reveal, ContextualCTA } from '@/components/shared'
 import {
@@ -236,35 +236,11 @@ export default function Bitrix24VsOutrasFerramentasPage() {
               </div>
             </Reveal>
 
-            {/* Trust indicators - Evidências Zopu */}
+            {/* Trust indicator - único e relevante */}
             <Reveal delay={0.3}>
-              <div className="mt-10 pt-8 border-t border-white/10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-sm text-gray-400">
-                <span className="flex flex-col items-center gap-1 text-center">
-                  <Check weight="duotone" className="w-4 h-4 text-green-400 mb-1" />
-                  <strong className="text-white text-base">Gold Partner</strong>
-                  <span className="text-xs">Bitrix24</span>
-                </span>
-                <span className="flex flex-col items-center gap-1 text-center">
-                  <Check weight="duotone" className="w-4 h-4 text-green-400 mb-1" />
-                  <strong className="text-white text-base">{ZOPU_STATS.retencao}</strong>
-                  <span className="text-xs">Retenção anual</span>
-                </span>
-                <span className="flex flex-col items-center gap-1 text-center">
-                  <Check weight="duotone" className="w-4 h-4 text-green-400 mb-1" />
-                  <strong className="text-white text-base">{ZOPU_STATS.clientes}</strong>
-                  <span className="text-xs">Clientes ativos</span>
-                </span>
-                <span className="flex flex-col items-center gap-1 text-center">
-                  <Check weight="duotone" className="w-4 h-4 text-green-400 mb-1" />
-                  <strong className="text-white text-base">SLA &lt;5min</strong>
-                  <span className="text-xs">Primeira resposta</span>
-                </span>
-                <span className="flex flex-col items-center gap-1 text-center col-span-2 md:col-span-3 lg:col-span-1">
-                  <Check weight="duotone" className="w-4 h-4 text-green-400 mb-1" />
-                  <strong className="text-white text-base">9.500+</strong>
-                  <span className="text-xs">Certificados Fluidz</span>
-                </span>
-              </div>
+              <p className="mt-8 pt-6 border-t border-white/10 text-sm text-gray-400 text-center">
+                Gold Partner Bitrix24 · <span className="text-white font-medium">{ZOPU_STATS.retencao} de retenção anual</span> · {ZOPU_STATS.clientes} clientes ativos
+              </p>
             </Reveal>
           </div>
         </Container>
