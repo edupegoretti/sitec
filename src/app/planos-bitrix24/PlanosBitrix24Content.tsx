@@ -218,7 +218,7 @@ const PLANOS = [
       { texto: 'Relatórios em tempo real', categoria: 'bi' },
       { texto: 'SSO/SAML', categoria: 'bi' },
     ] as PlanFeature[],
-    limitacoes: ['Sem SLA contratual', 'Servidor compartilhado', 'Backup 7 dias'],
+    limitacoes: ['Servidor compartilhado', 'Backup 7 dias'],
   },
   {
     id: 'enterprise',
@@ -348,13 +348,11 @@ const PERFIS_OPERACAO = [
       },
     ],
     limitacoesCriticas: [
-      'Sem SLA contratual garantido',
       'Servidor compartilhado (não dedicado)',
       'Backup limitado a 7 dias',
-      'Sem isolamento de dados para multi-filiais',
     ],
     quandoFazSentido: 'Quando você quer extrair o máximo potencial do Bitrix24 com automações ilimitadas, processos inteligentes e BI avançado. Mesmo sendo uma empresa pequena, se a necessidade é de automação — Professional é a resposta.',
-    quandoNaoFaz: 'Se você tem requisitos de compliance, precisa de SLA garantido, opera com múltiplas filiais que não podem compartilhar dados, ou sua operação é crítica demais para ficar em servidor compartilhado.',
+    quandoNaoFaz: 'Se você tem requisitos de compliance, opera com múltiplas filiais que precisam de isolamento de dados, ou sua operação exige infraestrutura dedicada — considere o Enterprise.',
   },
   {
     plano: 'Enterprise',
