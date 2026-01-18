@@ -4,6 +4,7 @@ import Script from 'next/script'
 import { Fustat, JetBrains_Mono } from 'next/font/google'
 import { Header, Footer } from '@/components/layout'
 import { Analytics, GTMNoScript } from '@/components/shared'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { OrganizationJsonLd, LocalBusinessJsonLd } from '@/components/seo'
 import './globals.css'
 
@@ -133,6 +134,7 @@ export default function RootLayout({
         <Header />
         <div className="pt-16 lg:pt-20">{children}</div>
         <Footer />
+        <SpeedInsights />
 
         {/* Bitrix24 CRM Widget - Chat/WhatsApp button */}
         <Script
