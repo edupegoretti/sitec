@@ -83,3 +83,6 @@ export {
   SobreZoper,
   FormularioVagas,
 } from "./trabalhe-conosco";
+
+// Trust Center components
+export { TrustCenterHero } from "./trust-center";
