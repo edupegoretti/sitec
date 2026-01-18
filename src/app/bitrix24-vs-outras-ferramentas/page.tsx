@@ -220,7 +220,7 @@ export default function Bitrix24VsOutrasFerramentasPage() {
                   href={ZOPU_LINKS.whatsappEspecialista}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-white text-gray-900 font-semibold rounded-2xl hover:bg-gray-100 transition-all duration-300 ease-out-expo shadow-elevated hover:shadow-elevated-hover hover:-translate-y-1"
+                  className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-brand text-white font-semibold rounded-2xl hover:bg-brand-hover transition-all duration-300 ease-out-expo shadow-elevated shadow-brand/30 hover:shadow-elevated-hover hover:-translate-y-1"
                 >
                   Agendar diagnóstico gratuito
                   <ArrowRight weight="duotone" className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ease-out-expo" />
@@ -229,7 +229,7 @@ export default function Bitrix24VsOutrasFerramentasPage() {
                   href={ZOPU_LINKS.testeGratis}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-2xl hover:bg-white hover:text-gray-900 transition-all duration-300"
+                  className="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-white/10 border border-white/30 text-white font-semibold rounded-2xl hover:bg-white/20 backdrop-blur-sm transition-all duration-300"
                 >
                   Teste grátis Bitrix24 15 dias
                 </a>
