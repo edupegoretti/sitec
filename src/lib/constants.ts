@@ -3844,9 +3844,9 @@ export const GROWTH_ARCHITECTURE_FAQ = [
   },
   {
     categoria: "investimento",
-    pergunta: "Por que é mais caro que outros parceiros?",
+    pergunta: "Como vocês garantem que o CRM vai funcionar na prática?",
     resposta:
-      "Porque entregamos resultado, não configuração. 96% dos nossos clientes continuam conosco — a maioria dos parceiros tem 60% de churn.",
+      "Metodologia Fluidsales + treinamento Fluidz + acompanhamento pós go-live. 96% dos clientes renovam anualmente — isso só acontece quando o CRM vira rotina, não quando fica parado.",
   },
   {
     categoria: "investimento",
