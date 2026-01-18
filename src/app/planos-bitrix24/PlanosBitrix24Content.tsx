@@ -108,7 +108,7 @@ const TABELA_COMPARATIVA: ComparisonRow[] = [
   { feature: 'Relatórios', categoria: 'bi', free: 'Básicos', standard: 'Personalizados', professional: 'Tempo real + análise de funil', enterprise: 'Ilimitado', destaque: true },
   { feature: 'BI - linhas de dados', categoria: 'bi', free: false, standard: '100k', professional: '250k', enterprise: '10M', destaque: true },
   { feature: 'Dashboards personalizados', categoria: 'bi', free: false, standard: true, professional: true, enterprise: true },
-  { feature: 'SSO/SAML', categoria: 'bi', free: false, standard: false, professional: true, enterprise: true },
+  { feature: 'SSO/SAML', categoria: 'bi', free: false, standard: false, professional: false, enterprise: true },
   { feature: 'SLA contratual', categoria: 'bi', free: false, standard: false, professional: false, enterprise: '99.999%', destaque: true },
   { feature: 'Servidor dedicado', categoria: 'bi', free: false, standard: false, professional: false, enterprise: true, destaque: true },
   { feature: 'Backup', categoria: 'bi', free: '7 dias', standard: '7 dias', professional: '7 dias', enterprise: '30 dias' },
@@ -216,7 +216,6 @@ const PLANOS = [
       { texto: 'Gestão de tempo e turnos', categoria: 'rh' },
       { texto: 'BI com 250k linhas + análise de funil', categoria: 'bi', destaque: true },
       { texto: 'Relatórios em tempo real', categoria: 'bi' },
-      { texto: 'SSO/SAML', categoria: 'bi' },
     ] as PlanFeature[],
     limitacoes: ['Servidor compartilhado', 'Backup 7 dias'],
   },
@@ -450,7 +449,7 @@ const COMPARATIVO_DETALHADO = {
     { nome: 'SLA garantido', free: '-', standard: '-', professional: '-', enterprise: '99.999%', destaque: true },
     { nome: 'Multi-filiais com isolamento', free: false, standard: false, professional: false, enterprise: true, destaque: true },
     { nome: '2FA obrigatório', free: false, standard: true, professional: true, enterprise: true, destaque: false },
-    { nome: 'SSO/SAML', free: false, standard: false, professional: true, enterprise: true, destaque: false },
+    { nome: 'SSO/SAML', free: false, standard: false, professional: false, enterprise: true, destaque: false },
   ],
 }
 
