@@ -2,7 +2,7 @@ import { Metadata } from 'next'
 import { ArrowRight } from 'lucide-react'
 import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
-import { CaseDestaque, CasesGrid } from '@/components/sections/cases'
+import { CaseDestaque } from '@/components/sections/cases'
 import { ZOPU_STATS, ZOPU_LINKS, CASE_DESTAQUE } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -77,22 +77,6 @@ export default function CasesPage() {
               clientes permanecem conosco.
             </div>
           </div>
-        </Container>
-      </section>
-
-      {/* Cases Grid */}
-      <section className="py-16 sm:py-24">
-        <Container>
-          <div className="text-center mb-12">
-            <Reveal>
-              <Badge className="mb-4">Mais resultados</Badge>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
-                Resultados por setor
-              </h2>
-            </Reveal>
-          </div>
-
-          <CasesGrid />
         </Container>
       </section>
 

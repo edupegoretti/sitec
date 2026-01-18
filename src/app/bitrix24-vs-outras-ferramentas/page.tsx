@@ -223,7 +223,7 @@ export default function Bitrix24VsOutrasFerramentasPage() {
                   className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-brand text-white font-semibold rounded-2xl hover:bg-brand-hover transition-all duration-300 ease-out-expo shadow-elevated shadow-brand/30 hover:shadow-elevated-hover hover:-translate-y-1"
                 >
                   Agendar diagnóstico gratuito
-                  <ArrowRight weight="duotone" className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ease-out-expo" />
+                  <ArrowRight weight="bold" className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 ease-out-expo" />
                 </a>
                 <a
                   href={ZOPU_LINKS.testeGratis}
