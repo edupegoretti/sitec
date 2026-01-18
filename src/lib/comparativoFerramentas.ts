@@ -487,32 +487,26 @@ export const DIFERENCIAIS_BITRIX24 = [
   {
     id: 'dados-centralizados',
     icone: 'Database',
-    titulo: 'Todos os Dados no Mesmo Lugar',
-    descricao: 'CRM, Projetos, Chat, Tarefas e Documentos conectados. Vendedor vê tasks. Suporte vê histórico completo. Marketing sabe o que vendas está fazendo. Contexto 360º do cliente.',
+    titulo: 'Uma Única Fonte de Verdade',
+    descricao: 'CRM, Projetos, Chat e Documentos no mesmo lugar. Vendedor vê tarefas do projeto. Suporte acessa histórico completo. Fim dos silos de informação entre departamentos.',
   },
   {
     id: 'automacao-cross-funcional',
     icone: 'GitBranch',
-    titulo: 'Automação Entre Departamentos',
-    descricao: 'Workflows que cruzam CRM + Projetos + Chat. Cliente fecha negócio → projeto é criado automaticamente → time é notificado no chat. Só possível com plataforma unificada.',
-  },
-  {
-    id: 'usuarios-ilimitados',
-    icone: 'Users',
-    titulo: 'Usuários Ilimitados',
-    descricao: 'Salesforce cobra $150/usuário. Pipedrive cobra $49/usuário. Bitrix24? Usuários ilimitados. Escale sem medo. Adicione estagiários, parceiros, fornecedores sem custo extra.',
+    titulo: 'Automação Entre Áreas',
+    descricao: 'Negócio fechado no CRM → projeto criado automaticamente → equipe notificada no chat. Fluxos que conectam vendas, operação e atendimento. Só possível em plataforma unificada.',
   },
   {
     id: 'ia-inclusa',
     icone: 'Robot',
-    titulo: 'IA Inclusa (CoPilot)',
-    descricao: 'Salesforce cobra Einstein à parte ($50+/user). HubSpot tem beta limitado. Bitrix24 CoPilot: incluso, sem token, sem upsell. Resumos, transcrições, análise de sentimento.',
+    titulo: 'IA Nativa (CoPilot)',
+    descricao: 'Resumos de reunião, transcrição de calls, análise de sentimento e sugestões de resposta. Incluso no plano, sem cobrança extra por uso ou token.',
   },
   {
     id: 'preco-fixo-reais',
     icone: 'CurrencyCircleDollar',
     titulo: 'Preço Fixo em Reais',
-    descricao: 'Enquanto HubSpot, Salesforce e Pipedrive cobram em dólar (variação cambial), Bitrix24 tem preço fixo em reais. Orçamento previsível, sem sustos.',
+    descricao: 'Orçamento previsível, sem variação cambial. Enquanto outras ferramentas cobram em dólar, você planeja em reais e sabe exatamente quanto vai pagar.',
   },
 ] as const
 

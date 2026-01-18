@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion'
 import {
   CurrencyCircleDollar,
-  Users,
   Robot,
   Database,
   GitBranch,
@@ -15,38 +14,32 @@ import { DIFERENCIAIS_BITRIX24 } from '@/lib/comparativoFerramentas'
 // Icon mapping
 const iconMap: Record<string, React.ComponentType<IconProps>> = {
   CurrencyCircleDollar,
-  Users,
   Robot,
   Database,
   GitBranch,
 }
 
-// Color mapping for each diferencial
+// Color mapping for each diferencial - cores acessíveis e consistentes com Zopu
 const colorMap: Record<string, { bg: string; icon: string; border: string }> = {
   'dados-centralizados': {
-    bg: 'from-orange-50 to-orange-100/50',
-    icon: 'text-orange-600',
-    border: 'border-orange-200/50',
+    bg: 'from-blue-50 to-blue-100/50',
+    icon: 'text-blue-600',
+    border: 'border-blue-200/50',
   },
   'automacao-cross-funcional': {
     bg: 'from-indigo-50 to-indigo-100/50',
     icon: 'text-indigo-600',
     border: 'border-indigo-200/50',
   },
-  'usuarios-ilimitados': {
-    bg: 'from-blue-50 to-blue-100/50',
-    icon: 'text-blue-600',
-    border: 'border-blue-200/50',
-  },
   'ia-inclusa': {
-    bg: 'from-green-50 to-green-100/50',
-    icon: 'text-green-600',
-    border: 'border-green-200/50',
+    bg: 'from-emerald-50 to-emerald-100/50',
+    icon: 'text-emerald-600',
+    border: 'border-emerald-200/50',
   },
   'preco-fixo-reais': {
-    bg: 'from-purple-50 to-purple-100/50',
-    icon: 'text-purple-600',
-    border: 'border-purple-200/50',
+    bg: 'from-brand/5 to-brand/10',
+    icon: 'text-brand',
+    border: 'border-brand/20',
   },
 }
 
