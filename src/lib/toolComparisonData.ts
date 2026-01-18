@@ -45,7 +45,7 @@ export const TOOLS: Record<ToolId, Tool> = {
     name: 'HubSpot',
     color: '#FF7A59',
     logo: '/images/tools/hubspot.svg',
-    tagline: 'CRM popular, mas caro para escalar',
+    tagline: 'CRM popular, mas custo cresce com a operação',
   },
   salesforce: {
     id: 'salesforce',

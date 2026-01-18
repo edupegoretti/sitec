@@ -548,8 +548,8 @@ export const FAQ_MIGRACAO = [
     resposta: 'Depende do escopo. Projetos típicos: 30 a 90 dias do diagnóstico ao go-live. Começamos com diagnóstico gratuito que mapeia necessidades e define cronograma realista. Não vendemos projetos que não vão dar certo.',
   },
   {
-    pergunta: 'Preciso de consultoria cara ou consigo implementar sozinho?',
-    resposta: 'Depende da complexidade. Empresas até 20 usuários podem começar com Fluidz (treinamento autoguiado) e suporte da Zopu. Empresas maiores ou com operações complexas se beneficiam de consultoria para migração de dados, automações customizadas e integração com ERPs. Diagnóstico gratuito indica o caminho mais seguro.',
+    pergunta: 'Consigo implementar sozinho ou preciso de acompanhamento?',
+    resposta: 'Depende da complexidade. Empresas até 20 usuários podem começar com a Fluidz (treinamento autoguiado) e suporte da Zopu. Operações maiores ou com integrações complexas se beneficiam de acompanhamento para migração de dados, automações e integração com ERPs. O diagnóstico gratuito indica o caminho mais adequado para seu cenário.',
   },
   {
     pergunta: 'Bitrix24 tem limitações? O que ele NÃO faz bem?',
