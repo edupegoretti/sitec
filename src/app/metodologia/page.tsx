@@ -12,6 +12,8 @@ import {
   CTAMetodologiaFinal,
 } from '@/components/sections/metodologia'
 import { DiagnosticoModal } from '@/components/shared'
+import { FAQJsonLd, HowToJsonLd } from '@/components/seo'
+import { GROWTH_ARCHITECTURE_FAQ } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Metodologia Fluidsales™ | CRM que funciona e AI-Ready — Zopu',
@@ -48,6 +50,32 @@ export const metadata: Metadata = {
   },
 }
 
+// FAQ data for Schema markup
+const FAQ_SCHEMA_DATA = GROWTH_ARCHITECTURE_FAQ.map((faq) => ({
+  question: faq.pergunta,
+  answer: faq.resposta,
+}))
+
+// HowTo Schema - Implementation steps
+const HOWTO_STEPS = [
+  {
+    name: 'Diagnóstico',
+    text: 'Mapeamento completo do processo atual, identificação de gargalos e definição de objetivos claros para a implementação do CRM.',
+  },
+  {
+    name: 'Arquitetura',
+    text: 'Desenho do modelo operacional, definição de funis, automações e integrações necessárias baseado na metodologia Fluidsales™.',
+  },
+  {
+    name: 'Implementação',
+    text: 'Configuração técnica do Bitrix24, migração de dados, setup de automações e integrações com sistemas existentes.',
+  },
+  {
+    name: 'Capacitação',
+    text: 'Treinamento hands-on com a equipe através da plataforma Fluidz, certificação e criação de playbooks de uso.',
+  },
+]
+
 /**
  * Página da Metodologia Fluidsales™
  *
@@ -67,6 +95,15 @@ export const metadata: Metadata = {
 export default function MetodologiaPage() {
   return (
     <main>
+      {/* Schema Markup for SEO */}
+      <FAQJsonLd faqs={FAQ_SCHEMA_DATA} />
+      <HowToJsonLd
+        name="Como implementar CRM com a Metodologia Fluidsales™"
+        description="Processo de implementação de CRM Bitrix24 em 4 fases: diagnóstico, arquitetura, implementação e capacitação. Operação funcionando em 30 a 60 dias."
+        totalTime="P30D"
+        steps={HOWTO_STEPS}
+      />
+
       {/* Lead Magnet - Diagnóstico de CRM */}
       <DiagnosticoModal />
 

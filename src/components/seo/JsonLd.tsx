@@ -14,6 +14,8 @@ export function OrganizationJsonLd() {
       'https://br.linkedin.com/company/zopu',
       'https://www.instagram.com/souzopu/',
       'https://www.youtube.com/channel/UCD6akPmq0-7MGC-DSPjDjsw',
+      'https://www.bitrix24.com.br/partners/brazil/zopu.php',
+      'https://www.facebook.com/souzopu',
     ],
     contactPoint: [
       {
@@ -109,6 +111,8 @@ export function LocalBusinessJsonLd() {
       'https://br.linkedin.com/company/zopu',
       'https://www.instagram.com/souzopu/',
       'https://www.youtube.com/channel/UCD6akPmq0-7MGC-DSPjDjsw',
+      'https://www.bitrix24.com.br/partners/brazil/zopu.php',
+      'https://www.facebook.com/souzopu',
     ],
   }
 

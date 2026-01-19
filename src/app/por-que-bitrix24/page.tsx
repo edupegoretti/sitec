@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { ArrowRight, Check, X, Plus, ChevronDown } from 'lucide-react'
 import { Container } from '@/components/layout'
 import { Badge, Reveal, Button, CategoryIcon } from '@/components/shared'
+import { FAQJsonLd } from '@/components/seo'
 import {
   CategorySectionA,
   CategorySectionB,
@@ -139,12 +140,21 @@ function ComparativoCell({
   )
 }
 
+// FAQ data for Schema markup
+const FAQ_SCHEMA_DATA = FAQ_POR_QUE_BITRIX24.map((faq) => ({
+  question: faq.pergunta,
+  answer: faq.resposta,
+}))
+
 export default function PorQueBitrix24Page() {
   // Categorias separadas para diferentes layouts
   const [crm, copilot, projetos, comunicacao, marketing, rh, sites] = BITRIX24_TOOL_CATEGORIES
 
   return (
     <main className="pt-20 lg:pt-24">
+      {/* FAQ Schema for SEO */}
+      <FAQJsonLd faqs={FAQ_SCHEMA_DATA} />
+
       {/* =============================================
           SECAO 1: HERO EDUCACIONAL
           ============================================= */}
