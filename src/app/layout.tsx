@@ -3,15 +3,12 @@ import { Suspense } from 'react'
 import Script from 'next/script'
 import { Fustat, JetBrains_Mono } from 'next/font/google'
 import { Header, Footer } from '@/components/layout'
-import { Analytics, GTMNoScript } from '@/components/shared'
+import { Analytics, GTMNoScript, Bitrix24Widget } from '@/components/shared'
 import { ClarityProvider } from '@/components/analytics'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next'
 import { OrganizationJsonLd, LocalBusinessJsonLd } from '@/components/seo'
 import './globals.css'
-
-// Bitrix24 CRM Widget - carrega em todas as páginas
-const BITRIX24_WIDGET_URL = 'https://cdn.bitrix24.com.br/b19877839/crm/site_button/loader_1_d9m6kl.js'
 
 // CookieYes ID for cookie consent
 const COOKIEYES_ID = '6e449b35cc3b5f3f8d0292281110b939'
@@ -140,12 +137,8 @@ export default function RootLayout({
         <VercelAnalytics />
         <ClarityProvider />
 
-        {/* Bitrix24 CRM Widget - Chat/WhatsApp button */}
-        <Script
-          id="bitrix24-widget"
-          strategy="afterInteractive"
-          src={`${BITRIX24_WIDGET_URL}?${Math.floor(Date.now() / 60000)}`}
-        />
+        {/* Bitrix24 CRM Widget - Apenas desktop */}
+        <Bitrix24Widget />
       </body>
     </html>
   )

@@ -228,3 +228,19 @@
     transform: translateY(-2px);
   }
 }
+
+/* =============================================================================
+   CookieYes - Esconder badge/logo após aceite no mobile
+   ============================================================================= */
+@media (max-width: 768px) {
+  /* Esconde o badge flutuante do CookieYes (canto inferior) */
+  .cky-btn-revisit-wrapper,
+  .cky-revisit-bottom-left,
+  .cky-revisit-bottom-right,
+  [data-cky-tag="revisit-consent"],
+  .cky-consent-bar-revisit {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
