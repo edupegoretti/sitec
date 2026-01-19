@@ -13,6 +13,9 @@ import './globals.css'
 // CookieYes ID for cookie consent
 const COOKIEYES_ID = '6e449b35cc3b5f3f8d0292281110b939'
 
+// Ahrefs Analytics
+const AHREFS_KEY = 'OrEX3CJLaoPUCmSZ2tpNfg'
+
 const fustat = Fustat({
   subsets: ['latin'],
   weight: 'variable',
@@ -120,6 +123,13 @@ export default function RootLayout({
           id="cookieyes"
           src={`https://cdn-cookieyes.com/client_data/${COOKIEYES_ID}/script.js`}
           strategy="beforeInteractive"
+        />
+        {/* Ahrefs Analytics */}
+        <Script
+          id="ahrefs-analytics"
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key={AHREFS_KEY}
+          strategy="afterInteractive"
         />
         <OrganizationJsonLd />
         <LocalBusinessJsonLd />
