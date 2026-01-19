@@ -23,12 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     },
     {
-      url: `${BASE_URL}/licencas-bitrix24`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
       url: `${BASE_URL}/por-que-zopu`,
       lastModified: currentDate,
       changeFrequency: 'monthly',

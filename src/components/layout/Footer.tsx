@@ -19,7 +19,6 @@ const FOOTER_NAV = {
       { label: "RevOps Launch", href: "/revopslaunch" },
       { label: "Mapa de Performance", href: "/mapadeperformance" },
       { label: "Enterprise", href: "/bitrix24-enterprise" },
-      { label: "Licenças Bitrix24", href: "/licencas-bitrix24" },
     ],
   },
   empresa: {
