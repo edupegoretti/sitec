@@ -118,33 +118,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // Páginas de soluções (apenas as que estão ativas)
-  const solutionPages: MetadataRoute.Sitemap = [
-    {
-      url: `${BASE_URL}/solucoes`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    },
-    {
-      url: `${BASE_URL}/solucoes/crm-whatsapp`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/solucoes/integracoes`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    },
-    {
-      url: `${BASE_URL}/solucoes/telefonia`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-  ]
 
   // Páginas de recursos (apenas as que estão acessíveis via menu)
   const resourcePages: MetadataRoute.Sitemap = [
@@ -278,7 +251,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...mainPages,
     ...personaPages,
-    ...solutionPages,
     ...resourcePages,
     ...blogPages,
     ...themePages,

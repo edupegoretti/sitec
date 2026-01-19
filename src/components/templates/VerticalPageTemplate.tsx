@@ -614,10 +614,10 @@ function CTASection({ vertical }: { vertical: VerticalData }) {
                     <ArrowRight className="w-5 h-5" />
                   </a>
                   <Link
-                    href="/solucoes"
+                    href="/por-que-bitrix24"
                     className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 border border-white/30 rounded-xl font-semibold text-white hover:bg-white/20 transition-all"
                   >
-                    Ver outras soluções
+                    Conhecer a plataforma
                   </Link>
                 </div>
               </Reveal>

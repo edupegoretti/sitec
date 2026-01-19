@@ -70,10 +70,10 @@ export function PMEProduto() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="/solucoes#crm-futuro"
+                  href="/crm-express"
                   className="text-brand font-medium hover:underline"
                 >
-                  CRM do Futuro (90 dias) →
+                  CRM Express (30 dias) →
                 </Link>
               </div>
             </div>

@@ -200,10 +200,10 @@ export default function TIPage() {
                 </ul>
 
                 <Link
-                  href="/solucoes/integracoes"
+                  href="/por-que-bitrix24"
                   className="inline-flex items-center gap-2 text-brand font-semibold mt-6 hover:underline"
                 >
-                  Ver todas as integrações
+                  Conhecer a plataforma
                   <ArrowRight size={18} />
                 </Link>
               </div>
