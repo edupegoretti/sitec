@@ -23,9 +23,10 @@ type Topic = {
 type Props = {
   posts: PostCardData[]
   topics: Topic[]
+  basePath?: string
 }
 
-export function BlogPageClient({ posts, topics }: Props) {
+export function BlogPageClient({ posts, topics, basePath = '/recursos/blog' }: Props) {
   const [activeTopic, setActiveTopic] = useState<string | null>(null)
   const [activeIntent, setActiveIntent] = useState<PostIntent | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
@@ -192,7 +193,7 @@ export function BlogPageClient({ posts, topics }: Props) {
         {featuredPost ? (
           <div className="py-12 sm:py-16">
             <Container>
-              <FeaturedPost post={featuredPost} />
+              <FeaturedPost post={featuredPost} basePath={basePath} />
             </Container>
           </div>
         ) : (
@@ -212,7 +213,7 @@ export function BlogPageClient({ posts, topics }: Props) {
                   <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
                     {remainingPosts.map((post, index) => (
                       <Reveal key={post._id} delay={index * 0.03}>
-                        <PostCard post={post} />
+                        <PostCard post={post} basePath={basePath} />
                       </Reveal>
                     ))}
                   </div>

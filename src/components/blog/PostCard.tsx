@@ -25,9 +25,10 @@ type Props = {
   post: PostCardData
   variant?: 'default' | 'compact'
   priority?: boolean
+  basePath?: string
 }
 
-export function PostCard({ post, variant = 'default', priority = false }: Props) {
+export function PostCard({ post, variant = 'default', priority = false, basePath = '/recursos/blog' }: Props) {
   const readingTime = calculateReadingTime(post.excerpt)
   const relativeDate = formatRelativeDate(post.publishedAt)
   const topicColors = getTopicColors(post.primaryTheme?.slug)
@@ -37,7 +38,7 @@ export function PostCard({ post, variant = 'default', priority = false }: Props)
   if (variant === 'compact') {
     return (
       <Link
-        href={`/recursos/blog/${post.slug}`}
+        href={`${basePath}/${post.slug}`}
         className="group flex gap-4 py-4 border-b border-gray-100 last:border-0"
       >
         {post.coverImageUrl && (
@@ -68,7 +69,7 @@ export function PostCard({ post, variant = 'default', priority = false }: Props)
 
   // Variante Default (grid)
   return (
-    <Link href={`/recursos/blog/${post.slug}`} className="group block h-full">
+    <Link href={`${basePath}/${post.slug}`} className="group block h-full">
       <article className="h-full overflow-hidden rounded-2xl bg-white border border-gray-100 transition-all duration-500 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1">
         {/* Imagem */}
         <div className="relative aspect-video bg-gray-100 overflow-hidden">

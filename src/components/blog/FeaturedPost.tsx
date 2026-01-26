@@ -12,9 +12,10 @@ import type { PostCardData } from './PostCard'
 
 type Props = {
   post: PostCardData | null
+  basePath?: string
 }
 
-export function FeaturedPost({ post }: Props) {
+export function FeaturedPost({ post, basePath = '/recursos/blog' }: Props) {
   if (!post) {
     return (
       <div className="rounded-3xl border-2 border-dashed border-gray-200 bg-gray-50/50 p-16 text-center">
@@ -36,7 +37,7 @@ export function FeaturedPost({ post }: Props) {
 
   return (
     <Reveal>
-      <Link href={`/recursos/blog/${post.slug}`} className="group block">
+      <Link href={`${basePath}/${post.slug}`} className="group block">
         <article className="relative rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-gray-200/50 transition-all duration-500">
           <div className="grid lg:grid-cols-2">
             {/* Imagem */}
