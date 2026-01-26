@@ -128,10 +128,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/recursos/blog`,
+      url: `${BASE_URL}/blog`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${BASE_URL}/recursos/biblioteca`,
@@ -170,10 +170,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ])
 
     blogPages = postSlugs.map((item) => ({
-      url: `${BASE_URL}/recursos/blog/${item.slug}`,
+      url: `${BASE_URL}/blog/${item.slug}`,
       lastModified: item._updatedAt ? new Date(item._updatedAt) : currentDate,
       changeFrequency: 'monthly',
-      priority: 0.6,
+      priority: 0.7,
     }))
 
     themePages = themeSlugs.map((item) => ({
