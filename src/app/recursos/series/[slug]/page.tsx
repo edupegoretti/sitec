@@ -69,7 +69,7 @@ export default async function SeriePage({ params }: PageProps) {
                   Recursos
                 </Link>
                 <span className="mx-2">/</span>
-                <Link href="/recursos/blog" className="hover:text-gray-700 transition-colors">
+                <Link href="/blog" className="hover:text-gray-700 transition-colors">
                   Blog
                 </Link>
               </nav>
@@ -100,7 +100,7 @@ export default async function SeriePage({ params }: PageProps) {
             <Reveal delay={0.28}>
               <div className="mt-10 flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/recursos/blog"
+                  href="/blog"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand text-white font-semibold rounded-xl hover:bg-brand-hover transition-colors"
                 >
                   Ver todos os posts

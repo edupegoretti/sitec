@@ -3,7 +3,7 @@ import { sanityFetch } from '@/sanity/lib/fetch'
 import { authorSlugsQuery, interestSlugsQuery, postSlugsQuery, seriesSlugsQuery, themeSlugsQuery } from '@/sanity/lib/queries'
 import { isSanityConfigured } from '@/sanity/lib/env'
 
-const BASE_URL = 'https://zopu.com.br'
+const BASE_URL = 'https://www.zopu.com.br'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date()

@@ -146,7 +146,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   Recursos
                 </Link>
                 <span className="mx-2">/</span>
-                <Link href="/recursos/blog" className="hover:text-gray-700 transition-colors">
+                <Link href="/blog" className="hover:text-gray-700 transition-colors">
                   Blog
                 </Link>
               </nav>
@@ -269,7 +269,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                   <ArrowRight className="w-5 h-5" />
                 </a>
                 <Link
-                  href="/recursos/blog"
+                  href="/blog"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-700 border border-gray-200 font-semibold rounded-xl hover:bg-gray-50 transition-colors"
                 >
                   Ver mais conteúdos

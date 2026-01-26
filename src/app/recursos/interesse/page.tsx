@@ -10,7 +10,7 @@ import { interestsQuery } from '@/sanity/lib/queries'
 export const metadata: Metadata = {
   title: 'Interesses | Recursos | Zopu',
   description: 'Explore conteúdos por interesse (dor/objetivo): pipeline, forecast, adoção, governança, automação e mais.',
-  alternates: { canonical: '/recursos/interesse' },
+  robots: { index: false, follow: true },
 }
 
 export const revalidate = 3600
@@ -43,7 +43,7 @@ export default async function RecursosInteressesPage() {
             </Reveal>
             <Reveal delay={0.3}>
               <Link
-                href="/recursos/blog"
+                href="/blog"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-700 border border-gray-200 font-semibold rounded-xl hover:bg-gray-50 transition-colors"
               >
                 Voltar para o Blog

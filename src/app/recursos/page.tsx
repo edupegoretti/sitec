@@ -65,7 +65,7 @@ export default async function RecursosPage() {
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
-                  href="/recursos/blog"
+                  href="/blog"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-700 border border-gray-200 font-semibold rounded-xl hover:bg-gray-50 transition-colors"
                 >
                   Ver Blog
@@ -145,7 +145,7 @@ export default async function RecursosPage() {
                     <p className="text-gray-600">Guias e artigos para operar com método (e avançar na decisão).</p>
                   </div>
                   <Link
-                    href="/recursos/blog"
+                    href="/blog"
                     className="hidden sm:inline-flex items-center gap-2 text-brand font-semibold hover:text-brand-hover transition-colors"
                   >
                     Ver blog

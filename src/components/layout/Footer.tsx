@@ -24,6 +24,7 @@ const FOOTER_NAV = {
   empresa: {
     title: "Empresa",
     links: [
+      { label: "Sobre a Zopu", href: "/sobre" },
       { label: "Por que Zopu", href: "/por-que-zopu" },
       { label: "Por que Bitrix24", href: "/por-que-bitrix24" },
       { label: "Cases de Sucesso", href: "/cases" },
@@ -35,7 +36,7 @@ const FOOTER_NAV = {
   recursos: {
     title: "Recursos",
     links: [
-      { label: "Blog", href: "/recursos/blog" },
+      { label: "Blog", href: "/blog" },
       { label: "Zopucast", href: "/recursos/biblioteca/zopucast" },
       { label: "Webinars", href: "/recursos/biblioteca/webinars-bitrix24" },
       {

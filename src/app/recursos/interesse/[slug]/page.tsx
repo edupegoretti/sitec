@@ -102,7 +102,7 @@ export default async function RecursosInteressePage({ params }: PageProps) {
             <Reveal delay={0.25}>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/recursos/blog"
+                  href="/blog"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand text-white font-semibold rounded-xl hover:bg-brand-hover transition-colors"
                 >
                   Ver todos os posts

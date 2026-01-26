@@ -9,7 +9,7 @@ import { STAGE_LABEL, type PostStage } from '@/sanity/lib/labels'
 export const metadata: Metadata = {
   title: 'Estágios | Recursos | Zopu',
   description: 'Navegue por estágio da jornada: diagnóstico, estruturação, implementação, otimização e decisão.',
-  alternates: { canonical: '/recursos/estagio' },
+  robots: { index: false, follow: true },
 }
 
 const STAGES: Array<{ stage: PostStage; description: string }> = [
@@ -54,7 +54,7 @@ export default function RecursosEstagiosPage() {
             </Reveal>
             <Reveal delay={0.3}>
               <Link
-                href="/recursos/blog"
+                href="/blog"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white text-gray-700 border border-gray-200 font-semibold rounded-xl hover:bg-gray-50 transition-colors"
               >
                 Ver o Blog

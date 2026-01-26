@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    alternates: { canonical: `/recursos/estagio/${stage}` },
+    robots: { index: false, follow: true },
     openGraph: { title, description },
   }
 }
@@ -78,7 +78,7 @@ export default async function RecursosEstagioPage({ params }: PageProps) {
             <Reveal delay={0.25}>
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
                 <Link
-                  href="/recursos/blog"
+                  href="/blog"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand text-white font-semibold rounded-xl hover:bg-brand-hover transition-colors"
                 >
                   Ver todos os posts

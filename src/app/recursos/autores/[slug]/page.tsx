@@ -73,7 +73,7 @@ export default async function AutorPage({ params }: PageProps) {
                   Recursos
                 </Link>
                 <span className="mx-2">/</span>
-                <Link href="/recursos/blog" className="hover:text-gray-700 transition-colors">
+                <Link href="/blog" className="hover:text-gray-700 transition-colors">
                   Blog
                 </Link>
               </nav>

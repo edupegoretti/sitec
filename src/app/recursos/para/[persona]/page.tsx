@@ -103,7 +103,7 @@ export default async function RecursosPersonaDetailPage({ params }: PageProps) {
                       </p>
                     </div>
                     <Link
-                      href="/recursos/blog"
+                      href="/blog"
                       className="hidden sm:inline-flex items-center gap-2 text-brand font-semibold hover:text-brand-hover transition-colors"
                     >
                       Ver todos

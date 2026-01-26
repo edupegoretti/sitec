@@ -161,7 +161,7 @@ export function BlogSidebarV2({ categories, className }: Props) {
         </ul>
         {categories.length > 6 && (
           <Link
-            href="/recursos/blog"
+            href="/blog"
             className="mt-3 flex items-center gap-1 text-xs text-brand font-medium hover:text-brand-hover transition-colors"
           >
             Ver todas as categorias
