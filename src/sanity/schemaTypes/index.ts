@@ -5,6 +5,7 @@ import { postType } from './postType'
 import { resourceSectionType } from './resourceSectionType'
 import { seriesType } from './seriesType'
 import { themeType } from './themeType'
+import { utmLinkType } from './utmLinkType'
 
 export const schemaTypes = [
   postType,
@@ -14,5 +15,6 @@ export const schemaTypes = [
   seriesType,
   resourceSectionType,
   contentUpgradeType,
+  utmLinkType,
 ]
 

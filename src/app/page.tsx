@@ -49,7 +49,6 @@ import {
   WhatsZopuSection,
   Bitrix24Showcase,
   CasesProvaSection,
-  ComparacaoSection,
   OfertasSection,
   CTAFinalSection,
 } from "@/components/sections/novahome";
@@ -93,9 +92,6 @@ export default function Home() {
 
       {/* 12. Reconhecimento - Gold Partner + Certificações */}
       <CRORecognitionSection />
-
-      {/* 13. Arquitetura de Receita - 4 Pilares */}
-      <ComparacaoSection />
 
       {/* 13. Ofertas - CRM Express, RevOps Launch, Enterprise */}
       <OfertasSection />
