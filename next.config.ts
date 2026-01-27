@@ -146,6 +146,11 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/bitrix24',
+        destination: '/por-que-bitrix24',
+        permanent: true,
+      },
 
       // ===========================================
       // COMMON WORDPRESS PATHS
