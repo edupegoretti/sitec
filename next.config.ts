@@ -151,6 +151,45 @@ const nextConfig: NextConfig = {
         destination: '/por-que-bitrix24',
         permanent: true,
       },
+      {
+        source: '/contact',
+        destination: '/contato',
+        permanent: true,
+      },
+      {
+        source: '/conteudo',
+        destination: '/recursos',
+        permanent: true,
+      },
+      {
+        source: '/bitrix24-vs-outros-crms',
+        destination: '/bitrix24-vs-outras-ferramentas',
+        permanent: true,
+      },
+      {
+        source: '/solucoes/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/fluidz',
+        destination: '/',
+        permanent: true,
+      },
+
+      // ===========================================
+      // BLOG SLUG VARIANTS
+      // ===========================================
+      {
+        source: '/blog/pitch-de-vendas',
+        destination: '/blog/pitch-de-vendas-5-passos-infaliveis',
+        permanent: true,
+      },
+      {
+        source: '/blog/como-montar-um-pitch-de-vendas-5-passos-infaliveis',
+        destination: '/blog/pitch-de-vendas-5-passos-infaliveis',
+        permanent: true,
+      },
 
       // ===========================================
       // COMMON WORDPRESS PATHS
@@ -192,6 +231,11 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/category/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/cdn-cgi/:path*',
         destination: '/',
         permanent: true,
       },
