@@ -176,6 +176,11 @@ const nextConfig: NextConfig = {
         destination: '/',
         permanent: true,
       },
+      {
+        source: '/licencas-bitrix24',
+        destination: '/planos-bitrix24',
+        permanent: true,
+      },
 
       // ===========================================
       // BLOG SLUG VARIANTS
