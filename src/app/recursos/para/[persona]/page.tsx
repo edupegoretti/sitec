@@ -8,7 +8,8 @@ import { getWebinarItems, getZopucastItems } from '@/lib/resources/library'
 import { isResourcePersonaId, RESOURCE_PERSONAS } from '@/lib/resources/personas'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { postsByPersonaQuery } from '@/sanity/lib/queries'
-import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { PostCard } from '@/components/blog/PostCard'
+import { toPostCardDataList, type SanityRawPost } from '@/sanity/lib/transforms'
 
 type PageProps = {
   params: Promise<{ persona: string }>
@@ -47,7 +48,7 @@ export default async function RecursosPersonaDetailPage({ params }: PageProps) {
   const [zopucastItems, webinarItems, blogPosts] = await Promise.all([
     getZopucastItems(),
     getWebinarItems(),
-    sanityFetch<PostCardData[]>({ query: postsByPersonaQuery, params: { persona: persona.id }, tags: ['post'] }),
+    sanityFetch<SanityRawPost[]>({ query: postsByPersonaQuery, params: { persona: persona.id }, tags: ['post'] }).then(toPostCardDataList),
   ])
   const latestZopucast = zopucastItems.slice(0, 3)
   const latestWebinar = webinarItems[0]

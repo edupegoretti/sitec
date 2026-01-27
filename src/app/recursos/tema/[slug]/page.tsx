@@ -5,9 +5,10 @@ import { ArrowRight } from 'lucide-react'
 
 import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
-import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { PostCard } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { postsByThemeQuery, themeBySlugQuery, themeSlugsQuery, themesQuery } from '@/sanity/lib/queries'
+import { toPostCardDataList, type SanityRawPost } from '@/sanity/lib/transforms'
 
 export const revalidate = 1800
 
@@ -58,7 +59,7 @@ export default async function RecursosTemaPage({ params }: PageProps) {
 
   const [theme, posts, allThemes] = await Promise.all([
     sanityFetch<Theme | null>({ query: themeBySlugQuery, params: { slug }, tags: ['theme'] }),
-    sanityFetch<PostCardData[]>({ query: postsByThemeQuery, params: { slug }, tags: ['post'] }),
+    sanityFetch<SanityRawPost[]>({ query: postsByThemeQuery, params: { slug }, tags: ['post'] }).then(toPostCardDataList),
     sanityFetch<Theme[]>({ query: themesQuery, tags: ['theme'] }),
   ])
 

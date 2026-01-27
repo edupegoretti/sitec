@@ -5,10 +5,11 @@ import { notFound } from 'next/navigation'
 
 import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
-import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { PostCard } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { authorBySlugQuery, authorSlugsQuery, postsByAuthorQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
+import { toPostCardDataList, type SanityRawPost } from '@/sanity/lib/transforms'
 
 export const revalidate = 1800
 
@@ -55,7 +56,7 @@ export default async function AutorPage({ params }: PageProps) {
 
   const [author, posts] = await Promise.all([
     sanityFetch<Author | null>({ query: authorBySlugQuery, params: { slug }, tags: ['author'] }),
-    sanityFetch<PostCardData[]>({ query: postsByAuthorQuery, params: { slug }, tags: ['post'] }),
+    sanityFetch<SanityRawPost[]>({ query: postsByAuthorQuery, params: { slug }, tags: ['post'] }).then(toPostCardDataList),
   ])
 
   if (!author) notFound()

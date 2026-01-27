@@ -5,9 +5,10 @@ import { ArrowRight } from 'lucide-react'
 
 import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
-import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { PostCard } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { postsByStageQuery } from '@/sanity/lib/queries'
+import { toPostCardDataList, type SanityRawPost } from '@/sanity/lib/transforms'
 import { STAGE_LABEL, type PostStage } from '@/sanity/lib/labels'
 
 export const revalidate = 1800
@@ -45,7 +46,7 @@ export default async function RecursosEstagioPage({ params }: PageProps) {
   const { stage } = await params
   if (!isStage(stage)) notFound()
 
-  const posts = await sanityFetch<PostCardData[]>({ query: postsByStageQuery, params: { stage }, tags: ['post'] })
+  const posts = toPostCardDataList(await sanityFetch<SanityRawPost[]>({ query: postsByStageQuery, params: { stage }, tags: ['post'] }))
 
   return (
     <main className="pt-20 lg:pt-24">

@@ -5,9 +5,10 @@ import { ArrowRight } from 'lucide-react'
 
 import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
-import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { PostCard } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { interestBySlugQuery, interestSlugsQuery, interestsQuery, postsByInterestQuery } from '@/sanity/lib/queries'
+import { toPostCardDataList, type SanityRawPost } from '@/sanity/lib/transforms'
 
 export const revalidate = 1800
 
@@ -62,7 +63,7 @@ export default async function RecursosInteressePage({ params }: PageProps) {
 
   const [interest, posts, allInterests] = await Promise.all([
     sanityFetch<Interest | null>({ query: interestBySlugQuery, params: { slug }, tags: ['interest'] }),
-    sanityFetch<PostCardData[]>({ query: postsByInterestQuery, params: { slug }, tags: ['post'] }),
+    sanityFetch<SanityRawPost[]>({ query: postsByInterestQuery, params: { slug }, tags: ['post'] }).then(toPostCardDataList),
     sanityFetch<Interest[]>({ query: interestsQuery, tags: ['interest'] }),
   ])
 

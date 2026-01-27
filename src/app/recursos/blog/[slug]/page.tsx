@@ -8,7 +8,8 @@ import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
 import { ArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo'
 import { PostBody } from '@/components/blog/PostBody'
-import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { PostCard } from '@/components/blog/PostCard'
+import { toPostCardDataList, type SanityRawPost } from '@/sanity/lib/transforms'
 import { formatPtBrDate } from '@/lib/date'
 import { ZOPU_LINKS } from '@/lib/constants'
 import { sanityFetch } from '@/sanity/lib/fetch'
@@ -96,9 +97,9 @@ export default async function BlogPostPage({ params }: PageProps) {
   const post = await sanityFetch<Post | null>({ query: postBySlugQuery, params: { slug }, tags: ['post'] })
   if (!post) notFound()
 
-  const related =
+  const rawRelated =
     post.primaryThemeId || (post.interestIds && post.interestIds.length)
-      ? await sanityFetch<PostCardData[]>({
+      ? await sanityFetch<SanityRawPost[]>({
           query: relatedPostsQuery,
           params: {
             id: post._id,
@@ -108,6 +109,7 @@ export default async function BlogPostPage({ params }: PageProps) {
           tags: ['post'],
         })
       : []
+  const related = toPostCardDataList(rawRelated)
 
   const coverUrl = post.coverImage ? urlForImage(post.coverImage).width(1600).height(900).fit('crop').url() : null
   const coverAlt = post.coverImage?.alt ?? post.title

@@ -6,10 +6,11 @@ import { ArrowRight } from 'lucide-react'
 
 import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
-import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { PostCard } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { seriesBySlugQuery, seriesSlugsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
+import { toPostCardDataList, type SanityRawPost } from '@/sanity/lib/transforms'
 
 export const revalidate = 1800
 
@@ -31,7 +32,7 @@ type Series = {
   slug: string
   description?: string
   heroImage?: any
-  posts?: PostCardData[]
+  posts?: SanityRawPost[]
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -56,6 +57,7 @@ export default async function SeriePage({ params }: PageProps) {
 
   if (!series) notFound()
 
+  const posts = toPostCardDataList(series.posts ?? [])
   const heroUrl = series.heroImage ? urlForImage(series.heroImage).width(1600).height(840).fit('crop').url() : null
 
   return (
@@ -121,9 +123,9 @@ export default async function SeriePage({ params }: PageProps) {
       <section className="py-16 sm:py-20 bg-white">
         <Container>
           <div className="max-w-6xl mx-auto">
-            {series.posts?.length ? (
+            {posts.length ? (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {series.posts.map((post) => (
+                {posts.map((post) => (
                   <Reveal key={post._id}>
                     <PostCard post={post} />
                   </Reveal>

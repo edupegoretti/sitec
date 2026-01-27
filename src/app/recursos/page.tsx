@@ -5,9 +5,10 @@ import { Container } from '@/components/layout'
 import { Badge, Reveal } from '@/components/shared'
 import { RESOURCE_PERSONAS } from '@/lib/resources/personas'
 import { getWebinarItems, getZopucastItems } from '@/lib/resources/library'
-import { PostCard, type PostCardData } from '@/components/blog/PostCard'
+import { PostCard } from '@/components/blog/PostCard'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { latestPostsQuery } from '@/sanity/lib/queries'
+import { toPostCardDataList, type SanityRawPost } from '@/sanity/lib/transforms'
 
 export const metadata: Metadata = {
   title: 'Recursos | Conteúdos abertos | Zopu',
@@ -29,7 +30,7 @@ export default async function RecursosPage() {
   const [zopucastItems, webinarItems, latestPosts] = await Promise.all([
     getZopucastItems(),
     getWebinarItems(),
-    sanityFetch<PostCardData[]>({ query: latestPostsQuery, params: { limit: 3 }, tags: ['post'] }),
+    sanityFetch<SanityRawPost[]>({ query: latestPostsQuery, params: { limit: 3 }, tags: ['post'] }).then(toPostCardDataList),
   ])
   const latestZopucast = zopucastItems.slice(0, 3)
   const latestWebinar = webinarItems[0]
